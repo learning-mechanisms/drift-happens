@@ -1,0 +1,45 @@
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Temporal robustness on Amazon Reviews.}
+\label{tab:robustness_amazon_reviews}
+\begin{minipage}[t]{0.49\linewidth}
+\centering
+\resizebox{\ifdim\width>\linewidth \linewidth\else\width\fi}{!}{%
+\begin{tabular}{l rr}
+\toprule
+Model & Future & Decay \\
+\midrule
+DeBERTa-v3 & 0.849 & 0.043 \\
+ModernBERT & 1.086 & 0.064 \\
+BERT & 0.999 & 0.075 \\
+FFN-S & 0.841 & 0.075 \\
+ELECTRA & 1.000 & 0.076 \\
+FFN-M & 0.834 & 0.077 \\
+TextCNN-L & 0.871 & 0.078 \\
+DistilBERT & 1.047 & 0.082 \\
+RoBERTa & 0.944 & 0.088 \\
+FFN-L & 0.848 & 0.089 \\
+\bottomrule
+\end{tabular}}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\centering
+\resizebox{\ifdim\width>\linewidth \linewidth\else\width\fi}{!}{%
+\begin{tabular}{l rr}
+\toprule
+Model & Future & Decay \\
+\midrule
+TX-S & 0.776 & 0.090 \\
+TX-M & 0.801 & 0.092 \\
+TextCNN-M & 0.885 & 0.093 \\
+TX-L & 0.829 & 0.094 \\
+MPNet & 1.047 & 0.099 \\
+BiLSTM-Attn-L & 0.819 & 0.106 \\
+TextCNN-S & 0.860 & 0.114 \\
+BiGRU-S & 0.797 & 0.116 \\
+BiLSTM-M & 0.824 & 0.128 \\
+\bottomrule
+\end{tabular}}
+\end{minipage}
+\end{table}

@@ -1,0 +1,123 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "drift-happens"
+version = "0.0.0"
+description = "Temporal robustness experiments for time-series classifiers under distribution drift."
+readme = "README.md"
+license = "Apache-2.0"
+authors = [{ name = "Robin Holzinger" }, { name = "Riccardo Colletti" }]
+keywords = ["temporal-drift", "robustness", "machine-learning", "time-series"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+requires-python = ">=3.13, <3.14"
+dependencies = []
+
+
+[project.urls]
+homepage = "https://drift-happens.org/"
+repository = "https://github.com/learning-mechanisms/drift-happens"
+
+[project.scripts]
+drift = "drift_happens.cli.main:main"
+
+[tool.setuptools.packages.find]
+include = ["drift_happens*"]
+namespaces = false
+
+[tool.setuptools.package-data]
+drift_happens = ["py.typed"]
+
+[tool.ruff]
+line-length = 88
+src = ["drift_happens"]
+extend-exclude = ["*.ipynb"]
+[tool.ruff.lint]
+ignore = [
+  "E501", # https://docs.astral.sh/ruff/faq/#is-the-ruff-linter-compatible-with-black
+  "N803", # https://docs.astral.sh/ruff/rules/invalid-argument-name
+  "N806", # https://docs.astral.sh/ruff/rules/non-lowercase-variable-in-function
+]
+select = [
+  # pyflakes
+  "F",
+  # pycodestyle
+  "E",
+  "W",
+  # isort
+  "I",
+  # pep8-naming
+  "N",
+  # pyupgrade
+  "UP",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["dev", "drift_happens"]
+
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "double"
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/**" = ["E402"]
+
+[tool.docformatter]
+pre-summary-newline = true
+black = true
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_untyped_defs = false # untyped defs are permitted (no [no-untyped-def] errors)
+exclude = ["docs/"]
+explicit_package_bases = true
+no_implicit_optional = true
+plugins = []
+python_version = '3.13'
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = [
+  "seaborn",
+  "scipy",
+  "tqdm",
+  "plotly.*",
+  "pyarrow",
+  "pyarrow.*",
+  "kagglehub.*",
+  "datasets.*",
+  "sklearn.*",
+  "tabulate.*",
+  "torchvision.*",
+  "wandb.*",
+  "yaml",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = ["-p no:warnings", "--import-mode=importlib"]
+xfail_strict = true
+log_cli_level = "warn"
+pythonpath = ["."]
+testpaths = ["tests"]
+markers = [
+  "integration: fast end-to-end tests that write artifact directories",
+  "cuda_allowed: exempt from the CPU-only guard so the test may run on CUDA when requested",
+]
+
+[tool.coverage.run]
+source = ["drift_happens"]
+[tool.coverage.report]
+exclude_also = [
+  "if TYPE_CHECKING:",
+  "if __name__ == .__main__.:",
+  "except ImportError",
+]

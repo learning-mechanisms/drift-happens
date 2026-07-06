@@ -1,0 +1,240 @@
+\captionsetup[figure]{font=footnotesize,labelfont=footnotesize}
+
+\section{Amazon Reviews -- Drift Matrices}
+\label{app:amazon_reviews}
+
+\noindent The cohort-mean and per-model deviation matrices shown here, and the in-distribution, future, and decay quantities tabulated below, are defined in Section~\ref{subsec:drift_summary}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{plots_experiments/amazon_reviews/mean_mse_matrix.pdf}
+\caption{Cohort-mean Balanced MSE matrix $\bar{M}$ over the Amazon Reviews models. Cell $(i,j)$ is the mean across those models of the score from training through slice $i$ and evaluating on slice $j$.}
+\label{fig:amazon_reviews_mean_matrix}
+\end{figure}
+
+\subsection{Model Roster}
+
+\input{tables/amazon_reviews_roster.tex}
+
+\subsection{FFN}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/FFN-S_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/FFN-S_deviation.pdf}
+    \caption{FFN-S}
+    \label{fig:amazon_reviews_FFN_S}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/FFN-M_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/FFN-M_deviation.pdf}
+    \caption{FFN-M}
+    \label{fig:amazon_reviews_FFN_M}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/FFN-L_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/FFN-L_deviation.pdf}
+    \caption{FFN-L}
+    \label{fig:amazon_reviews_FFN_L}
+\end{subfigure}
+\caption{FFN models: Balanced MSE drift matrix $M^{(m)}$ and deviation from the cohort mean $\Delta^{(m)} = M^{(m)} - \bar{M}$ for each model, shown on a sequential and a zero-centred diverging scale, respectively.}
+\label{fig:amazon_reviews_family_text_ffn_regression}
+\end{figure}
+
+\subsection{TextCNN}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/TextCNN-S_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/TextCNN-S_deviation.pdf}
+    \caption{TextCNN-S}
+    \label{fig:amazon_reviews_TextCNN_S}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/TextCNN-M_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/TextCNN-M_deviation.pdf}
+    \caption{TextCNN-M}
+    \label{fig:amazon_reviews_TextCNN_M}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/TextCNN-L_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/TextCNN-L_deviation.pdf}
+    \caption{TextCNN-L}
+    \label{fig:amazon_reviews_TextCNN_L}
+\end{subfigure}
+\caption{TextCNN models: Balanced MSE drift matrix $M^{(m)}$ and deviation from the cohort mean $\Delta^{(m)} = M^{(m)} - \bar{M}$ for each model, shown on a sequential and a zero-centred diverging scale, respectively.}
+\label{fig:amazon_reviews_family_text_textcnn_regression}
+\end{figure}
+
+\subsection{Recurrent}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/BiGRU-S_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/BiGRU-S_deviation.pdf}
+    \caption{BiGRU-S}
+    \label{fig:amazon_reviews_BiGRU_S}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/BiLSTM-M_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/BiLSTM-M_deviation.pdf}
+    \caption{BiLSTM-M}
+    \label{fig:amazon_reviews_BiLSTM_M}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/BiLSTM-Attn-L_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/BiLSTM-Attn-L_deviation.pdf}
+    \caption{BiLSTM-Attn-L}
+    \label{fig:amazon_reviews_BiLSTM_Attn_L}
+\end{subfigure}
+\caption{Recurrent models: Balanced MSE drift matrix $M^{(m)}$ and deviation from the cohort mean $\Delta^{(m)} = M^{(m)} - \bar{M}$ for each model, shown on a sequential and a zero-centred diverging scale, respectively.}
+\label{fig:amazon_reviews_family_text_rnn_regression}
+\end{figure}
+
+\subsection{Transformer}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/TX-S_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/TX-S_deviation.pdf}
+    \caption{TX-S}
+    \label{fig:amazon_reviews_TX_S}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/TX-M_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/TX-M_deviation.pdf}
+    \caption{TX-M}
+    \label{fig:amazon_reviews_TX_M}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/TX-L_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/TX-L_deviation.pdf}
+    \caption{TX-L}
+    \label{fig:amazon_reviews_TX_L}
+\end{subfigure}
+\caption{Transformer models: Balanced MSE drift matrix $M^{(m)}$ and deviation from the cohort mean $\Delta^{(m)} = M^{(m)} - \bar{M}$ for each model, shown on a sequential and a zero-centred diverging scale, respectively.}
+\label{fig:amazon_reviews_family_text_tx_regression}
+\end{figure}
+
+\subsection{Frozen}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/BERT_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/BERT_deviation.pdf}
+    \caption{BERT}
+    \label{fig:amazon_reviews_BERT}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/DistilBERT_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/DistilBERT_deviation.pdf}
+    \caption{DistilBERT}
+    \label{fig:amazon_reviews_DistilBERT}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/ELECTRA_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/ELECTRA_deviation.pdf}
+    \caption{ELECTRA}
+    \label{fig:amazon_reviews_ELECTRA}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/MPNet_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/MPNet_deviation.pdf}
+    \caption{MPNet}
+    \label{fig:amazon_reviews_MPNet}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/ModernBERT_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/ModernBERT_deviation.pdf}
+    \caption{ModernBERT}
+    \label{fig:amazon_reviews_ModernBERT}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/RoBERTa_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/RoBERTa_deviation.pdf}
+    \caption{RoBERTa}
+    \label{fig:amazon_reviews_RoBERTa}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/raw/DeBERTa-v3_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/amazon_reviews/deviation/DeBERTa-v3_deviation.pdf}
+    \caption{DeBERTa-v3}
+    \label{fig:amazon_reviews_DeBERTa_v3}
+\end{subfigure}
+\caption{Frozen models: Balanced MSE drift matrix $M^{(m)}$ and deviation from the cohort mean $\Delta^{(m)} = M^{(m)} - \bar{M}$ for each model, shown on a sequential and a zero-centred diverging scale, respectively.}
+\label{fig:amazon_reviews_family_text_frozen_head_regression}
+\end{figure}
+
+\subsection{Forgetting and Rankings}
+\label{app:amazon_reviews_forgetting}
+
+\noindent To see how quickly each model forgets, we summarize its drift matrix as a forgetting curve. The curve plots the Balanced MSE against the lag $\ell = j - i$, the number of slices between the training cutoff $i$ and the evaluation slice $j$. At each lag we average over all training cutoffs,
+\[ F(\ell) = \operatorname{mean}_{i} M_{i,\,i+\ell}. \]
+The result is the Balanced MSE at a fixed temporal distance, independent of which period a model was trained on. This separates the effect of temporal distance from the difficulty of any single slice.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=\linewidth]{plots_experiments/amazon_reviews/forgetting.pdf}
+    \caption{Per model}
+    \label{fig:amazon_reviews_forgetting}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=\linewidth]{plots_experiments/amazon_reviews/forgetting_by_family.pdf}
+    \caption{Per model family}
+    \label{fig:amazon_reviews_forgetting_family}
+\end{subfigure}
+\caption{Forgetting curves: each model (left) and averaged within each family (right).}
+\label{fig:amazon_reviews_forgetting_combined}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=\linewidth]{plots_experiments/amazon_reviews/ranking_future_performance.pdf}
+    \caption{By future performance}
+    \label{fig:amazon_reviews_ranking_future}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=\linewidth]{plots_experiments/amazon_reviews/ranking_decay.pdf}
+    \caption{By decay}
+    \label{fig:amazon_reviews_ranking_decay}
+\end{subfigure}
+\caption{Models ranked by mean future performance and by temporal decay.}
+\label{fig:amazon_reviews_rankings}
+\end{figure}
+
+\subsection{Result Tables}
+
+\input{tables/robustness_amazon_reviews.tex}
+
+\noindent
+\input{tables/amazon_reviews_cutoff_28.tex}\hfill
+\input{tables/amazon_reviews_cutoff_34.tex}
+
+\vspace{1.5ex}
+
+\noindent
+\input{tables/amazon_reviews_cutoff_40.tex}\hfill
+\input{tables/amazon_reviews_cutoff_46.tex}
+
+\input{tables/amazon_reviews_by_family.tex}

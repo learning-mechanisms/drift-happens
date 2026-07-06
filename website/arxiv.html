@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Drift Happens · arXiv</title>
+    <meta name="description" content="Temporal robustness on arXiv: the mean macro-AUC drift matrix, an interactive per-model explorer, and the robustness, cutoff, and by-family tables." />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <link rel="stylesheet" href="css/content.css" />
+    <link rel="stylesheet" href="css/extra.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/lightbox.css?v=2" />
+    <link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <h1><img class="h1ds" src="img/logos/arxiv.svg" alt="arXiv logo" />arXiv</h1>
+        <div class="sub">Paper titles and abstracts, 2000&#8211;2025: label and terminology drift, measured by macro-AUC.</div>
+        <button class="navtoggle" aria-label="open menu" aria-expanded="false">
+          <svg viewBox="0 0 22 22" width="24" height="24" aria-hidden="true"><path d="M3 6 H19 M3 11 H19 M3 16 H19" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="tabs2">
+      <div class="wrap">
+        <div class="navlinks">
+          <a href="index.html">overview</a>
+          <a href="methods.html">datasets &amp; methods</a>
+          <a href="results.html">results</a>
+          <a class="artifact" href="https://wandb.ai/drift-happens/drift-happens"
+            ><svg class="artifactmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M8 1.5c-3.03 0-5.5.86-5.5 1.92v9.16c0 1.06 2.47 1.92 5.5 1.92s5.5-.86 5.5-1.92V3.42C13.5 2.36 11.03 1.5 8 1.5Zm0 1c2.54 0 4.36.61 4.49.92-.13.31-1.95.92-4.49.92s-4.36-.61-4.49-.92C3.64 3.11 5.46 2.5 8 2.5Zm4.5 3.2v1.91c-.13.31-1.95.92-4.5.92s-4.36-.61-4.5-.92V5.7c.96.58 2.59.94 4.5.94s3.54-.36 4.5-.94Zm0 3.1v1.91c-.13.31-1.95.92-4.5.92s-4.36-.61-4.5-.92V8.8c.96.58 2.59.94 4.5.94s3.54-.36 4.5-.94Zm0 3.1v.68c-.13.31-1.95.92-4.5.92s-4.36-.61-4.5-.92v-.68c.96.58 2.59.94 4.5.94s3.54-.36 4.5-.94Z"
+              /></svg
+            >artifacts</a
+          >
+          <a class="doc" href="drift-happens.pdf"
+            ><svg class="docmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M9 1H3.5A1.5 1.5 0 0 0 2 2.5v11A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V6L9 1zm0 1.5L12.5 6H9V2.5zM4.5 6.5h3v1h-3v-1zm0 2.5h7v1h-7v-1zm0 2.5h7v1h-7v-1z"
+              /></svg
+            >paper</a
+          >
+          <a class="gh" href="https://github.com/learning-mechanisms/drift-happens"
+            ><svg class="ghmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+              /></svg
+            >code</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div class="wrap">
+      <nav class="subnav" aria-label="datasets and methods">
+        <a href="methods.html">Methods</a>
+        <a href="yearbook.html"
+          ><svg class="dsi" viewBox="0 0 16 16" aria-hidden="true">
+            <circle cx="8" cy="5.9" r="3" />
+            <path d="M2.5 14.5a5.5 5.5 0 0 1 11 0z" /></svg
+          >Yearbook</a
+        >
+        <a href="amazon.html"
+          ><svg class="dsi" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.7l1.78 3.74 4.12.5-3.02 2.83.78 4.06L8 10.93l-3.66 1.93.78-4.06L2.1 5.94l4.12-.5z" /></svg>Amazon</a
+        >
+        <a href="arxiv.html" class="here"
+          ><svg class="dsi" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.3 1.9h4.2l3.2 3.1v9H4.3z" />
+            <rect x="5.7" y="7.1" width="4.6" height="0.95" rx="0.4" fill="#fff" />
+            <rect x="5.7" y="9.3" width="4.6" height="0.95" rx="0.4" fill="#fff" /></svg
+          >arXiv</a
+        >
+      </nav>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">01</span> &nbsp;the dataset</h2>
+        <p>
+          <b>arXiv</b> is an open repository of scientific papers. We use the <b>title and abstract</b> of submissions from
+          <b><span data-val="arxiv/cutoff-first"></span> to <span data-val="arxiv/cutoff-last"></span></b>, labelled over <b>7 leaf categories</b>, keeping only papers whose categories all fall within
+          these seven (a paper may carry several).
+        </p>
+        <p>
+          As fields rise and fall and terminology shifts, both the label distribution and the vocabulary drift over time. Performance is summarised by
+          <b><a class="gloss" href="methods.html#m-auc">macro-AUC</a></b
+          >, the mean area under the ROC curve across the 7 categories, so the question is whether a model trained on early submissions still ranks later ones correctly.
+        </p>
+        <div class="dcard">
+          <div class="dc-head">
+            <span class="dc-title"><a class="dc-name" href="arxiv.html">arXiv</a><img class="dc-logo" src="img/logos/arxiv.svg" alt="arXiv logo" /></span><span class="dc-tag">text</span>
+          </div>
+          <div class="dc-sub">
+            <div class="subcard">
+              <span class="sc-lbl">input</span>
+              <span class="sc-val">a paper's title and abstract</span>
+              <p class="dc-eg"><span class="eg-tag">e.g.</span>"Sparsity-certifying Graph Decompositions." We describe a new algorithm, the (k,&#8467;)-pebble game with colors&#8230;</p>
+            </div>
+            <div class="subcard">
+              <span class="sc-lbl">predict</span>
+              <span class="sc-val">its subject areas</span>
+              <span class="dc-pills"
+                ><span class="dc-pill">cs.LG</span><span class="dc-pill">cs.CV</span><span class="dc-pill">cs.AI</span><span class="dc-pill">hep-ph</span><span class="dc-pill">hep-th</span
+                ><span class="dc-pill">quant-ph</span><span class="dc-pill">gr-qc</span></span
+              >
+              <p class="dc-eg">multi-label, one or more of 7 categories</p>
+            </div>
+            <div class="subcard">
+              <span class="sc-lbl">what changes</span>
+              <span class="sc-val">the words used and which fields are active</span>
+              <div class="dc-axis"><span class="dc-y">2000</span><span class="dc-ticks"></span><span class="dc-y">2025</span></div>
+              <p class="dc-eg">26 yearly slices</p>
+            </div>
+          </div>
+          <div class="dc-foot">
+            <span class="dc-metric">scored by macro-AUC</span><a class="dc-src" href="https://www.kaggle.com/dsv/7548853" target="_blank" rel="noopener">dataset source &#8599;</a>
+          </div>
+        </div>
+        <h3 class="rostergrp">Exploratory analysis</h3>
+        <div class="edalist">
+          <figure class="edafig">
+            <img src="img/eda/arxiv_per_year.svg" alt="" />
+            <figcaption>Submissions per year (2000–2025): the corpus grows sharply over the period.</figcaption>
+          </figure>
+          <figure class="edafig">
+            <img src="img/eda/arxiv_subject_mix.svg" alt="" />
+            <figcaption>The category mix over time: machine learning (cs.LG) rises sharply, a clear source of label drift.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">02</span> &nbsp;the models</h2>
+        <p>
+          arXiv is evaluated with 20 architectures: twelve trained over frozen <b>RoBERTa-base</b> representations (four families at three sizes) and eight frozen pretrained encoders, each with a
+          single linear head.
+        </p>
+        <div class="archlist">
+          <div class="architem">
+            <img src="img/arch/arch-mlp.svg" alt="" />
+            <div class="ai-txt"><b>FFN</b> <span>ignores word order</span></div>
+            <span class="ai-count">3 models</span>
+          </div>
+          <div class="architem">
+            <img src="img/arch/arch-cnn.svg" alt="" />
+            <div class="ai-txt"><b>TextCNN</b> <span>local n-gram features</span></div>
+            <span class="ai-count">3 models</span>
+          </div>
+          <div class="architem">
+            <img src="img/arch/arch-rnn.svg" alt="" />
+            <div class="ai-txt"><b>Recurrent</b> <span>reads tokens in sequence</span></div>
+            <span class="ai-count">3 models</span>
+          </div>
+          <div class="architem">
+            <img src="img/arch/arch-transformer.svg" alt="" />
+            <div class="ai-txt"><b>Transformer</b> <span>self-attention over all positions</span></div>
+            <span class="ai-count">3 models</span>
+          </div>
+          <div class="architem">
+            <img src="img/arch/arch-frozen.svg" alt="" />
+            <div class="ai-txt"><b>Frozen</b> <span>features from a frozen pretrained encoder</span></div>
+            <span class="ai-count">8 models</span>
+          </div>
+        </div>
+        <h3 class="rostergrp">Trained over frozen RoBERTa-base representations</h3>
+        <div class="pipe">
+          <div class="pipe-row">
+            <span class="blk io">title + abstract</span><span class="arr">&rarr;</span><span class="blk frozen"><b>RoBERTa-base</b><i>frozen</i></span
+            ><span class="arr">&rarr;</span><span class="blk train"><b>body</b><small>FFN / TextCNN / Recurrent / Transformer</small><i>trained</i></span
+            ><span class="arr">&rarr;</span><span class="blk train"><b>linear head</b><i>trained</i></span
+            ><span class="arr">&rarr;</span><span class="blk io">7 categories</span>
+          </div>
+        </div>
+        <div data-roster="arxiv" data-group="scratch"></div>
+        <h3 class="rostergrp">Frozen pretrained encoders</h3>
+        <div class="pipe">
+          <div class="pipe-row">
+            <span class="blk io">title + abstract</span><span class="arr">&rarr;</span
+            ><span class="blk frozen"><b>pretrained encoder</b><small>MiniLM-L6, BERT, RoBERTa, DeBERTa-v3, &hellip;</small><i>frozen</i></span
+            ><span class="arr">&rarr;</span><span class="blk train"><b>linear head</b><i>trained</i></span
+            ><span class="arr">&rarr;</span><span class="blk io">7 categories</span>
+          </div>
+        </div>
+        <div data-roster="arxiv" data-group="frozen"></div>
+      </section>
+
+      <div class="nextlinks">
+        <a class="navcard" href="arxiv-results.html"
+          ><span class="nl-t">arXiv results <span class="nl-arr">&rarr;</span></span
+          ><span class="nl-d">the drift matrix, the explorer, and the robustness tables</span></a
+        >
+        <a class="navcard" href="yearbook.html"
+          ><span class="nl-t">Yearbook <span class="nl-arr">&rarr;</span></span
+          ><span class="nl-d">portraits, image classification, accuracy</span></a
+        >
+      </div>
+    </div>
+
+    <footer>
+      <div class="wrap">
+        <div class="authors" style="margin-bottom: 16px">
+          <div class="author">
+            <img src="assets/authors/robin.png" alt="Robin Holzinger" width="56" height="56" />
+            <div class="meta">
+              <span class="nm">Robin Holzinger<sup>*</sup></span
+              ><br /><a href="#" data-contact-email="robin" aria-label="Email Robin Holzinger"
+                ><span>robin</span><span>.</span><span>holzinger</span> <span>[at]</span> <span>berkeley</span><span>.</span><span>edu</span></a
+              >
+            </div>
+          </div>
+          <div class="author">
+            <img src="assets/authors/riccardo.png" alt="Riccardo Colletti" width="56" height="56" />
+            <div class="meta">
+              <span class="nm">Riccardo Colletti<sup>*</sup></span
+              ><br /><a href="#" data-contact-email="riccardo" aria-label="Email Riccardo Colletti"
+                ><span>riccardo</span><span>_</span><span>colletti</span> <span>[at]</span> <span>berkeley</span><span>.</span><span>edu</span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="eqnote">* equal contribution</div>
+        Drift Happens &middot; UC Berkeley EECS<br />
+        <a class="doc" href="drift-happens.pdf"
+          ><svg class="docmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M9 1H3.5A1.5 1.5 0 0 0 2 2.5v11A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V6L9 1zm0 1.5L12.5 6H9V2.5zM4.5 6.5h3v1h-3v-1zm0 2.5h7v1h-7v-1zm0 2.5h7v1h-7v-1z"
+            /></svg
+          >paper</a
+        >
+        &middot;
+        <a class="gh" href="https://wandb.ai/drift-happens/drift-happens">wandb.ai</a>
+        &middot;
+        <a class="gh" href="https://github.com/learning-mechanisms/drift-happens"
+          ><svg class="ghmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+            /></svg
+          >github.com</a
+        >
+      </div>
+    </footer>
+
+    <script src="js/matrixview.js?v=15"></script>
+    <script src="js/explorer.js" defer></script>
+    <script src="js/tables.js" defer></script>
+    <script src="js/values.js?v=1" defer></script>
+    <script src="js/driftmatrix.js?v=14" defer></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/contact.js" defer></script>
+    <script src="js/nav.js"></script>
+    <script src="js/lightbox.js?v=4"></script>
+    <script src="js/roster.js" defer></script>
+    <script>
+      window.MathJax = { tex: { inlineMath: [["\\(", "\\)"]] }, svg: { fontCache: "global" } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+  </body>
+</html>

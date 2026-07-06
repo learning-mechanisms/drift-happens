@@ -1,0 +1,284 @@
+/* content.css - sections, headings, math blocks, theorems, forms,
+   curve player, tables, galleries, figures, footer. Modern Ink. */
+
+/* sections read as an editorial column: open, separated by a hairline rule */
+.wrap > section {
+  padding: 34px 0 8px;
+  margin: 0;
+  border-top: 1px solid var(--rule);
+}
+.wrap > section:first-of-type {
+  border-top: none;
+}
+
+h2.h {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 560;
+  letter-spacing: -0.01em;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  line-height: 1.2;
+}
+h2.h .cm {
+  display: none;
+} /* drop the // marker */
+h2.h .id {
+  font-family: var(--serif);
+  font-size: 31px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--accent);
+  border-right: 1px solid color-mix(in srgb, var(--accent) 30%, var(--rule));
+  padding: 0 16px 0 0;
+  flex: none;
+  line-height: 1;
+}
+.note {
+  color: var(--dim);
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+.forms .row {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+  background: transparent;
+}
+.forms .row:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+.forms .row > button {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  padding: 16px 4px;
+  font-family: var(--serif);
+  font-size: 18px;
+}
+.forms .row > button:hover {
+  color: var(--accent);
+}
+.forms .row .arr {
+  color: var(--accent);
+  transition: transform 0.25s;
+  font-size: 1.2em;
+}
+.forms .row.open .arr {
+  transform: rotate(90deg);
+}
+.forms .row .panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.forms .row.open .panel {
+  max-height: 360px;
+}
+.forms .row .panel .inner {
+  padding: 2px 4px 18px;
+}
+.player-top .note {
+  font-style: italic;
+}
+.tasks button.on {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+/* tables / kill-fraction bars / galleries */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 14px;
+  margin: 16px 0;
+}
+th,
+td {
+  border-bottom: 1px solid var(--rule);
+  padding: 9px 12px;
+  text-align: right;
+}
+th:first-child,
+td:first-child {
+  text-align: left;
+}
+thead th {
+  background: transparent;
+  color: var(--ink);
+  font-weight: 600;
+  border-bottom: 2px solid var(--ink);
+}
+h3.grp {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin: 30px 0 4px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* two small side-by-side explanatory figures */
+.twofig {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 18px 0;
+}
+.twofig figure {
+  flex: 1 1 220px;
+  max-width: 320px;
+  margin: 0;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--card);
+  padding: 12px 12px 8px;
+}
+.twofig figure > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 2px auto 0;
+  background: #fff;
+  border-radius: 2px;
+}
+.twofig figcaption {
+  margin-top: 8px;
+}
+.algo-tab.on {
+  background: var(--ink);
+  color: #fff;
+}
+.algo-tab:not(.on):hover {
+  background: var(--card);
+}
+
+/* generic figure captions (overview duo / inline figures) */
+figcaption.note {
+  font-style: italic;
+}
+
+/* footer + authors - light, hairline top */
+footer {
+  border-top: 1px solid var(--rule);
+  background: var(--paper);
+  margin-top: 56px;
+  padding: 40px 0 64px;
+  color: var(--dim);
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+footer .wrap {
+}
+footer a {
+  color: var(--accent);
+}
+.authors {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+.author {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.author img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  object-fit: cover;
+  background: var(--card);
+}
+/* equal-contribution footnote, sat right under the author lists (header + footer) */
+.eqnote {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--dim);
+  letter-spacing: 0.01em;
+  margin: 8px 0 12px;
+}
+.author .nm {
+  font-weight: 600;
+  color: var(--ink);
+}
+.author .meta {
+  font-size: 13px;
+  line-height: 1.5;
+}
+.author .meta a {
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 32%, transparent);
+}
+
+/* ---------- editorial details ---------- */
+
+/* drop cap on the opening paragraph */
+.lead::first-letter {
+  float: left;
+  font-family: var(--serif);
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 3.1em;
+  line-height: 0.8;
+  padding: 7px 11px 0 0;
+}
+
+/* section heading: a hairline rule trails the title to the right margin,
+   tinted with the accent so the indigo threads through the whole line */
+h2.h::after {
+  content: "";
+  flex: 1 1 auto;
+  align-self: center;
+  height: 1px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 24%, var(--rule)), transparent);
+  margin-left: 8px;
+}
+
+/* accent list markers, with a touch more air */
+section ul {
+  padding-left: 1.25em;
+}
+section ul li {
+  margin: 0.3em 0;
+  padding-left: 0.2em;
+}
+section ul li::marker {
+  color: var(--accent);
+}
+
+/* tabular figures so columns and readouts line up */
+table,
+.curve-legend,
+.killrow,
+.player-top .note {
+  font-variant-numeric: tabular-nums;
+}
+
+/* tidy line breaks */
+h1,
+h2.h,
+.hero-title,
+.title {
+  text-wrap: balance;
+}
+p,
+.lead,
+.note,
+figcaption {
+  text-wrap: pretty;
+}

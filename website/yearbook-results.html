@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Drift Happens · Yearbook results</title>
+    <meta
+      name="description"
+      content="Temporal robustness on Yearbook: a trade-off between in-distribution accuracy and stability under drift, read off the drift matrix, its summary statistics, the per-model viewer, and the robustness, cutoff, and by-family tables."
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <link rel="stylesheet" href="css/content.css" />
+    <link rel="stylesheet" href="css/extra.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/lightbox.css?v=2" />
+    <link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <h1><img class="h1ds photo" src="img/yearbook_samples/face_1955.png" alt="Yearbook portrait" />Yearbook</h1>
+        <div class="sub">Frontal portraits, 1905&#8211;2013: covariate and concept drift, measured by accuracy.</div>
+        <button class="navtoggle" aria-label="open menu" aria-expanded="false">
+          <svg viewBox="0 0 22 22" width="24" height="24" aria-hidden="true"><path d="M3 6 H19 M3 11 H19 M3 16 H19" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="tabs2">
+      <div class="wrap">
+        <div class="navlinks">
+          <a href="index.html">overview</a>
+          <a href="methods.html">datasets &amp; methods</a>
+          <a href="results.html">results</a>
+          <a class="artifact" href="https://wandb.ai/drift-happens/drift-happens"
+            ><svg class="artifactmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M8 1.5c-3.03 0-5.5.86-5.5 1.92v9.16c0 1.06 2.47 1.92 5.5 1.92s5.5-.86 5.5-1.92V3.42C13.5 2.36 11.03 1.5 8 1.5Zm0 1c2.54 0 4.36.61 4.49.92-.13.31-1.95.92-4.49.92s-4.36-.61-4.49-.92C3.64 3.11 5.46 2.5 8 2.5Zm4.5 3.2v1.91c-.13.31-1.95.92-4.5.92s-4.36-.61-4.5-.92V5.7c.96.58 2.59.94 4.5.94s3.54-.36 4.5-.94Zm0 3.1v1.91c-.13.31-1.95.92-4.5.92s-4.36-.61-4.5-.92V8.8c.96.58 2.59.94 4.5.94s3.54-.36 4.5-.94Zm0 3.1v.68c-.13.31-1.95.92-4.5.92s-4.36-.61-4.5-.92v-.68c.96.58 2.59.94 4.5.94s3.54-.36 4.5-.94Z"
+              /></svg
+            >artifacts</a
+          >
+          <a class="doc" href="drift-happens.pdf"
+            ><svg class="docmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M9 1H3.5A1.5 1.5 0 0 0 2 2.5v11A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V6L9 1zm0 1.5L12.5 6H9V2.5zM4.5 6.5h3v1h-3v-1zm0 2.5h7v1h-7v-1zm0 2.5h7v1h-7v-1z"
+              /></svg
+            >paper</a
+          >
+          <a class="gh" href="https://github.com/learning-mechanisms/drift-happens"
+            ><svg class="ghmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+              /></svg
+            >code</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div class="wrap">
+      <nav class="subnav" aria-label="results sections">
+        <a href="results.html">Synthesis</a>
+        <a href="yearbook-results.html" class="here"
+          ><svg class="dsi" viewBox="0 0 16 16" aria-hidden="true">
+            <circle cx="8" cy="5.9" r="3" />
+            <path d="M2.5 14.5a5.5 5.5 0 0 1 11 0z" /></svg
+          >Yearbook</a
+        >
+        <a href="amazon-results.html"
+          ><svg class="dsi" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.7l1.78 3.74 4.12.5-3.02 2.83.78 4.06L8 10.93l-3.66 1.93.78-4.06L2.1 5.94l4.12-.5z" /></svg>Amazon</a
+        >
+        <a href="arxiv-results.html"
+          ><svg class="dsi" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.3 1.9h4.2l3.2 3.1v9H4.3z" />
+            <rect x="5.7" y="7.1" width="4.6" height="0.95" rx="0.4" fill="#fff" />
+            <rect x="5.7" y="9.3" width="4.6" height="0.95" rx="0.4" fill="#fff" /></svg
+          >arXiv</a
+        >
+        <span class="chip"
+          ><b><span data-val="yearbook/models"></span></b> models</span
+        >
+      </nav>
+
+      <div class="claim reveal" style="margin: 14px 0 6px">
+        <span class="lbl">Overview</span>
+        <p>
+          A strong <b>inductive bias</b> improves accuracy but hurts temporal robustness. On Yearbook the <b>CNNs and ResNets</b> reach the highest in-distribution accuracy,
+          <b>near <span data-val="yearbook/model/cnn_l/indist"></span>%</b>, because their locality and translation invariance extract the features that best separate the classes. But those features
+          are tied to the training period, so <b>the very ones that make these models discriminative in-distribution are the first lost under drift</b>, and these networks decay the most over time,
+          <b>up to <span data-val="yearbook/model/cnn_m/decay"></span> percentage points</b>.
+        </p>
+        <p>
+          Models with a weaker bias hold up better. <b>MLP-S</b> and the <b>frozen pretrained encoders</b> extract features less tied to any single period, so they decay far less, trading
+          in-distribution accuracy for stability.
+        </p>
+      </div>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">01</span> &nbsp;the temporal drift matrix</h2>
+        <p>
+          Each model is summarised by a <a href="methods.html#protocol">temporal drift matrix</a>. We divide the 1905&#8211;2013 timeline into \(K\) yearly slices, and for a training cutoff \(i\) fit
+          a model \(f_i\) on the cumulative history \(\mathcal{D}_{\le i}=\bigcup_{k\le i}\mathcal{D}_k\), all data through year \(i\).
+        </p>
+        <p>
+          Each \(f_i\) is evaluated on every slice, and cell \((i,j)\) records its accuracy on year \(j\). The diagonal is in-distribution, the cells with \(j \gt i\) measure forward generalization to
+          unseen years, and those with \(j \lt i\) re-test earlier data.
+        </p>
+        <div class="definition">
+          <span class="lbl">Drift matrix and its summary statistics</span>
+          \[ M_{ij} = \operatorname{acc}(f_i,\mathcal{D}_j), \qquad i,j \in \{1,\dots,K\}. \]
+          <p>From the matrix we read three statistics.</p>
+          \[ \mathrm{ID}=\operatorname*{mean}_{i}\, M_{ii}, \qquad \mathrm{F}=\operatorname*{mean}_{\,j>i}\, M_{ij}, \qquad \Delta=\mathrm{ID}-\mathrm{F}. \]
+          <p>
+            \(\mathrm{ID}\) is in-distribution accuracy, \(\mathrm{F}\) is mean forward accuracy, and the decay \(\Delta\) is the accuracy lost off the diagonal. For lower-is-better metrics the decay
+            is \(\mathrm{F}-\mathrm{ID}\), so a positive \(\Delta\) always denotes degradation.
+          </p>
+        </div>
+        <div class="metricbar">
+          <b>Accuracy (%)</b><span>higher is better</span>
+          <span class="cbar">
+            <i>low</i>
+            <svg viewBox="0 0 120 10" width="120" height="10" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="seqramp" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#313695" />
+                  <stop offset="0.25" stop-color="#74add1" />
+                  <stop offset="0.5" stop-color="#ffffbf" />
+                  <stop offset="0.75" stop-color="#f46d43" />
+                  <stop offset="1" stop-color="#a50026" />
+                </linearGradient>
+              </defs>
+              <rect width="120" height="10" rx="2" fill="url(#seqramp)" />
+            </svg>
+            <i>high</i>
+          </span>
+        </div>
+        <figure class="twofig" style="margin: 14px 0">
+          <div class="drift-anim" data-src="data/yearbook.json" style="max-width: 460px; margin: 0 auto"></div>
+          <figcaption class="note">
+            Cohort-mean accuracy over the <span data-val="yearbook/models"></span> Yearbook models; cell \((i,j)\) is the mean accuracy of models trained through year \(i\) and evaluated on year
+            \(j\), over <span data-val="yearbook/cutoffs"></span> yearly slices from <span data-val="yearbook/cutoff-first"></span> to <span data-val="yearbook/cutoff-last"></span>. Each model cell is
+            averaged over <span data-val="yearbook/seeds"></span> distinct model seeds before cohort aggregation.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">02</span> &nbsp;per-model drift matrices</h2>
+        <p>
+          Each model has its own drift matrix \(M^{(m)}\). Subtracting the cohort mean gives a <b>deviation matrix</b>
+          \(M^{(m)}_{ij}-\bar{M}_{ij}\), the per-cell amount by which a model beats or trails the average.
+        </p>
+        <p>
+          In the deviation matrices the <b>CNNs and ResNets</b> sit well above the cohort in-distribution, but their lead narrows on the future as they decay faster than the average. <b>MLP-S</b> and
+          the <b>frozen encoders</b> sit below the cohort in accuracy, yet they close that gap going forward, decaying more slowly than the average.
+        </p>
+        <div class="drift-explorer" data-dataset="yearbook" data-default-view="deviation"></div>
+      </section>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">03</span> &nbsp;robustness statistics</h2>
+        <p>
+          Across the <span data-val="yearbook/models"></span> Yearbook models, every architecture reaches high in-distribution accuracy, but they differ markedly in how quickly it decays under forward
+          extrapolation.
+        </p>
+
+        <details class="foldcard">
+          <summary><span class="dsnum">3.1</span> Per-model robustness</summary>
+          <div class="foldcard-body">
+            <p>Mean forward accuracy and decay, aggregated over all cutoffs:</p>
+            \[ \mathrm{F}=\operatorname*{mean}_{\,j>i}\, M_{ij}, \qquad \Delta=\operatorname*{mean}_{i} M_{ii}\;-\;\mathrm{F}. \]
+            <p>
+              The convolutional networks reach the highest in-distribution accuracy, <b>near <span data-val="yearbook/model/cnn_l/indist"></span>%</b> for CNN-L and CNN-M, yet also the largest
+              temporal decay, <b><span data-val="yearbook/model/cnn_l/decay"></span> and <span data-val="yearbook/model/cnn_m/decay"></span> points</b>, so their future accuracy falls to
+              <span data-val="yearbook/model/cnn_l/future"></span>% and <span data-val="yearbook/model/cnn_m/future"></span>%. The perceptrons span the widest range. <b>MLP-S</b> is the single most
+              temporally robust model, <b><span data-val="yearbook/model/mlp_s/decay"></span> points</b> of decay, at a modest <span data-val="yearbook/model/mlp_s/future"></span>% future accuracy,
+              while MLP-M and MLP-L reach higher future accuracy (<span data-val="yearbook/model/mlp_m/future"></span>% and <span data-val="yearbook/model/mlp_l/future"></span>%) at decays near
+              <span data-val="yearbook/model/mlp_m/decay"></span> and <span data-val="yearbook/model/mlp_l/decay"></span> points.
+            </p>
+            <p>
+              The frozen pretrained encoders form a third regime, decaying by only
+              <b><span data-val="yearbook/frozen/decay-min"></span> to <span data-val="yearbook/frozen/decay-max"></span> points</b> but at lower absolute accuracy than the convolutional networks.
+            </p>
+            <div class="tbl-robustness" data-dataset="yearbook"></div>
+          </div>
+        </details>
+
+        <details class="foldcard">
+          <summary><span class="dsnum">3.2</span> Per training cutoff</summary>
+          <div class="foldcard-body">
+            <p>For a fixed cutoff \(i\): in-distribution accuracy \(M_{ii}\), mean future accuracy, and decay over the years that follow it:</p>
+            \[ \mathrm{F}_i=\operatorname*{mean}_{\,j>i}\, M_{ij}, \qquad \Delta_i = M_{ii}-\mathrm{F}_i. \]
+            <div class="tbl-cutoff" data-dataset="yearbook"></div>
+          </div>
+        </details>
+
+        <details class="foldcard">
+          <summary><span class="dsnum">3.3</span> By model family</summary>
+          <div class="foldcard-body">
+            <p>The per-cutoff future accuracy and decay, averaged over the members \(m\) of each family \(g\):</p>
+            \[ \mathrm{F}^{(g)}_i=\operatorname*{mean}_{m\in g}\mathrm{F}_i(m), \qquad \Delta^{(g)}_i=\operatorname*{mean}_{m\in g}\Delta_i(m). \]
+            <div class="tbl-family" data-dataset="yearbook"></div>
+          </div>
+        </details>
+
+        <details class="foldcard" open>
+          <summary><span class="dsnum">3.4</span> Forgetting curves</summary>
+          <div class="foldcard-body">
+            <p>
+              To compare how fast different models forget, it helps to collapse each drift matrix into a single
+              <b>forgetting curve</b>, its accuracy against the <b>lag</b> \(\ell = j - i\), the number of years between the training year \(i\) and the evaluation year \(j\). At each lag we average
+              the matrix over every training year:
+            </p>
+            \[ F(\ell) = \operatorname*{mean}_{i}\, M_{i,\,i+\ell}. \]
+            <p>
+              The curve then reads as the accuracy a model keeps \(\ell\) years past its training data, whichever era that data came from, which isolates temporal distance on its own, apart from how
+              hard any single period happened to be.
+            </p>
+            <p>
+              Lag \(\ell = 0\) is in-distribution accuracy, a model tested on its own period. Moving right shows how much it loses as the gap grows. The curves start at very different heights, the
+              <b>convolutional networks</b>
+              near 90% and the frozen encoders well below, and every one of them falls as the lag grows.
+            </p>
+            <div class="forgetting" data-dataset="yearbook"></div>
+            <div class="claim">
+              <span class="lbl">Key result</span>
+              <p>
+                In distribution the architectures stand far apart, the strongly-biased convolutional networks well above the rest. As the lag grows this ordering dissolves, and
+                <b>every model converges to low-50s accuracy</b>.
+              </p>
+              <p>
+                The features a strong inductive bias extracts, <b>the very ones that make these models discriminative in-distribution, are also the ones lost first under drift</b>. A bias locks onto
+                the cues most predictive of the label within the training period, but those cues are the most specific to it, so they lose their meaning the fastest as it shifts.
+                <b>The sharper the in-distribution advantage, the quicker it collapses</b>, until no architecture retains an edge.
+              </p>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">04</span> &nbsp;what the models attend to</h2>
+        <p>
+          The saliency maps trace which cues each architecture leans on within its training period; brighter regions carry the stronger attribution. The <b>convolutional</b> network is the most
+          selective of the three. Trained only through 1950 its attribution is still a loose scatter of warm spots over the cheeks, nose, and mouth, but extending the window to 1970 collapses it onto
+          a tight, near-symmetric pair of bright spots at the <b>eyes</b>, the rest of the face dropping to a low, even background. A longer training window does not broaden what the CNN reads; it
+          sharpens the model onto the single region that best separates the classes.
+        </p>
+        <p>
+          The <b>residual</b> network carries the same convolutional bias and tightens in the same direction, its broad, high-intensity wash across the central face at 1950 pulling inward toward the
+          eyes and nose by 1970. The shift is real but <b>weaker</b>: even at the later cutoff the strong attribution still covers a wide central patch rather than a few pixels, so the ResNet never
+          focuses as narrowly as the CNN. At both cutoffs the ordering holds, the CNN reads the tightest set of cues, the ResNet a broader central region, and the feed-forward network broader still.
+        </p>
+        <p>
+          The <b>feed-forward network</b>, lacking that bias, spreads its attention across the whole frame, the background included, a coarser reading not pinned to any single region. The same
+          precision that lets the convolutional models read the discriminative detail is what ties them to it: the localized cues that lift in-distribution accuracy are the ones most exposed once the
+          data drifts, while the diffuse attention of the feed-forward network is blunter but <b>less bound to any single period</b>.
+        </p>
+        <p>Each map averages gradient saliency over the selected portraits from the indicated evaluation year rather than a single example.</p>
+        <div class="metricbar">
+          <b>Saliency</b><span>brighter is stronger</span>
+          <span class="cbar">
+            <i>low</i>
+            <svg viewBox="0 0 120 10" width="120" height="10" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="hotramp" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#000000" />
+                  <stop offset="0.38" stop-color="#e00000" />
+                  <stop offset="0.75" stop-color="#ffd000" />
+                  <stop offset="1" stop-color="#ffffff" />
+                </linearGradient>
+              </defs>
+              <rect width="120" height="10" rx="2" fill="url(#hotramp)" />
+            </svg>
+            <i>high</i>
+          </span>
+        </div>
+        <div class="saliency-grid">
+          <figure>
+            <div class="sh">CNN, trained ≤ 1950; eval 1960 / 1980 / 2000</div>
+            <img class="zoomfig" src="results/saliency/cnn_l_1950.png" alt="CNN saliency for evaluation years 1960, 1980, and 2000, trained through 1950" />
+          </figure>
+          <figure>
+            <div class="sh">CNN, trained ≤ 1970; eval 1960 / 1980 / 2000</div>
+            <img class="zoomfig" src="results/saliency/cnn_l_1970.png" alt="CNN saliency for evaluation years 1960, 1980, and 2000, trained through 1970" />
+          </figure>
+          <figure>
+            <div class="sh">ResNet, trained ≤ 1950; eval 1960 / 1980 / 2000</div>
+            <img class="zoomfig" src="results/saliency/resnet_s_1950.png" alt="Residual-network saliency for evaluation years 1960, 1980, and 2000, trained through 1950" />
+          </figure>
+          <figure>
+            <div class="sh">ResNet, trained ≤ 1970; eval 1960 / 1980 / 2000</div>
+            <img class="zoomfig" src="results/saliency/resnet_s_1970.png" alt="Residual-network saliency for evaluation years 1960, 1980, and 2000, trained through 1970" />
+          </figure>
+          <figure>
+            <div class="sh">MLP, trained ≤ 1950; eval 1960 / 1980 / 2000</div>
+            <img class="zoomfig" src="results/saliency/mlp_l_1950.png" alt="MLP saliency for evaluation years 1960, 1980, and 2000, trained through 1950" />
+          </figure>
+          <figure>
+            <div class="sh">MLP, trained ≤ 1970; eval 1960 / 1980 / 2000</div>
+            <img class="zoomfig" src="results/saliency/mlp_l_1970.png" alt="MLP saliency for evaluation years 1960, 1980, and 2000, trained through 1970" />
+          </figure>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">05</span> &nbsp;what shapes temporal robustness</h2>
+        <div class="findcards">
+          <div class="findcard">
+            <div class="fc-h">Inductive bias</div>
+            <p>
+              A strong bias extracts the most discriminative features and leads in-distribution, but those features are the most sensitive to drift, so <b>the strongest models decay the fastest</b>.
+              It is a kind of overfitting across time rather than across samples.
+            </p>
+          </div>
+          <div class="findcard">
+            <div class="fc-h">Pretraining</div>
+            <p>
+              A frozen pretrained encoder concedes in-distribution accuracy for stability, decaying
+              <b><span data-val="yearbook/frozen/decay-min"></span> to <span data-val="yearbook/frozen/decay-max"></span> points</b> against the <b>12 to 14</b> of the convolutional networks trained
+              on Yearbook itself. The self-supervised <b>DINOv3</b> and <b>MAE</b> are the most robust, the supervised ImageNet-21k the least.
+            </p>
+          </div>
+        </div>
+
+        <div class="nextlinks">
+          <a class="navcard" href="amazon-results.html"
+            ><span class="nl-t">Amazon Reviews <span class="nl-arr">&rarr;</span></span
+            ><span class="nl-d">regression, balanced MSE, lower is better</span></a
+          >
+          <a class="navcard" href="results.html"
+            ><span class="nl-t">Synthesis <span class="nl-arr">&rarr;</span></span
+            ><span class="nl-d">the cross-dataset picture and the conclusions</span></a
+          >
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="wrap">
+        <div class="authors" style="margin-bottom: 16px">
+          <div class="author">
+            <img src="assets/authors/robin.png" alt="Robin Holzinger" width="56" height="56" />
+            <div class="meta">
+              <span class="nm">Robin Holzinger<sup>*</sup></span
+              ><br /><a href="#" data-contact-email="robin" aria-label="Email Robin Holzinger"
+                ><span>robin</span><span>.</span><span>holzinger</span> <span>[at]</span> <span>berkeley</span><span>.</span><span>edu</span></a
+              >
+            </div>
+          </div>
+          <div class="author">
+            <img src="assets/authors/riccardo.png" alt="Riccardo Colletti" width="56" height="56" />
+            <div class="meta">
+              <span class="nm">Riccardo Colletti<sup>*</sup></span
+              ><br /><a href="#" data-contact-email="riccardo" aria-label="Email Riccardo Colletti"
+                ><span>riccardo</span><span>_</span><span>colletti</span> <span>[at]</span> <span>berkeley</span><span>.</span><span>edu</span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="eqnote">* equal contribution</div>
+        Drift Happens &middot; UC Berkeley EECS<br />
+        <a class="doc" href="drift-happens.pdf"
+          ><svg class="docmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M9 1H3.5A1.5 1.5 0 0 0 2 2.5v11A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V6L9 1zm0 1.5L12.5 6H9V2.5zM4.5 6.5h3v1h-3v-1zm0 2.5h7v1h-7v-1zm0 2.5h7v1h-7v-1z"
+            /></svg
+          >paper</a
+        >
+        &middot;
+        <a class="gh" href="https://wandb.ai/drift-happens/drift-happens">wandb.ai</a>
+        &middot;
+        <a class="gh" href="https://github.com/learning-mechanisms/drift-happens"
+          ><svg class="ghmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+            /></svg
+          >github.com</a
+        >
+      </div>
+    </footer>
+
+    <script src="js/matrixview.js?v=15"></script>
+    <script src="js/explorer.js?v=14" defer></script>
+    <script src="js/tables.js?v=13" defer></script>
+    <script src="js/values.js?v=1" defer></script>
+    <script src="js/forgetting.js?v=13" defer></script>
+    <script src="js/driftmatrix.js?v=14" defer></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/contact.js" defer></script>
+    <script src="js/nav.js"></script>
+    <script src="js/lightbox.js?v=4"></script>
+    <script>
+      window.MathJax = { tex: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]] }, svg: { fontCache: "global" } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+  </body>
+</html>

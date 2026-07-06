@@ -1,0 +1,51 @@
+\section{Reproducibility}
+\label{app:reproducibility}
+
+Experiments are defined as versioned preset snapshots and run through the
+repository command-line interface in a Pixi-pinned environment; run metadata
+records the git state and \texttt{pixi.lock} hash, and regenerated paper and
+website assets are checked against a committed checksum manifest. Each experiment
+is a staged run for one dataset, architecture, and seed: the training stage fits
+all cumulative temporal checkpoints, and the evaluation stage scores them on
+every time slice to form the drift matrix. We use seeds $0$--$4$ for
+\texttt{Yearbook} and $0$--$2$ for \texttt{Amazon Reviews} and \texttt{arXiv},
+averaging over them. Public run histories and per-run matrix artifacts are
+available in the Weights \& Biases project at
+\url{https://wandb.ai/drift-happens/drift-happens}.
+
+Table~\ref{tab:compute_estimate} summarizes the measured compute on NVIDIA A100
+GPUs, summing the W\&B \texttt{\_runtime} of each finished train and evaluation
+stage. GPU-hours are successful-stage wall times under one GPU per run; the
+four-GPU node-hour column divides these by four for ideal packed execution,
+excluding queueing, data preprocessing, failed attempts, and scheduling idle
+time.
+
+\begin{table}[htbp]
+\caption{Approximate measured compute for the conference experiment campaign.}
+\label{tab:compute_estimate}
+\centering
+\newcommand{\computeEstimateTabular}{%
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Dataset & Model-seed configs & Train GPU-h & Eval GPU-h & 4-GPU node-h \\
+\midrule
+\texttt{Yearbook} & 105 & 23.7 & 9.3 & 8.2 \\
+\texttt{Amazon Reviews} & 57 & 116.6 & 136.7 & 63.3 \\
+\texttt{arXiv} & 60 & 272.3 & 101.9 & 93.5 \\
+\midrule
+Total & 222 & 412.6 & 247.9 & 165.1 \\
+\bottomrule
+\end{tabular}
+}
+\iflncs
+    \footnotesize
+    \setlength{\tabcolsep}{3pt}
+    \computeEstimateTabular
+\else
+    \resizebox{\columnwidth}{!}{%
+        \footnotesize
+        \setlength{\tabcolsep}{3pt}
+        \computeEstimateTabular
+    }
+\fi
+\end{table}

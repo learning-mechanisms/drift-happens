@@ -1,0 +1,98 @@
+# Adopted from https://github.com/Quantco/dataframely/blob/main/.pre-commit-config.yaml
+exclude: |
+  (?x)^(
+    \.pixi(/|$)|
+    artifacts(/|$)|
+    configs/snapshots/presets/.*\.json$|
+    docs/header_screenshot\.png$|
+    drift_happens/dataset/.*/eda/.*\.html$|
+    paper/figures\.sha256$|
+    paper/img/drift_matrices/.*\.pdf$|
+    paper/pages/(c_yearbook|d_amazon|e_arxiv)\.tex$|
+    paper/plots_experiments/|
+    paper/tables/.*\.tex$|
+    website/data/.*\.json$|
+    website/img/eda/|
+    website/results/
+  )
+
+repos:
+  - repo: local
+    hooks:
+      # docformatter
+      - id: docformatter
+        name: docformatter
+        entry: docformatter -i
+        language: system
+        types: [python]
+      # ruff
+      - id: ruff
+        name: ruff
+        entry: ruff check --fix --exit-non-zero-on-fix --force-exclude
+        language: system
+        types_or: [python, pyi]
+        require_serial: true
+      - id: ruff-format
+        name: ruff-format
+        entry: ruff format --force-exclude
+        language: system
+        types_or: [python, pyi]
+        require_serial: true
+      # mypy (lives in the default env, not the lint env; runs on the whole
+      # drift_happens package like the `typecheck` task, not just changed files)
+      - id: mypy
+        name: mypy
+        entry: pixi run -e default mypy drift_happens
+        language: system
+        types: [python]
+        files: ^drift_happens/
+        pass_filenames: false
+        require_serial: true
+      # prettier
+      - id: prettier
+        name: prettier
+        entry: prettier --write --list-different --ignore-unknown
+        language: system
+        types: [text]
+        files: \.(md|yml|yaml)$
+      # prettier (html – website only)
+      - id: prettier-html-website
+        name: prettier-html-website
+        entry: prettier --write --list-different
+        language: system
+        files: ^website/.*\.(html|css|js)$
+      # nbstripout
+      - id: nbstripout
+        name: nbstripout
+        entry: nbstripout
+        language: system
+        types: [jupyter]
+      # taplo
+      - id: taplo
+        name: taplo
+        entry: taplo format
+        language: system
+        types: [toml]
+      # pre-commit-hooks
+      - id: trailing-whitespace-fixer
+        name: trailing-whitespace-fixer
+        entry: trailing-whitespace-fixer
+        language: system
+        types: [text]
+      - id: end-of-file-fixer
+        name: end-of-file-fixer
+        entry: end-of-file-fixer
+        language: system
+        types: [text]
+      - id: check-merge-conflict
+        name: check-merge-conflict
+        entry: check-merge-conflict --assume-in-merge
+        language: system
+        types: [text]
+      # typos
+      - id: typos
+        name: typos
+        entry: typos --force-exclude
+        language: system
+        types: [text]
+        require_serial: true

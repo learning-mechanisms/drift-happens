@@ -1,0 +1,48 @@
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\centering
+\footnotesize
+\captionof{table}{arXiv: models trained from scratch.}
+\label{tab:arxiv_roster}
+\resizebox{\ifdim\width>\linewidth \linewidth\else\width\fi}{!}{%
+\begin{tabular}{l l rr}
+\toprule
+Model & Family & Trainable & Total \\
+\midrule
+TX-S & Transformer & 83k & 124.7M \\
+TextCNN-S & TextCNN & 89k & 124.7M \\
+FFN-S & FFN & 99k & 124.7M \\
+BiGRU-S & Recurrent & 100k & 124.7M \\
+FFN-M & FFN & 397k & 125.0M \\
+TextCNN-M & TextCNN & 462k & 125.1M \\
+TX-M & Transformer & 493k & 125.1M \\
+BiLSTM-M & Recurrent & 537k & 125.2M \\
+FFN-L & FFN & 1.6M & 126.2M \\
+TX-L & Transformer & 1.9M & 126.5M \\
+TextCNN-L & TextCNN & 1.9M & 126.6M \\
+BiLSTM-Attn-L & Recurrent & 2.2M & 126.8M \\
+\bottomrule
+\end{tabular}}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\centering
+\footnotesize
+\captionof{table}{arXiv: frozen pretrained encoders, with trainable head and total parameters.}
+\label{tab:arxiv_roster_frozen}
+\resizebox{\ifdim\width>\linewidth \linewidth\else\width\fi}{!}{%
+\begin{tabular}{l l rr}
+\toprule
+Model & Family & Trainable & Total \\
+\midrule
+MiniLM-L6 & Frozen & 3k & 22.7M \\
+DistilBERT & Frozen & 5k & 66.4M \\
+ELECTRA & Frozen & 5k & 108.9M \\
+BERT & Frozen & 5k & 109.5M \\
+MPNet & Frozen & 5k & 109.5M \\
+RoBERTa & Frozen & 5k & 124.7M \\
+ModernBERT & Frozen & 5k & 149.0M \\
+DeBERTa-v3 & Frozen & 5k & 183.8M \\
+\bottomrule
+\end{tabular}}
+\end{minipage}

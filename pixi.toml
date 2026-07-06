@@ -1,0 +1,291 @@
+[workspace]
+name = "drift-happens"
+channels = ["conda-forge"]
+platforms = [
+  "linux-64",
+  "osx-arm64",
+  "osx-64",
+  { name = "linux-64-cuda", platform = "linux-64", cuda = "12" },
+]
+requires-pixi = ">=0.71"
+
+# ------------------------------------------------------------------------------------ #
+#                                   REGISTERED TASKS                                   #
+# ------------------------------------------------------------------------------------ #
+
+[feature.project_tasks]
+platforms = ["linux-64", "osx-arm64", "osx-64"]
+
+[feature.project_tasks.tasks]
+# Setup
+postinstall = "pip install --no-build-isolation --no-deps --disable-pip-version-check -v -e ."
+
+# Main CLI
+drift = "drift"
+experiment-list = "drift experiment list"
+materialize = "drift experiment materialize --write"
+materialize-check = "drift experiment materialize --check"
+experiment-plans = "drift experiment plans materialize --write --device cuda --gpu-indices 0,1,2,3 --concurrency 4"
+experiment-plans-check = "drift experiment plans materialize --check --device cuda --gpu-indices 0,1,2,3 --concurrency 4"
+sweep-smoke = "drift experiment sweep artifacts/experiment_plans/p00_smoke_seed0.yaml"
+smoke-all-model-datasets = "env DRIFT_RUN_MODEL_MATRIX_SMOKE=1 pytest tests/integration/test_model_dataset_matrix_smoke.py"
+smoke-model-downloads = "env DRIFT_RUN_MODEL_DOWNLOAD_SMOKE=1 pytest tests/integration/test_model_dataset_matrix_smoke.py"
+artifacts-ls = "drift artifacts ls"
+artifacts-gc-dry-run = "drift artifacts gc --dry-run"
+artifacts-wandb-gc-dry-run = "drift artifacts wandb-gc --dry-run"
+artifacts-remote-setup = "drift artifacts remote setup"
+artifacts-remote-status = "drift artifacts remote status"
+artifacts-remote-ls = "drift artifacts remote ls"
+artifacts-push = "drift artifacts remote push"
+artifacts-push-dry-run = "drift artifacts remote push --dry-run"
+artifacts-pull = "drift artifacts remote pull"
+artifacts-pull-dry-run = "drift artifacts remote pull --dry-run"
+artifacts-bundle-full-runs = "drift artifacts bundle build public-full-runs"
+artifacts-bundle-saliency = "drift artifacts bundle build yearbook-saliency"
+artifacts-bundle-saliency-rebuild = "drift artifacts bundle build yearbook-saliency --overwrite"
+artifacts-bundle-download-full-runs = "drift artifacts bundle download public-full-runs"
+artifacts-bundle-download-saliency = "drift artifacts bundle download yearbook-saliency"
+
+# Dataset
+datasets-setup = "drift datasets-setup"
+yearbook = "drift datasets-setup yearbook"
+arxiv = "drift datasets-setup arxiv"
+amazon_reviews_23 = "drift datasets-setup amazon-reviews-23"
+imdb_faces = "drift datasets-setup imdb-faces"
+
+# Robustness Evaluation
+eval-robustness = "drift eval robustness"
+
+# Reproducible analysis pipeline: pull runs, build results, render figures/tables, export site data, verify.
+analysis-pull = "drift analysis pull"
+analysis-export = "drift analysis export"
+analysis-figures = "drift analysis figures"
+analysis-saliency = """
+drift analysis saliency \
+  --runs-root artifacts/bundles/yearbook-saliency/staged \
+  --trainer cnn_l \
+  --trainer resnet_s \
+  --trainer mlp_l \
+  --cutoff 1950 \
+  --cutoff 1970 \
+  --eval-year 1960 \
+  --eval-year 1980 \
+  --eval-year 2000 \
+  --sample-per-year 500 \
+  --sample-seed 8 \
+  --sample-seed 9 \
+  --sample-seed 32 \
+  --out paper/img/drift_matrices/saliency_cnn_resnet_mlp.pdf \
+  --panels-dir website/results/saliency \
+  --device cpu
+"""
+analysis-site = "drift analysis site"
+analysis-verify = "drift analysis verify"
+paper-pdf = "sh paper/render_paper.sh"
+paper-lncs-bundle = "sh paper/build_lncs_bundle.sh"
+
+# Exploratory data analysis: execute each dataset notebook and render it to HTML beside the notebook.
+eda = """
+jupyter nbconvert --to html --execute --output explore drift_happens/dataset/yearbook/eda/explore.ipynb && \
+jupyter nbconvert --to html --execute --output explore drift_happens/dataset/arxiv/eda/explore.ipynb && \
+jupyter nbconvert --to html --execute --output explore drift_happens/dataset/amazon_reviews_23/eda/explore.ipynb && \
+jupyter nbconvert --to html --execute --output explore drift_happens/dataset/imdb_faces/eda/explore.ipynb
+"""
+
+# Quality gates
+lint = "ruff check drift_happens tests"
+format-check = "ruff format --check drift_happens tests"
+typecheck = "mypy drift_happens"
+metadata-check = "taplo format --check pyproject.toml pixi.toml"
+artifact-policy-check = "python scripts/check_artifact_policy.py"
+
+# ------------------------------------------------------------------------------------ #
+#                                 RUNTIME DEPENDENCIES                                 #
+# ------------------------------------------------------------------------------------ #
+
+[feature.py_base]
+platforms = ["linux-64", "osx-arm64", "osx-64"]
+
+[feature.py_base.dependencies]
+# PYTHON BASE
+python = ">=3.13,<3.14"
+pip = "*"
+
+# -------------------------------- PYTHON DEPENDENCIES ------------------------------- #
+
+[feature.py_utilities]
+platforms = ["linux-64", "osx-arm64", "osx-64"]
+
+[feature.py_utilities.dependencies]
+# [Cli & Runtime Utilities]
+typer = "*"
+tqdm = "*"
+types-tqdm = "*"
+tabulate = "*"
+python-dotenv = "*"
+pyyaml = "*"
+structlog = "*"
+wandb = "*"
+
+# [Config]
+pydantic = ">=2"
+
+# -------------------------- DATA ENGINEERING & DATA SCIENCE ------------------------- #
+
+[feature.py_data_processing]
+platforms = ["linux-64", "osx-arm64", "osx-64"]
+
+[feature.py_data_processing.dependencies]
+# Python Data Processing Libraries
+pyarrow = "*"
+pandas = "*"
+pandas-stubs = "*"
+polars = "*"
+numpy = "*"
+
+[feature.py_ml]
+platforms = ["linux-64", "osx-arm64", "osx-64"]
+
+[feature.py_ml.dependencies]
+# Python Machine Learning Libraries
+pytorch = ">=2.1.0"
+scikit-learn = "*"
+scipy-stubs = "*"
+
+# [NLP]
+transformers = "*"
+sentencepiece = "*"
+
+# [Computer Vision]
+scikit-image = "*"
+torchvision = ">=0.16.0"
+timm = "*"
+pillow = "*"
+py-opencv = ">=4.12.0,<5"
+
+[feature.py_data_science]
+platforms = ["linux-64", "osx-arm64", "osx-64"]
+
+[feature.py_data_science.dependencies]
+awscli = "*"
+datasets = "==3.6"
+fsspec = ">=2023.1.0,<=2025.3.0"
+
+[feature.py_data_science.pypi-dependencies]
+kagglehub = ">=0.3.13"
+
+# ------------------------------------------------------------------------------------ #
+#                                      DEVELOPMENT                                     #
+# ------------------------------------------------------------------------------------ #
+
+[feature.commandline-tools]
+platforms = ["linux-64", "osx-arm64", "osx-64"]
+
+[feature.commandline-tools.dependencies]
+# Command Line Tools
+htop = "*"
+btop = "*"
+rclone = "*"
+git-lfs = "*"
+ncdu = "*"
+tmux = "*"
+tmuxp = "*"
+
+# -------------------------------- PYTHON DEPENDENCIES ------------------------------- #
+
+[feature.py_dev]
+platforms = ["linux-64", "osx-arm64", "osx-64"]
+
+[feature.py_dev.dependencies]
+# Basic Development Tools for Python
+ipython = "*"
+ipykernel = "*"
+nbconvert = "*"
+nbformat = "*"
+pixi-pycharm = "*"
+
+[feature.py_plotting]
+platforms = ["linux-64", "osx-arm64", "osx-64"]
+
+[feature.py_plotting.dependencies]
+matplotlib = "*"
+seaborn = "*"
+plotly = "*"
+ipywidgets = "*"
+
+[feature.py_test]
+platforms = ["linux-64", "osx-arm64", "osx-64"]
+
+[feature.py_test.dependencies]
+mypy = ">=1.13"
+pytest = ">=6"
+pytest-benchmark = "*"
+pytest-cov = "*"
+pytest-md = "*"
+
+
+[feature.py_test.tasks]
+test = "pytest tests/"
+
+[feature.py_lint]
+platforms = ["linux-64", "osx-arm64", "osx-64"]
+
+[feature.py_lint.dependencies]
+docformatter = "*"
+insert-license-header = "*"
+pre-commit = "*"
+pre-commit-hooks = "*"
+prettier = "*"
+ruff = "*"
+taplo = "*"
+typos = "*"
+nbstripout = "*"
+
+[feature.py_lint.tasks]
+pre-commit-install = "pre-commit install"
+pre-commit-run = "pre-commit run -a"
+
+[feature.py_gpu]
+platforms = ["linux-64-cuda"]
+
+[feature.py_gpu.target.linux-64.dependencies]
+pytorch-gpu = ">=2.2"
+
+# ------------------------------------------------------------------------------------ #
+#                                     ENVIRONMENTS                                     #
+# ------------------------------------------------------------------------------------ #
+
+[environments]
+default = { features = [
+  "py_base",
+  "project_tasks",
+  # Runtime
+  "py_utilities",
+  "py_data_processing",
+  "py_ml",
+  "py_data_science",
+  # Development
+  "commandline-tools",
+  "py_dev",
+  "py_plotting",
+  "py_test",
+  "py_lint",
+  # "py_gpu",  # keep default CPU-friendly for CI and CPU Slurm jobs
+], no-default-feature = true }
+lint = { features = ["py_lint"], no-default-feature = true }
+gpu = { features = [
+  "py_base",
+  "project_tasks",
+  # Runtime
+  "py_utilities",
+  "py_data_processing",
+  "py_ml",
+  "py_data_science",
+  # Development
+  "commandline-tools",
+  "py_dev",
+  "py_plotting",
+  "py_test",
+  "py_lint",
+  "py_gpu",
+], no-default-feature = true }

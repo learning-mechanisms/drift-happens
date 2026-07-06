@@ -1,0 +1,47 @@
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Temporal robustness on Yearbook.}
+\label{tab:robustness_yearbook}
+\begin{minipage}[t]{0.49\linewidth}
+\centering
+\resizebox{\ifdim\width>\linewidth \linewidth\else\width\fi}{!}{%
+\begin{tabular}{l rr}
+\toprule
+Model & Future (\%) & Decay (\%) \\
+\midrule
+MLP-S & 62.3 & 7.1 \\
+DINOv3-S & 57.9 & 7.9 \\
+ViT-L & 60.3 & 8.0 \\
+MAE-B & 59.0 & 8.4 \\
+ResNet50-IN & 61.9 & 8.7 \\
+CLIP-B32 & 64.1 & 9.1 \\
+SigLIP-B & 62.4 & 9.2 \\
+ConvNeXt-S & 70.6 & 9.2 \\
+EVA02-B & 63.4 & 9.3 \\
+ViT-S & 64.6 & 9.6 \\
+DINOv2-S & 62.7 & 9.8 \\
+\bottomrule
+\end{tabular}}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\centering
+\resizebox{\ifdim\width>\linewidth \linewidth\else\width\fi}{!}{%
+\begin{tabular}{l rr}
+\toprule
+Model & Future (\%) & Decay (\%) \\
+\midrule
+ViT-M & 66.1 & 10.1 \\
+ViT-S16-IN21k & 61.8 & 10.4 \\
+MLP-L & 72.7 & 12.2 \\
+ResNet-S & 75.0 & 12.3 \\
+CNN-S & 74.7 & 12.3 \\
+MLP-M & 73.0 & 12.7 \\
+ResNet-M & 75.8 & 13.1 \\
+CNN-L & 79.0 & 13.7 \\
+ResNet-L & 76.1 & 13.9 \\
+CNN-M & 78.4 & 13.9 \\
+\bottomrule
+\end{tabular}}
+\end{minipage}
+\end{table}

@@ -1,0 +1,101 @@
+{
+  "comparison_group": "smoke/runtime-contract",
+  "comparison_role": "smoke",
+  "config": {
+    "dataset": {
+      "data_dir": null,
+      "name": "synthetic",
+      "variant": "classification"
+    },
+    "evaluation": {
+      "metric": "accuracy",
+      "params": {}
+    },
+    "logging": {
+      "json_log_file": true,
+      "level": "info",
+      "metrics_jsonl": true,
+      "plain_log_file": true,
+      "stdout": false,
+      "wandb": null
+    },
+    "metadata": {
+      "purpose": "runtime_contract_smoke_test"
+    },
+    "name": "smoke-synthetic-classification-cpu",
+    "notes": "",
+    "preprocessing": {
+      "cache": null,
+      "steps": []
+    },
+    "protocol": {
+      "evaluation": {
+        "metric": null,
+        "protocol": ""
+      },
+      "job_granularity": "seed_matrix",
+      "split": {
+        "name": "",
+        "seed": null,
+        "test_size": null,
+        "train_size": null,
+        "val_size": null
+      },
+      "time_slices": {
+        "eval_strategy": "",
+        "min_time": null,
+        "time_col": "",
+        "train_strategy": ""
+      }
+    },
+    "runtime": {
+      "backend": "local",
+      "cudnn_benchmark": false,
+      "deterministic": true,
+      "device": "cpu",
+      "mixed_precision": "off",
+      "num_threads": null
+    },
+    "seed": 0,
+    "tags": [
+      "preset",
+      "smoke",
+      "synthetic",
+      "cpu"
+    ],
+    "task": "train_eval",
+    "trainer": {
+      "family": "synthetic",
+      "key": "linear-classifier",
+      "model": {
+        "architecture": "linear"
+      },
+      "training": {
+        "batch_size": 16,
+        "learning_rate": 0.1,
+        "n_features": 6,
+        "n_samples": 64,
+        "num_epochs": 2
+      }
+    }
+  },
+  "description": "CPU-only synthetic classification smoke preset for the local runtime contract.",
+  "group": "smoke",
+  "kind": "experiment_snapshot/v1",
+  "name": "synthetic-classification-cpu",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "tags": [
+    "smoke",
+    "synthetic",
+    "cpu"
+  ],
+  "variant_fields": [
+    "seed"
+  ]
+}

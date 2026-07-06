@@ -1,0 +1,124 @@
+% Shared by paper/main-lncs.tex and paper/main-preprint.tex.
+% Define a command to draw stars
+\newcommand{\drawstar}[2]{
+    \draw[fill=#1] (#2) -- ++(0.1,0.03) -- ++(0.03,0.1) -- ++(0.03,-0.1) -- ++(0.1,-0.03) -- ++(-0.1,-0.03) -- ++(-0.03,-0.1) -- ++(-0.03,0.1) -- cycle;
+}
+\begin{figure}[t]
+    \centering
+    \resizebox{\linewidth}{!}{
+        \begin{tikzpicture}
+            % Axes
+            \draw[->] (-0.2,0) -- (1.5,0) node[below] {};
+            \draw[->] (0,-0.2) -- (0,1.5) node[left] {};
+
+            % Decision boundary (black line)
+            \draw[thick] (0.1, 0.25) .. controls (0.5, 0.2) and (0.9, 1)  .. (1.4, 1);
+
+            % Blue dots (class 1) with black border
+            \filldraw[black, fill=accent_blue] (0.3, 0.5) circle (0.1);
+            \filldraw[black, fill=accent_blue] (0.65, 1) circle (0.1);
+            \filldraw[black, fill=accent_blue] (1.2, 1.2) circle (0.1);
+
+            % Red stars (class 2)
+            \drawstar{accent_orange}{0.45, 0.25};
+            \drawstar{accent_orange}{0.85, 0.5};
+            \drawstar{accent_orange}{1.05, 0.25};
+            \drawstar{accent_orange}{1.25, 0.75};
+
+            % Label
+            \node at (0.75, 1.7) {\scriptsize Original};
+        \end{tikzpicture}
+
+        \hspace{0.15cm}
+
+        \begin{tikzpicture}
+            % Concept Drift
+            % Axes
+            \draw[->] (-0.2,0) -- (1.5,0) node[below] {};
+            \draw[->] (0,-0.2) -- (0,1.5) node[left] {};
+
+            % Decision boundary (black line)
+            \draw[thick] (0.1, 0.7) .. controls (0.9, 1) and (1.3, 0.5)  .. (1.4, 0.42);
+
+            % Blue dots (class 1) with black border
+            \filldraw[black, fill=accent_blue] (0.65, 1) circle (0.1);
+            \filldraw[black, fill=accent_blue] (1.2, 1.2) circle (0.1);
+            \filldraw[black, fill=accent_blue] (1.25, 0.75) circle (0.1);
+
+            % Red stars (class 2)
+            \drawstar{accent_orange}{0.3, 0.5};
+            \drawstar{accent_orange}{0.45, 0.25};
+            \drawstar{accent_orange}{0.85, 0.5};
+            \drawstar{accent_orange}{1.05, 0.25};
+
+            % Label
+            \node at (0.75, 1.7) {\scriptsize Concept Drift};
+        \end{tikzpicture}
+
+        \hspace{0.15cm}
+
+        \begin{tikzpicture}
+            % Virtual Drift
+            % Axes
+            \draw[->] (-0.2,0) -- (1.5,0) node[below] {};
+            \draw[->] (0,-0.2) -- (0,1.5) node[left] {};
+
+            % Decision boundary (black line)
+            \draw[thick] (0.1, 0.25) .. controls (0.5, 0.2) and (0.9, 1)  .. (1.4, 1);
+
+            % slightly shifted
+            % \draw[thick] (0.1, 0.15) .. controls (0.8, 0.2) and (0.9, 1)  .. (1.4, 1);
+
+            % Blue dots (class 1) with black border
+            \filldraw[black, fill=accent_blue] (0.3, 0.55) circle (0.1);
+            \filldraw[black, fill=accent_blue] (0.25, 0.75) circle (0.1);
+            \filldraw[black, fill=accent_blue] (0.5, 0.85) circle (0.1);
+
+            % Red stars (class 2)
+            \drawstar{accent_orange}{1, 0.5};
+            \drawstar{accent_orange}{1.25, 0.35};
+            \drawstar{accent_orange}{1.3, 0.7};
+
+            % Label
+            \node at (0.75, 1.7) {\scriptsize Covariate Drift};
+            \node at (0.75, 1.4) {\tiny (Virtual Drift)};
+        \end{tikzpicture}
+
+        \hspace{0.15cm}
+
+        \begin{tikzpicture}
+            % Prior Probability Shift
+            % Axes
+            \draw[->] (-0.2,0) -- (1.5,0) node[below] {};
+            \draw[->] (0,-0.2) -- (0,1.5) node[left] {};
+
+            % Decision boundary (black line)
+            \draw[thick] (0.1, 0.25) .. controls (0.5, 0.2) and (0.9, 1)  .. (1.4, 1);
+
+            % slightly shifted
+            % \draw[thick] (0.2, 0.15) .. controls (0.4, 0.1) and (0.8, 1)  .. (1.4, 0.9);
+
+            % Blue dots (class 1) with black border
+            \filldraw[black, fill=accent_blue] (0.3, 0.5) circle (0.1);
+            \filldraw[black, fill=accent_blue] (0.65, 1) circle (0.1);
+            \filldraw[black, fill=accent_blue] (1.2, 1.2) circle (0.1);
+            \filldraw[black, fill=accent_blue] (0.35, 1.1) circle (0.1);
+            \filldraw[black, fill=accent_blue] (0.4, 0.8) circle (0.1);
+            \filldraw[black, fill=accent_blue] (0.6, 1.2) circle (0.1);
+            \filldraw[black, fill=accent_blue] (0.15, 0.7) circle (0.1);
+            \filldraw[black, fill=accent_blue] (0.25, 0.85) circle (0.1);
+
+            % Red stars (class 2)
+            \drawstar{accent_orange}{0.85, 0.5};
+            \drawstar{accent_orange}{1.05, 0.25};
+
+            % Label
+            \node at (0.75, 1.7) {\scriptsize Label Drift};
+        \end{tikzpicture}
+
+    }
+    \caption{Drift types in a binary classification setting. Circles and stars indicate the label classes; the curve represents the decision boundary. \textit{Concept drift} induces a change in the decision boundary, \textit{Covariate drift} (virtual drift) changes the input distribution, and \textit{Label drift} alters the relative class frequency \iflncs\cite{gama2014a_survey_on_concept_drift}\else\cite{holzinger2024analysis}\fi.}
+    \tightvspace{-5pt}
+    \label{fig:distribution_shift}
+    \tightvspace{-0.2cm}
+\end{figure}

@@ -1,0 +1,247 @@
+\captionsetup[figure]{font=footnotesize,labelfont=footnotesize}
+
+\section{arXiv -- Drift Matrices}
+\label{app:arxiv}
+
+\noindent The cohort-mean and per-model deviation matrices shown here, and the in-distribution, future, and decay quantities tabulated below, are defined in Section~\ref{subsec:drift_summary}. The label space comprises the leaf categories \texttt{cs.LG}, \texttt{hep-ph}, \texttt{cs.CV}, \texttt{cs.AI}, \texttt{hep-th}, \texttt{quant-ph}, and \texttt{gr-qc}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{plots_experiments/arxiv/mean_auc_matrix.pdf}
+\caption{Cohort-mean Macro AUC matrix $\bar{M}$ over the arXiv models. Cell $(i,j)$ is the mean across those models of the score from training through slice $i$ and evaluating on slice $j$.}
+\label{fig:arxiv_mean_matrix}
+\end{figure}
+
+\subsection{Model Roster}
+
+\input{tables/arxiv_roster.tex}
+
+\subsection{FFN}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/FFN-S_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/FFN-S_deviation.pdf}
+    \caption{FFN-S}
+    \label{fig:arxiv_FFN_S}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/FFN-M_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/FFN-M_deviation.pdf}
+    \caption{FFN-M}
+    \label{fig:arxiv_FFN_M}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/FFN-L_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/FFN-L_deviation.pdf}
+    \caption{FFN-L}
+    \label{fig:arxiv_FFN_L}
+\end{subfigure}
+\caption{FFN models: Macro AUC drift matrix $M^{(m)}$ and deviation from the cohort mean $\Delta^{(m)} = M^{(m)} - \bar{M}$ for each model, shown on a sequential and a zero-centred diverging scale, respectively.}
+\label{fig:arxiv_family_text_ffn}
+\end{figure}
+
+\subsection{TextCNN}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/TextCNN-S_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/TextCNN-S_deviation.pdf}
+    \caption{TextCNN-S}
+    \label{fig:arxiv_TextCNN_S}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/TextCNN-M_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/TextCNN-M_deviation.pdf}
+    \caption{TextCNN-M}
+    \label{fig:arxiv_TextCNN_M}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/TextCNN-L_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/TextCNN-L_deviation.pdf}
+    \caption{TextCNN-L}
+    \label{fig:arxiv_TextCNN_L}
+\end{subfigure}
+\caption{TextCNN models: Macro AUC drift matrix $M^{(m)}$ and deviation from the cohort mean $\Delta^{(m)} = M^{(m)} - \bar{M}$ for each model, shown on a sequential and a zero-centred diverging scale, respectively.}
+\label{fig:arxiv_family_text_textcnn}
+\end{figure}
+
+\subsection{Recurrent}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/BiGRU-S_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/BiGRU-S_deviation.pdf}
+    \caption{BiGRU-S}
+    \label{fig:arxiv_BiGRU_S}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/BiLSTM-M_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/BiLSTM-M_deviation.pdf}
+    \caption{BiLSTM-M}
+    \label{fig:arxiv_BiLSTM_M}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/BiLSTM-Attn-L_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/BiLSTM-Attn-L_deviation.pdf}
+    \caption{BiLSTM-Attn-L}
+    \label{fig:arxiv_BiLSTM_Attn_L}
+\end{subfigure}
+\caption{Recurrent models: Macro AUC drift matrix $M^{(m)}$ and deviation from the cohort mean $\Delta^{(m)} = M^{(m)} - \bar{M}$ for each model, shown on a sequential and a zero-centred diverging scale, respectively.}
+\label{fig:arxiv_family_text_rnn}
+\end{figure}
+
+\subsection{Transformer}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/TX-S_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/TX-S_deviation.pdf}
+    \caption{TX-S}
+    \label{fig:arxiv_TX_S}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/TX-M_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/TX-M_deviation.pdf}
+    \caption{TX-M}
+    \label{fig:arxiv_TX_M}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/TX-L_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/TX-L_deviation.pdf}
+    \caption{TX-L}
+    \label{fig:arxiv_TX_L}
+\end{subfigure}
+\caption{Transformer models: Macro AUC drift matrix $M^{(m)}$ and deviation from the cohort mean $\Delta^{(m)} = M^{(m)} - \bar{M}$ for each model, shown on a sequential and a zero-centred diverging scale, respectively.}
+\label{fig:arxiv_family_text_tx}
+\end{figure}
+
+\subsection{Frozen}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/BERT_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/BERT_deviation.pdf}
+    \caption{BERT}
+    \label{fig:arxiv_BERT}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/DistilBERT_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/DistilBERT_deviation.pdf}
+    \caption{DistilBERT}
+    \label{fig:arxiv_DistilBERT}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/ELECTRA_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/ELECTRA_deviation.pdf}
+    \caption{ELECTRA}
+    \label{fig:arxiv_ELECTRA}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/MPNet_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/MPNet_deviation.pdf}
+    \caption{MPNet}
+    \label{fig:arxiv_MPNet}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/ModernBERT_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/ModernBERT_deviation.pdf}
+    \caption{ModernBERT}
+    \label{fig:arxiv_ModernBERT}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/RoBERTa_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/RoBERTa_deviation.pdf}
+    \caption{RoBERTa}
+    \label{fig:arxiv_RoBERTa}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/DeBERTa-v3_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/DeBERTa-v3_deviation.pdf}
+    \caption{DeBERTa-v3}
+    \label{fig:arxiv_DeBERTa_v3}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/raw/MiniLM-L6_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/arxiv/deviation/MiniLM-L6_deviation.pdf}
+    \caption{MiniLM-L6}
+    \label{fig:arxiv_MiniLM_L6}
+\end{subfigure}
+\caption{Frozen models: Macro AUC drift matrix $M^{(m)}$ and deviation from the cohort mean $\Delta^{(m)} = M^{(m)} - \bar{M}$ for each model, shown on a sequential and a zero-centred diverging scale, respectively.}
+\label{fig:arxiv_family_text_frozen_head}
+\end{figure}
+
+\subsection{Forgetting and Rankings}
+\label{app:arxiv_forgetting}
+
+\noindent To see how quickly each model forgets, we summarize its drift matrix as a forgetting curve. The curve plots the Macro AUC against the lag $\ell = j - i$, the number of slices between the training cutoff $i$ and the evaluation slice $j$. At each lag we average over all training cutoffs,
+\[ F(\ell) = \operatorname{mean}_{i} M_{i,\,i+\ell}. \]
+The result is the Macro AUC at a fixed temporal distance, independent of which period a model was trained on. This separates the effect of temporal distance from the difficulty of any single slice.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=\linewidth]{plots_experiments/arxiv/forgetting.pdf}
+    \caption{Per model}
+    \label{fig:arxiv_forgetting}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=\linewidth]{plots_experiments/arxiv/forgetting_by_family.pdf}
+    \caption{Per model family}
+    \label{fig:arxiv_forgetting_family}
+\end{subfigure}
+\caption{Forgetting curves: each model (left) and averaged within each family (right).}
+\label{fig:arxiv_forgetting_combined}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=\linewidth]{plots_experiments/arxiv/ranking_future_performance.pdf}
+    \caption{By future performance}
+    \label{fig:arxiv_ranking_future}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=\linewidth]{plots_experiments/arxiv/ranking_decay.pdf}
+    \caption{By decay}
+    \label{fig:arxiv_ranking_decay}
+\end{subfigure}
+\caption{Models ranked by mean future performance and by temporal decay.}
+\label{fig:arxiv_rankings}
+\end{figure}
+
+\subsection{Result Tables}
+
+\input{tables/robustness_arxiv.tex}
+
+\noindent
+\input{tables/arxiv_cutoff_2000.tex}\hfill
+\input{tables/arxiv_cutoff_2008.tex}
+
+\vspace{1.5ex}
+
+\noindent
+\input{tables/arxiv_cutoff_2016.tex}\hfill
+\input{tables/arxiv_cutoff_2024.tex}
+
+\input{tables/arxiv_by_family.tex}

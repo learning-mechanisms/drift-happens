@@ -1,0 +1,89 @@
+% Web / arXiv build: neutral compact two-column extended version.
+% Uses the de-branded neutral2col style (derived from the ICML layout).
+% This is the author-maintained extended/preprint version; the official
+% proceedings version is the LNCS build (main-lncs.tex). Shared prose,
+% figures, and tables in pages/, tables/, figures/ are \input identically
+% by both roots.
+\documentclass{article}
+
+\usepackage[accepted]{neutral2col}
+
+\input{preamble-common}
+\lncsfalse  % extended build: keep the full reference list and author names
+
+% Dense two-column layout: activate the compact-spacing hook that is a
+% no-op in the roomy LNCS build.
+\renewcommand{\tightvspace}[1]{\vspace{#1}}
+
+% Extended version: keep the full numbered display equations that the LNCS
+% build inlines to save space.
+\verbosemathtrue
+
+% Numeric, square-bracket citations.
+\setcitestyle{numbers,square}
+
+\titlerunning{Drift Happens: Neural Architecture Robustness to Temporal Distribution Shift}
+
+\begin{document}
+
+\hypersetup{pdfauthor={Robin Holzinger, Riccardo Colletti}}
+
+% The equal-contribution note is a symbol-marked footnote hung off the authors;
+% switch footnote marks to symbols for it, then restore numerals for the body.
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\twocolumn[
+\papertitle{Drift Happens: An Empirical Study of Neural Architecture \\ Robustness to Temporal Distribution Shift}
+\paperkeywords{Temporal distribution shift, Concept drift, Inductive bias, Neural architecture robustness, Pretrained encoders}
+
+{\centering
+{\large\bfseries Robin Holzinger\footnotemark[1] \qquad Riccardo Colletti\footnotemark[1]\par}
+\vskip 0.9em
+{\normalsize Department of Electrical Engineering and Computer Sciences,\\
+University of California, Berkeley, USA\par}
+}
+
+\vskip 1.4em
+\venuebanner{Extended version. Accepted at QCDS 2026; the proceedings version will appear in Springer LNCS.}
+\vskip 0.15in
+]
+
+% Footnote text for the author markers; lands in the footnote area of column one.
+\footnotetext[1]{Both authors contributed equally.}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\setcounter{footnote}{0}
+
+\begin{abstract}
+\input{pages/0_abstract}
+\end{abstract}
+
+\input{pages/1_intro}
+\input{pages/2_background}
+\input{pages/3_methods}
+\input{pages/4_evaluation}
+\input{pages/5_results}
+\input{pages/6_conclusion}
+
+\bibliographystyle{plainnat}
+\bibliography{bibliography}
+
+\section*{Appendix}
+\appendix
+
+\input{pages/a_compute}
+\input{pages/b_metrics}
+
+\pagebreak
+\onecolumn
+
+\input{pages/c_yearbook}
+
+\pagebreak
+
+\input{pages/d_amazon}
+
+\pagebreak
+
+\input{pages/e_arxiv}
+
+\end{document}

@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Drift Happens · arXiv results</title>
+    <meta
+      name="description"
+      content="Temporal robustness on arXiv: title and abstract classification across 2000-2025, where frozen embeddings already capture the topic and architectures decay by a similar small amount, read off the drift matrix, its summary statistics, the per-model viewer, and the robustness and cutoff tables."
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <link rel="stylesheet" href="css/content.css" />
+    <link rel="stylesheet" href="css/extra.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/lightbox.css?v=2" />
+    <link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <h1><img class="h1ds" src="img/logos/arxiv.svg" alt="arXiv logo" />arXiv</h1>
+        <div class="sub">Paper titles and abstracts, 2000&#8211;2025: label and terminology drift, measured by macro-AUC.</div>
+        <button class="navtoggle" aria-label="open menu" aria-expanded="false">
+          <svg viewBox="0 0 22 22" width="24" height="24" aria-hidden="true"><path d="M3 6 H19 M3 11 H19 M3 16 H19" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="tabs2">
+      <div class="wrap">
+        <div class="navlinks">
+          <a href="index.html">overview</a>
+          <a href="methods.html">datasets &amp; methods</a>
+          <a href="results.html">results</a>
+          <a class="artifact" href="https://wandb.ai/drift-happens/drift-happens"
+            ><svg class="artifactmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M8 1.5c-3.03 0-5.5.86-5.5 1.92v9.16c0 1.06 2.47 1.92 5.5 1.92s5.5-.86 5.5-1.92V3.42C13.5 2.36 11.03 1.5 8 1.5Zm0 1c2.54 0 4.36.61 4.49.92-.13.31-1.95.92-4.49.92s-4.36-.61-4.49-.92C3.64 3.11 5.46 2.5 8 2.5Zm4.5 3.2v1.91c-.13.31-1.95.92-4.5.92s-4.36-.61-4.5-.92V5.7c.96.58 2.59.94 4.5.94s3.54-.36 4.5-.94Zm0 3.1v1.91c-.13.31-1.95.92-4.5.92s-4.36-.61-4.5-.92V8.8c.96.58 2.59.94 4.5.94s3.54-.36 4.5-.94Zm0 3.1v.68c-.13.31-1.95.92-4.5.92s-4.36-.61-4.5-.92v-.68c.96.58 2.59.94 4.5.94s3.54-.36 4.5-.94Z"
+              /></svg
+            >artifacts</a
+          >
+          <a class="doc" href="drift-happens.pdf"
+            ><svg class="docmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M9 1H3.5A1.5 1.5 0 0 0 2 2.5v11A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V6L9 1zm0 1.5L12.5 6H9V2.5zM4.5 6.5h3v1h-3v-1zm0 2.5h7v1h-7v-1zm0 2.5h7v1h-7v-1z"
+              /></svg
+            >paper</a
+          >
+          <a class="gh" href="https://github.com/learning-mechanisms/drift-happens"
+            ><svg class="ghmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+              /></svg
+            >code</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div class="wrap">
+      <nav class="subnav" aria-label="results sections">
+        <a href="results.html">Synthesis</a>
+        <a href="yearbook-results.html"
+          ><svg class="dsi" viewBox="0 0 16 16" aria-hidden="true">
+            <circle cx="8" cy="5.9" r="3" />
+            <path d="M2.5 14.5a5.5 5.5 0 0 1 11 0z" /></svg
+          >Yearbook</a
+        >
+        <a href="amazon-results.html"
+          ><svg class="dsi" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.7l1.78 3.74 4.12.5-3.02 2.83.78 4.06L8 10.93l-3.66 1.93.78-4.06L2.1 5.94l4.12-.5z" /></svg>Amazon</a
+        >
+        <a href="arxiv-results.html" class="here"
+          ><svg class="dsi" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.3 1.9h4.2l3.2 3.1v9H4.3z" />
+            <rect x="5.7" y="7.1" width="4.6" height="0.95" rx="0.4" fill="#fff" />
+            <rect x="5.7" y="9.3" width="4.6" height="0.95" rx="0.4" fill="#fff" /></svg
+          >arXiv</a
+        >
+        <span class="chip"
+          ><b><span data-val="arxiv/models"></span></b> models</span
+        >
+      </nav>
+
+      <div class="claim reveal" style="margin: 14px 0 6px">
+        <span class="lbl">Overview</span>
+        <p>
+          On arXiv a stronger <b>inductive bias buys no extra in-distribution accuracy, and so costs no temporal robustness</b>, consistent with the findings on
+          <a href="yearbook-results.html">Yearbook</a> and <a href="amazon-results.html">Amazon</a>. Assigning a paper to its arXiv category is close to topic recognition, and the topic is already
+          encoded in the frozen RoBERTa embeddings on which every model is built. The architecture's inductive bias thus has no additional structure to extract, and the feed-forward, TextCNN,
+          recurrent and Transformer families all reach the same in-distribution macro-AUC,
+          <b>near <span data-val="arxiv/family/recurrent/indist"></span> to <span data-val="arxiv/family/transformer/indist"></span>%</b>, within about one point of one another.
+        </p>
+        <p>
+          Because a stronger bias yields no additional in-distribution accuracy here, it forms no period-specific features that can later degrade, and each of these families decays by a comparable
+          amount, <b>roughly <span data-val="arxiv/scratch/decay-min"></span> to <span data-val="arxiv/scratch/decay-max"></span> macro-AUC points</b>. The pattern is the inductive-bias law seen from
+          the opposite side: <b>where the bias gains nothing in distribution, it forfeits nothing under drift</b>. The later years lie barely outside the training distribution, as the pretrained
+          backbone had already acquired these concepts before training began.
+        </p>
+      </div>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">01</span> &nbsp;the temporal drift matrix</h2>
+        <p>
+          Each model is summarised by a <a href="methods.html#protocol">temporal drift matrix</a>. We divide the 2000&#8211;2025 timeline into \(K\) yearly slices, and for a training cutoff \(i\) fit
+          a model \(f_i\) on the cumulative history \(\mathcal{D}_{\le i}=\bigcup_{k\le i}\mathcal{D}_k\), all data through year \(i\).
+        </p>
+        <p>
+          Each \(f_i\) is evaluated on every slice, and cell \((i,j)\) records its macro-AUC on year \(j\). The diagonal is in-distribution, the cells with \(j \gt i\) measure forward generalization
+          to unseen years, and those with \(j \lt i\) re-test earlier data.
+        </p>
+        <div class="definition">
+          <span class="lbl">Drift matrix and its summary statistics</span>
+          \[ M_{ij} = \operatorname{auc}(f_i,\mathcal{D}_j), \qquad i,j \in \{1,\dots,K\}. \]
+          <p>From the matrix we read three statistics.</p>
+          \[ \mathrm{ID}=\operatorname*{mean}_{i}\, M_{ii}, \qquad \mathrm{F}=\operatorname*{mean}_{\,j>i}\, M_{ij}, \qquad \Delta=\mathrm{ID}-\mathrm{F}. \]
+          <p>
+            \(\mathrm{ID}\) is in-distribution macro-AUC, \(\mathrm{F}\) is mean forward macro-AUC, and the decay \(\Delta\) is the macro-AUC lost off the diagonal. Macro-AUC is higher-is-better, like
+            accuracy, so a positive \(\Delta\) denotes degradation.
+          </p>
+        </div>
+        <div class="metricbar">
+          <b>Macro-AUC (%)</b><span>higher is better</span>
+          <span class="cbar">
+            <i>low</i>
+            <svg viewBox="0 0 120 10" width="120" height="10" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="seqramp" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#313695" />
+                  <stop offset="0.25" stop-color="#74add1" />
+                  <stop offset="0.5" stop-color="#ffffbf" />
+                  <stop offset="0.75" stop-color="#f46d43" />
+                  <stop offset="1" stop-color="#a50026" />
+                </linearGradient>
+              </defs>
+              <rect width="120" height="10" rx="2" fill="url(#seqramp)" />
+            </svg>
+            <i>high</i>
+          </span>
+        </div>
+        <figure class="twofig" style="margin: 14px 0">
+          <div class="drift-anim" data-src="data/arxiv.json" style="max-width: 460px; margin: 0 auto"></div>
+          <figcaption class="note">
+            Cohort-mean macro-AUC; cell \((i,j)\) is the mean macro-AUC of models trained through year \(i\) and evaluated on year \(j\), over <span data-val="arxiv/cutoffs"></span> yearly slices from
+            <span data-val="arxiv/cutoff-first"></span> to <span data-val="arxiv/cutoff-last"></span>. Each model cell is averaged over <span data-val="arxiv/seeds"></span> distinct model seeds before
+            cohort aggregation.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">02</span> &nbsp;per-model drift matrices</h2>
+        <p>
+          Each model has its own drift matrix \(M^{(m)}\). Subtracting the cohort mean gives a <b>deviation matrix</b>
+          \(M^{(m)}_{ij}-\bar{M}_{ij}\), the per-cell amount by which a model beats or trails the average.
+        </p>
+        <p>
+          In the deviation matrices the trained families sit close to the cohort mean throughout, in distribution and on the future alike, with no family leading in distribution and then surrendering
+          that lead under drift. The clearest departures are two frozen encoders, <b>DeBERTa-v3</b> and <b>ELECTRA</b>, which trail the cohort across the matrix.
+        </p>
+        <div class="drift-explorer" data-dataset="arxiv"></div>
+      </section>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">03</span> &nbsp;robustness statistics</h2>
+        <p>
+          Across the arXiv models the architectures barely differ. The trained families all reach nearly the same in-distribution macro-AUC and lose a similar, small amount under forward
+          extrapolation, so no model trades in-distribution accuracy for temporal robustness.
+        </p>
+
+        <details class="foldcard">
+          <summary><span class="dsnum">3.1</span> Per-model robustness</summary>
+          <div class="foldcard-body">
+            <p>Mean forward macro-AUC and decay, aggregated over all cutoffs:</p>
+            \[ \mathrm{F}=\operatorname*{mean}_{\,j>i}\, M_{ij}, \qquad \Delta=\operatorname*{mean}_{i} M_{ii}\;-\;\mathrm{F}. \]
+            <p>
+              The trained families cluster tightly: in distribution they sit between about
+              <b><span data-val="arxiv/scratch/indist-min"></span> and <span data-val="arxiv/scratch/indist-max"></span> macro-AUC</b>, and their decay falls in a narrow band of
+              <b><span data-val="arxiv/scratch/decay-min"></span> to <span data-val="arxiv/scratch/decay-max"></span> points</b>, with no family standing apart. The frozen pretrained encoders sit in
+              the same range, decaying 2.5 to 3.7 points, with two exceptions: <b>DeBERTa-v3</b> and <b>ELECTRA</b> trail the rest at
+              <b><span data-val="arxiv/model/deberta_v3_base_frozen/decay"></span> and <span data-val="arxiv/model/electra_base_frozen/decay"></span> points</b> of decay, the only models that lose
+              appreciably more than the others.
+            </p>
+            <div class="tbl-robustness" data-dataset="arxiv"></div>
+          </div>
+        </details>
+
+        <details class="foldcard">
+          <summary><span class="dsnum">3.2</span> Per training cutoff</summary>
+          <div class="foldcard-body">
+            <p>For a fixed cutoff \(i\): in-distribution macro-AUC \(M_{ii}\), mean future macro-AUC, and decay over the years that follow it:</p>
+            \[ \mathrm{F}_i=\operatorname*{mean}_{\,j>i}\, M_{ij}, \qquad \Delta_i = M_{ii}-\mathrm{F}_i. \]
+            <p>
+              Decay shrinks as the training cutoff moves later and the remaining forward span narrows, from <b>3 to 4 macro-AUC points</b> at the 2000 cutoff to about <b>0.2</b> by 2024, when almost
+              no future years are left to extrapolate to.
+            </p>
+            <div class="tbl-cutoff" data-dataset="arxiv"></div>
+          </div>
+        </details>
+
+        <details class="foldcard" open>
+          <summary><span class="dsnum">3.3</span> Forgetting curves</summary>
+          <div class="foldcard-body">
+            <div class="forgetting" data-dataset="arxiv"></div>
+            <div class="claim">
+              <span class="lbl">Key result</span>
+              <p>
+                The forgetting curves stay bunched together: every family starts near the same macro-AUC and loses ground at the same gentle rate, so the in-distribution ordering never inverts. No
+                architecture is meaningfully more or less robust than the others, the signature of a task where the inductive bias buys no advantage to lose.
+              </p>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">04</span> &nbsp;what shapes temporal robustness</h2>
+        <div class="findcards">
+          <div class="findcard">
+            <div class="fc-h">Inductive bias</div>
+            <p>
+              Here the inductive bias adds nothing. The arXiv categories are already separable in the frozen RoBERTa embeddings every model is built on, so no architecture extracts features the others
+              miss, and the trained families reach nearly the same in-distribution macro-AUC. <b>A bias only costs temporal robustness when it first buys in-distribution accuracy</b>, and on arXiv it
+              buys none, so no family decays faster than the rest.
+            </p>
+          </div>
+          <div class="findcard">
+            <div class="fc-h">Pretraining</div>
+            <p>
+              The flat, uniform decay traces back to the backbone rather than the head. Recognising a paper's category rests on broad, stable topical vocabulary that RoBERTa's pretraining already
+              covers, so <b>the later years stay close to the training distribution for this task</b>. The hardest part, identifying the topic, was effectively solved before any model was trained,
+              which leaves little for temporal shift to take away.
+            </p>
+          </div>
+        </div>
+
+        <div class="nextlinks">
+          <a class="navcard" href="yearbook-results.html"
+            ><span class="nl-t">Yearbook <span class="nl-arr">&rarr;</span></span
+            ><span class="nl-d">portrait images across the decades</span></a
+          >
+          <a class="navcard" href="results.html"
+            ><span class="nl-t">Synthesis <span class="nl-arr">&rarr;</span></span
+            ><span class="nl-d">the cross-dataset picture and the conclusions</span></a
+          >
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="wrap">
+        <div class="authors" style="margin-bottom: 16px">
+          <div class="author">
+            <img src="assets/authors/robin.png" alt="Robin Holzinger" width="56" height="56" />
+            <div class="meta">
+              <span class="nm">Robin Holzinger<sup>*</sup></span
+              ><br /><a href="#" data-contact-email="robin" aria-label="Email Robin Holzinger"
+                ><span>robin</span><span>.</span><span>holzinger</span> <span>[at]</span> <span>berkeley</span><span>.</span><span>edu</span></a
+              >
+            </div>
+          </div>
+          <div class="author">
+            <img src="assets/authors/riccardo.png" alt="Riccardo Colletti" width="56" height="56" />
+            <div class="meta">
+              <span class="nm">Riccardo Colletti<sup>*</sup></span
+              ><br /><a href="#" data-contact-email="riccardo" aria-label="Email Riccardo Colletti"
+                ><span>riccardo</span><span>_</span><span>colletti</span> <span>[at]</span> <span>berkeley</span><span>.</span><span>edu</span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="eqnote">* equal contribution</div>
+        Drift Happens &middot; UC Berkeley EECS<br />
+        <a class="doc" href="drift-happens.pdf"
+          ><svg class="docmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M9 1H3.5A1.5 1.5 0 0 0 2 2.5v11A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V6L9 1zm0 1.5L12.5 6H9V2.5zM4.5 6.5h3v1h-3v-1zm0 2.5h7v1h-7v-1zm0 2.5h7v1h-7v-1z"
+            /></svg
+          >paper</a
+        >
+        &middot;
+        <a class="gh" href="https://wandb.ai/drift-happens/drift-happens">wandb.ai</a>
+        &middot;
+        <a class="gh" href="https://github.com/learning-mechanisms/drift-happens"
+          ><svg class="ghmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+            /></svg
+          >github.com</a
+        >
+      </div>
+    </footer>
+
+    <script src="js/matrixview.js?v=15"></script>
+    <script src="js/explorer.js?v=13" defer></script>
+    <script src="js/tables.js?v=13" defer></script>
+    <script src="js/values.js?v=1" defer></script>
+    <script src="js/forgetting.js?v=13" defer></script>
+    <script src="js/driftmatrix.js?v=14" defer></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/contact.js" defer></script>
+    <script src="js/nav.js"></script>
+    <script src="js/lightbox.js?v=4"></script>
+    <script>
+      window.MathJax = { tex: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]] }, svg: { fontCache: "global" } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+  </body>
+</html>

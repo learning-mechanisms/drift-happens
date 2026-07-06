@@ -1,0 +1,145 @@
+{
+  "comparison_group": "amazon-reviews-23/cumulative-time-slices",
+  "comparison_role": "headline",
+  "config": {
+    "dataset": {
+      "data_dir": null,
+      "name": "amazon_reviews_23",
+      "variant": "sample300k_2014h1_2023h2_text_cumulative_v1"
+    },
+    "evaluation": {
+      "metric": "balanced_mse",
+      "params": {
+        "eval_time_slices": "simple_half_year_slices",
+        "secondary_metrics": [
+          "rmse",
+          "mae",
+          "mse"
+        ]
+      }
+    },
+    "logging": {
+      "json_log_file": true,
+      "level": "info",
+      "metrics_jsonl": true,
+      "plain_log_file": true,
+      "stdout": true,
+      "wandb": null
+    },
+    "metadata": {},
+    "name": "amazon-reviews-23-smoke-minilm-l6-frozen",
+    "notes": "Conference minilm_l6_frozen run at smoke seeds.",
+    "preprocessing": {
+      "cache": {
+        "cache_id": "pooled_embedding_dataset-e09df041be1be871",
+        "dataset": "amazon_reviews_23",
+        "input_version": "sample300k_2014h1_2023h2_text_cumulative_v1:v1",
+        "kind": "pooled_embedding_dataset",
+        "output": "pooled_embedding_rating_targets",
+        "params": {
+          "dataset_variant": "sample300k_2014h1_2023h2_text_cumulative_v1",
+          "dtype": "float16",
+          "max_length": 128,
+          "pooling_strategy": "masked_mean",
+          "sample_seed": 42,
+          "sample_size": 300000,
+          "text_col": "text"
+        },
+        "producer": "sentence-transformers/all-MiniLM-L6-v2",
+        "reuse_policy": "reuse",
+        "schema_version": 1
+      },
+      "steps": [
+        "load_amazon_reviews_23_sample300k",
+        "tokenize_text",
+        "cache_frozen_text_pooled_embedding",
+        "tensorize_ratings"
+      ]
+    },
+    "protocol": {
+      "evaluation": {
+        "metric": "balanced_mse",
+        "protocol": "simple_half_year_slices"
+      },
+      "job_granularity": "seed_matrix",
+      "split": {
+        "name": "stratified_temporal_train_test_val",
+        "seed": 42,
+        "test_size": 0.3,
+        "train_size": 0.7,
+        "val_size": 0.0
+      },
+      "time_slices": {
+        "eval_strategy": "simple_half_year_slices",
+        "min_time": 28,
+        "time_col": "half_year",
+        "train_strategy": "cumulative_from_start"
+      }
+    },
+    "runtime": {
+      "backend": "local",
+      "cudnn_benchmark": true,
+      "deterministic": false,
+      "device": "auto",
+      "mixed_precision": "off",
+      "num_threads": null
+    },
+    "seed": 0,
+    "tags": [
+      "preset",
+      "amazon-reviews-23",
+      "amazon_reviews_23",
+      "smoke",
+      "amazon-reviews-23-conference"
+    ],
+    "task": "train_eval",
+    "trainer": {
+      "family": "text-frozen-head-regression",
+      "key": "minilm_l6_frozen",
+      "model": {
+        "architecture": "minilm_l6_frozen",
+        "fine_tune": false,
+        "input_kind": "pooled_embedding",
+        "output_dim": 1,
+        "producer": "sentence-transformers/all-MiniLM-L6-v2"
+      },
+      "training": {
+        "batch_size": 64,
+        "gradient_clip_norm": 1.0,
+        "learning_rate": 0.0005,
+        "loss": "weighted_mse",
+        "num_epochs": 10,
+        "optimizer": "adamw",
+        "rating_weighting": "inverse_frequency",
+        "weight_decay": 0.01
+      }
+    }
+  },
+  "description": "Amazon Reviews conference minilm_l6_frozen smoke preset.",
+  "group": "amazon-reviews-23",
+  "kind": "experiment_snapshot/v1",
+  "name": "smoke-minilm-l6-frozen",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "tags": [
+    "smoke",
+    "amazon-reviews-23",
+    "text",
+    "embedding-cache"
+  ],
+  "variant_fields": [
+    "name",
+    "tags",
+    "notes",
+    "trainer.key",
+    "trainer.family",
+    "trainer.model",
+    "trainer.training",
+    "preprocessing.cache.producer"
+  ]
+}

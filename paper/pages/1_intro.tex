@@ -1,0 +1,24 @@
+\tightvspace{-0.55cm}
+\section{Introduction}
+\label{section_introduction}
+
+Machine learning models are typically trained under the assumption that training and test data are drawn from the same distribution. In practice, this assumption rarely holds: real-world data evolves over time, exhibiting \textit{temporal distribution shift} that can degrade model performance in ways that standard held-out evaluation fails to capture. A model that achieves high accuracy on held-out data from the same time period may fail when deployed on future inputs.
+
+While distribution shift is well-documented, less understood is how architectural choices influence a model's robustness to temporal drift. \begin{quote}
+\emph{Do different inductive biases (the translation invariance of convolutions, the sequential modeling of recurrent nets, the attention of Transformers) lead to different rates of temporal degradation?}
+
+\emph{Do frozen, pretrained encoders resist temporal drift better than models trained end to end?}
+\end{quote} These questions have practical implications for model selection, yet systematic comparisons across architectures and domains remain scarce.
+
+
+This work investigates the temporal robustness of neural classifiers across three domains: image classification (\texttt{Yearbook}), text regression (\texttt{Amazon Reviews}), and multi-label text classification (\texttt{arXiv}). For each domain, we evaluate diverse architectures, from simple baselines to pretrained transformers, using a unified framework based on temporal drift matrices and provide qualitative explanations for model degradation via gradient saliency maps. Our contributions are threefold:
+
+\tightvspace{-7pt}
+\begin{itemize}
+    \item We provide a unified empirical assessment of temporal robustness across three long-range, time-indexed domains, enabling direct comparison of how neural architectures behave under temporal distribution shift.
+    \item We organize time-indexed evaluation in the spirit of Wild-Time \cite{yao2022wildtime} into temporal drift matrices, a compact representation that quantifies cross-temporal generalization by measuring performance when training on cumulative historical data and testing on both earlier and later time periods.
+    \item We systematically compare a broad spectrum of model families, from multilayer perceptrons, convolutional and residual networks, and recurrent networks to transformers trained on the data and frozen pretrained encoders, highlighting how architectural assumptions relate to degradation patterns across modalities and tasks.
+\end{itemize}
+\tightvspace{-7pt}
+
+\noindent Taken together, our results characterize how performance deteriorates as the temporal gap between training and evaluation widens across domains and model classes. \textbf{The features an inductive bias extracts within the training period are what lift in-distribution performance, yet they are the most tied to it and the first to degrade as the data drifts, so the very features that make a model accurate in distribution are the least robust over time.} Frozen pretrained encoders, relying on coarser and more transferable representations, trade in-distribution accuracy for steadier degradation. These findings guide architecture selection in non-stationary real-world environments.

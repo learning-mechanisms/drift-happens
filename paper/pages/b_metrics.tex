@@ -1,0 +1,49 @@
+\section{Per-Dataset Protocol and Metrics}
+\label{appendix:evaluation_metrics}
+The drift-matrix protocol of \cref{section:evaluation_framework} is shared across the three datasets, but each instantiates it at its own time granularity and is scored with the metric matched to its label structure (\cref{tab:protocol_instantiation}). For each task we require a scalar performance measure that is both aligned with the task and robust to the class imbalance present in that dataset; a metric dominated by the label distribution would conflate shifts in the data with changes in the model.
+
+\begin{table}[htbp]
+\caption{Per-dataset instantiation of the drift-matrix protocol: time span, slice granularity, number of slices $K$, and primary metric.}
+\label{tab:protocol_instantiation}
+\centering
+% Shrink to the column width only if the table is wider than it (as in the
+% two-column preprint); never enlarge a narrow table, which plain
+% \resizebox{\columnwidth}{!} would do in the roomy single-column LNCS build.
+\resizebox{\ifdim\width>\columnwidth \columnwidth\else\width\fi}{!}{%
+\begin{tabular}{@{}lllcl@{}}
+\toprule
+Dataset & Span & Slice & $K$ & Metric \\
+\midrule
+\texttt{Yearbook} & 1905--2013 & yearly & 104 & accuracy \\
+\texttt{Amazon Reviews} & 2014--2023 & half-yearly & 20 & balanced MSE \\
+\texttt{arXiv} & 2000--2025 & yearly & 26 & macro AUC \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Yearbook}
+\label{app:metrics_yearbook}
+We slice the 1905--2013 timeline into one-year intervals, keeping the $K = 104$ years with enough samples. The task is binary classification with roughly balanced classes, so we score it with standard accuracy, the fraction of portraits classified correctly. Balance is what makes accuracy trustworthy here: when neither class dominates, a model cannot earn a good score by always predicting the same label, so accuracy rises and falls only as the model genuinely classifies more or fewer cases correctly. Higher values are better.
+
+\subsection{Amazon Reviews}
+\label{app:metrics_amazon}
+We slice the 2014--2023 timeline into half-year intervals, giving $K = 20$ slices. The task is regression: the model predicts a star rating from one to five and is scored by squared error. The difficulty is that the ratings are strongly skewed toward five-star reviews, so a single mean squared error taken over all reviews would mainly measure performance on the majority and would barely react to the rarer low ratings. To keep every rating level visible, we first compute the mean squared error separately within each rating and then average those per-rating values equally over the rating levels present,
+\begin{equation}
+    \nonumber
+    \text{MSE}_{\text{bal}} = \frac{1}{|\mathcal{R}|}\sum_{r \in \mathcal{R}} \text{MSE}_r, \qquad
+    \text{MSE}_r = \frac{1}{|\mathcal{S}_r|}\sum_{i \in \mathcal{S}_r}(y_i - \hat{y}_i)^2,
+\end{equation}
+where $\mathcal{S}_r = \{i : y_i = r\}$ is the set of reviews whose true rating is $r$ and $\mathcal{R} = \{r : |\mathcal{S}_r| > 0\}$ is the set of rating levels present in the slice (at most the five levels one to five). Because every present level contributes equally, a model that began to drift on the scarce one- and two-star reviews would reveal it here. Unlike the other two metrics, lower values are better.
+
+\subsection{arXiv}
+\label{app:metrics_arxiv}
+We slice the 2000--2025 timeline into one-year intervals, giving $K = 26$ slices. The task is multi-label: a paper can belong to several of the $C = 7$ subject areas at once, and those areas are very unevenly populated. This raises two problems. First, fixing a single decision threshold is arbitrary and tends to favour the frequent subjects, so a threshold-based score such as accuracy is misleading. Second, an average that weights papers equally is again dominated by the common subjects. We address the first by scoring each subject with the Area Under the ROC Curve, which summarises performance over all thresholds at once: $\text{AUC}_c$ is the probability that a randomly chosen paper carrying subject $c$ is given a higher score for that subject than a randomly chosen paper that does not carry it. We address the second by averaging the per-subject values uniformly, so each subject counts the same regardless of how many papers it contains,
+\begin{equation}
+    \nonumber
+    \overline{\text{AUC}} = \frac{1}{C}\sum_{c=1}^{C} \text{AUC}_c, \qquad
+    \text{AUC}_c = \int_0^1 \text{TPR}_c(t)\, d\text{FPR}_c(t),
+\end{equation}
+where $\text{TPR}_c(t)$ and $\text{FPR}_c(t)$ denote the true- and false-positive rates for subject $c$ at threshold $t$. Higher values are better, and a model that ranked every paper correctly within every subject would reach $1$.
+
+\tightvspace{\fill}

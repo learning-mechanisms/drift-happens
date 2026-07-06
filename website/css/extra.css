@@ -1,0 +1,186 @@
+/* ---------- generic card grids ---------- */
+.cardgrid {
+  display: grid;
+  gap: 16px;
+  margin: 18px 0 6px;
+}
+.cardgrid.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.cardgrid.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.card {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--card);
+  padding: 20px;
+  transition:
+    border-color 0.18s ease,
+    transform 0.18s ease,
+    background 0.18s ease;
+}
+.card:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--rule));
+  transform: translateY(-2px);
+}
+.card .ct {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 19px;
+  margin: 0 0 6px;
+  line-height: 1.25;
+}
+.card .ct .ix {
+  color: var(--accent);
+}
+.card p {
+  margin: 0;
+  font-size: 15.5px;
+  color: var(--dim);
+  line-height: 1.5;
+}
+
+/* contribution cards carry a small accent eyebrow */
+.card .eb {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* ---------- dataset cards ---------- */
+.dataset .ct {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+/* saliency comparison (labelled strips by model and cutoff) */
+.saliency-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 14px 0;
+}
+.saliency-grid figure {
+  margin: 0;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--card);
+  overflow: hidden;
+}
+.saliency-grid .sh {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--accent-soft);
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.saliency-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 12px;
+  background: #fff;
+}
+.conclusion .num {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--serif);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- limitations / future work ---------- */
+.twocol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin: 16px 0 6px;
+}
+.lcard {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--card);
+  padding: 18px 20px;
+}
+.lcard.future {
+  border-left: 3px solid var(--accent);
+}
+.lcard.limits {
+  border-left: 3px solid var(--ink);
+}
+.lcard h4 {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin: 0 0 10px;
+}
+.lcard ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.lcard li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  padding: 8px 0;
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 13.5px;
+  color: var(--dim);
+  line-height: 1.5;
+}
+.lcard li::before {
+  font-weight: 700;
+}
+.lcard.future li::before {
+  content: "\2192";
+  color: var(--accent);
+}
+.lcard.limits li::before {
+  content: "\2715";
+  color: var(--dim);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 720px) {
+  .methodgrid,
+  .pairgrid {
+    grid-template-columns: 1fr;
+  }
+  .pairgrid figure {
+    position: static;
+  }
+}
+@media (max-width: 600px) {
+  .cardgrid.cols-2,
+  .cardgrid.cols-3,
+  .drift-types,
+  .conclusions,
+  .twocol,
+  .saliency-grid {
+    grid-template-columns: 1fr;
+  }
+}

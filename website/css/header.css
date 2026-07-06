@@ -1,0 +1,210 @@
+/* header.css - light editorial masthead, wordmark, top nav, mobile hamburger. */
+
+header {
+  border-bottom: 1px solid var(--rule);
+  padding: 58px 0 26px;
+  background: var(--paper);
+  color: var(--ink);
+}
+header .wrap {
+  position: relative;
+}
+.navtoggle {
+  all: unset;
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--ink);
+  padding: 8px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  z-index: 80;
+}
+.navtoggle:hover {
+  background: var(--card);
+}
+
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(30px, 5vw, 46px);
+  line-height: 1.08;
+  margin: 0.1em 0 0.12em;
+  font-weight: 560;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+h1 .h1ds {
+  height: 0.8em;
+  width: auto;
+  margin-right: 0.34em;
+  vertical-align: -0.06em;
+  fill: var(--accent);
+}
+h1 .h1ds.photo {
+  width: 0.8em;
+  border-radius: 50%;
+  object-fit: cover;
+}
+h1 .hl {
+  color: var(--accent);
+}
+h1 .brand {
+  display: block;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+h1 .tagline {
+  display: block;
+  font-size: 0.52em;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--dim);
+  margin-top: 10px;
+  line-height: 1.3;
+}
+.sub {
+  color: var(--dim);
+  font-size: 16px;
+  font-style: italic;
+  margin-top: 6px;
+}
+
+/* byline: small round photos + name + affiliation, paper-style, at the top */
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 26px;
+  margin-top: 20px;
+}
+.author-top {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+.author-top img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+  background: var(--card);
+}
+.author-top .who {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+.author-top .who b {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ink);
+}
+.author-top .who .aff {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--dim);
+}
+
+/* sticky section tabs - quiet, hairline-ruled, sans labels */
+nav.tabs2 {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: saturate(1.1) blur(6px);
+  border-bottom: 1px solid var(--rule);
+}
+nav.tabs2 .wrap {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+.navlinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.navclose {
+  display: none;
+}
+nav.tabs2 a {
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 13px 16px;
+  color: var(--dim);
+}
+nav.tabs2 .navlinks a:first-child {
+  padding-left: 16px;
+  margin-left: -16px;
+}
+nav.tabs2 a:hover {
+  color: var(--ink);
+}
+nav.tabs2 a.here {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+nav.tabs2 a.here:hover {
+  color: var(--ink);
+}
+
+/* desktop: external resources read as distinct pills, set apart from the page tabs */
+@media (min-width: 601px) {
+  nav.tabs2 .navlinks a.artifact,
+  nav.tabs2 .navlinks a.doc,
+  nav.tabs2 .navlinks a.gh {
+    border: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 6px 13px;
+    align-self: center;
+    line-height: 1;
+    transition:
+      background 0.16s ease,
+      color 0.16s ease,
+      border-color 0.16s ease;
+  }
+  nav.tabs2 .navlinks a.artifact {
+    margin-left: 18px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+  nav.tabs2 .navlinks a.artifact:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  nav.tabs2 .navlinks a.doc {
+    margin-left: 8px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+  nav.tabs2 .navlinks a.doc:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  nav.tabs2 .navlinks a.gh {
+    margin-left: 8px;
+    background: var(--paper);
+    color: var(--ink);
+  }
+  nav.tabs2 .navlinks a.gh:hover {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+  }
+}

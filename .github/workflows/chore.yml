@@ -1,0 +1,66 @@
+# Adapted from https://github.com/Quantco/dataframely/blob/main/.github/workflows/chore.yml
+
+name: Chore
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened, reopened, edited, synchronize]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-pull-request-title:
+    name: Check Pull Request Title
+    if: github.event_name == 'pull_request_target'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Check valid conventional commit message
+        id: lint
+        uses: amannn/action-semantic-pull-request@48f256284bd46cdaab1048c3721360e808335d50 # v6.1.1
+        with:
+          subjectPattern: ^[A-Z].+[^.,; ]$
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Post comment about invalid PR title
+        if: failure()
+        uses: marocchino/sticky-pull-request-comment@0ea0beb66eb9baf113663a64ec522f60e49231c0 # v3.0.4
+        with:
+          header: conventional-commit-pr-title
+          message: |
+            This repository requires pull request titles to follow the [Conventional Commits specification](https://www.conventionalcommits.org/en/v1.0.0/).
+
+            <details><summary><b>Details</b></summary>
+
+            ```
+            ${{ steps.lint.outputs.error_message }}
+            ```
+
+            </details>
+      - name: Delete comment about invalid PR title
+        if: success()
+        uses: marocchino/sticky-pull-request-comment@0ea0beb66eb9baf113663a64ec522f60e49231c0 # v3.0.4
+        with:
+          header: conventional-commit-pr-title
+          delete: true
+
+  release-drafter:
+    name: ${{ github.event_name == 'pull_request_target' && 'Assign Labels' || 'Draft Release' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Run release-drafter
+        uses: release-drafter/release-drafter@4d75298e00d9e34c483e5ff8c68d0ea1c1940c1e # v7.5.1
+        with:
+          disable-releaser: ${{ github.event_name == 'pull_request_target' }}
+          disable-autolabeler: ${{ github.event_name == 'push' }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

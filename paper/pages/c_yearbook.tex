@@ -1,0 +1,254 @@
+\captionsetup[figure]{font=footnotesize,labelfont=footnotesize}
+
+\section{Yearbook -- Drift Matrices}
+\label{app:yearbook}
+
+\noindent The cohort-mean and per-model deviation matrices shown here, and the in-distribution, future, and decay quantities tabulated below, are defined in Section~\ref{subsec:drift_summary}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{plots_experiments/yearbook/mean_accuracy_matrix.pdf}
+\caption{Cohort-mean Accuracy matrix $\bar{M}$ over the Yearbook models. Cell $(i,j)$ is the mean across those models of the score from training through slice $i$ and evaluating on slice $j$.}
+\label{fig:yearbook_mean_matrix}
+\end{figure}
+
+\subsection{Model Roster}
+
+\input{tables/yearbook_roster.tex}
+
+\subsection{MLP}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/MLP-S_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/MLP-S_deviation.pdf}
+    \caption{MLP-S}
+    \label{fig:yearbook_MLP_S}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/MLP-M_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/MLP-M_deviation.pdf}
+    \caption{MLP-M}
+    \label{fig:yearbook_MLP_M}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/MLP-L_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/MLP-L_deviation.pdf}
+    \caption{MLP-L}
+    \label{fig:yearbook_MLP_L}
+\end{subfigure}
+\caption{MLP models: Accuracy drift matrix $M^{(m)}$ and deviation from the cohort mean $\Delta^{(m)} = M^{(m)} - \bar{M}$ for each model, shown on a sequential and a zero-centred diverging scale, respectively.}
+\label{fig:yearbook_family_image_mlp}
+\end{figure}
+
+\subsection{CNN}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/CNN-S_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/CNN-S_deviation.pdf}
+    \caption{CNN-S}
+    \label{fig:yearbook_CNN_S}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/CNN-M_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/CNN-M_deviation.pdf}
+    \caption{CNN-M}
+    \label{fig:yearbook_CNN_M}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/CNN-L_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/CNN-L_deviation.pdf}
+    \caption{CNN-L}
+    \label{fig:yearbook_CNN_L}
+\end{subfigure}
+\caption{CNN models: Accuracy drift matrix $M^{(m)}$ and deviation from the cohort mean $\Delta^{(m)} = M^{(m)} - \bar{M}$ for each model, shown on a sequential and a zero-centred diverging scale, respectively.}
+\label{fig:yearbook_family_image_cnn}
+\end{figure}
+
+\subsection{ResNet}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/ResNet-S_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/ResNet-S_deviation.pdf}
+    \caption{ResNet-S}
+    \label{fig:yearbook_ResNet_S}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/ResNet-M_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/ResNet-M_deviation.pdf}
+    \caption{ResNet-M}
+    \label{fig:yearbook_ResNet_M}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/ResNet-L_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/ResNet-L_deviation.pdf}
+    \caption{ResNet-L}
+    \label{fig:yearbook_ResNet_L}
+\end{subfigure}
+\caption{ResNet models: Accuracy drift matrix $M^{(m)}$ and deviation from the cohort mean $\Delta^{(m)} = M^{(m)} - \bar{M}$ for each model, shown on a sequential and a zero-centred diverging scale, respectively.}
+\label{fig:yearbook_family_image_resnet}
+\end{figure}
+
+\subsection{ViT}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/ViT-S_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/ViT-S_deviation.pdf}
+    \caption{ViT-S}
+    \label{fig:yearbook_ViT_S}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/ViT-M_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/ViT-M_deviation.pdf}
+    \caption{ViT-M}
+    \label{fig:yearbook_ViT_M}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/ViT-L_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/ViT-L_deviation.pdf}
+    \caption{ViT-L}
+    \label{fig:yearbook_ViT_L}
+\end{subfigure}
+\caption{ViT models: Accuracy drift matrix $M^{(m)}$ and deviation from the cohort mean $\Delta^{(m)} = M^{(m)} - \bar{M}$ for each model, shown on a sequential and a zero-centred diverging scale, respectively.}
+\label{fig:yearbook_family_image_vit}
+\end{figure}
+
+\subsection{Transfer}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/CLIP-B32_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/CLIP-B32_deviation.pdf}
+    \caption{CLIP-B32}
+    \label{fig:yearbook_CLIP_B32}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/ConvNeXt-S_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/ConvNeXt-S_deviation.pdf}
+    \caption{ConvNeXt-S}
+    \label{fig:yearbook_ConvNeXt_S}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/DINOv2-S_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/DINOv2-S_deviation.pdf}
+    \caption{DINOv2-S}
+    \label{fig:yearbook_DINOv2_S}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/DINOv3-S_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/DINOv3-S_deviation.pdf}
+    \caption{DINOv3-S}
+    \label{fig:yearbook_DINOv3_S}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/EVA02-B_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/EVA02-B_deviation.pdf}
+    \caption{EVA02-B}
+    \label{fig:yearbook_EVA02_B}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/MAE-B_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/MAE-B_deviation.pdf}
+    \caption{MAE-B}
+    \label{fig:yearbook_MAE_B}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/ResNet50-IN_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/ResNet50-IN_deviation.pdf}
+    \caption{ResNet50-IN}
+    \label{fig:yearbook_ResNet50_IN}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/SigLIP-B_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/SigLIP-B_deviation.pdf}
+    \caption{SigLIP-B}
+    \label{fig:yearbook_SigLIP_B}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/raw/ViT-S16-IN21k_drift_matrix.pdf}\hfill
+    \includegraphics[width=0.49\linewidth]{plots_experiments/yearbook/deviation/ViT-S16-IN21k_deviation.pdf}
+    \caption{ViT-S16-IN21k}
+    \label{fig:yearbook_ViT_S16_IN21k}
+\end{subfigure}
+\caption{Transfer models: Accuracy drift matrix $M^{(m)}$ and deviation from the cohort mean $\Delta^{(m)} = M^{(m)} - \bar{M}$ for each model, shown on a sequential and a zero-centred diverging scale, respectively.}
+\label{fig:yearbook_family_image_transfer}
+\end{figure}
+
+\subsection{Forgetting and Rankings}
+\label{app:yearbook_forgetting}
+
+\noindent To see how quickly each model forgets, we summarize its drift matrix as a forgetting curve. The curve plots the Accuracy against the lag $\ell = j - i$, the number of slices between the training cutoff $i$ and the evaluation slice $j$. At each lag we average over all training cutoffs,
+\[ F(\ell) = \operatorname{mean}_{i} M_{i,\,i+\ell}. \]
+The result is the Accuracy at a fixed temporal distance, independent of which period a model was trained on. This separates the effect of temporal distance from the difficulty of any single slice.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=\linewidth]{plots_experiments/yearbook/forgetting.pdf}
+    \caption{Per model}
+    \label{fig:yearbook_forgetting}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=\linewidth]{plots_experiments/yearbook/forgetting_by_family.pdf}
+    \caption{Per model family}
+    \label{fig:yearbook_forgetting_family}
+\end{subfigure}
+\caption{Forgetting curves: each model (left) and averaged within each family (right).}
+\label{fig:yearbook_forgetting_combined}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=\linewidth]{plots_experiments/yearbook/ranking_future_performance.pdf}
+    \caption{By future performance}
+    \label{fig:yearbook_ranking_future}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[width=\linewidth]{plots_experiments/yearbook/ranking_decay.pdf}
+    \caption{By decay}
+    \label{fig:yearbook_ranking_decay}
+\end{subfigure}
+\caption{Models ranked by mean future performance and by temporal decay.}
+\label{fig:yearbook_rankings}
+\end{figure}
+
+\subsection{Result Tables}
+
+\input{tables/robustness_yearbook.tex}
+
+\noindent
+\input{tables/yearbook_cutoff_1905.tex}\hfill
+\input{tables/yearbook_cutoff_1944.tex}
+
+\vspace{1.5ex}
+
+\noindent
+\input{tables/yearbook_cutoff_1978.tex}\hfill
+\input{tables/yearbook_cutoff_2012.tex}
+
+\input{tables/yearbook_by_family.tex}

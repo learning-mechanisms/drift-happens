@@ -1,0 +1,46 @@
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Temporal robustness on arXiv.}
+\label{tab:robustness_arxiv}
+\begin{minipage}[t]{0.49\linewidth}
+\centering
+\resizebox{\ifdim\width>\linewidth \linewidth\else\width\fi}{!}{%
+\begin{tabular}{l rr}
+\toprule
+Model & Future (\%) & Decay (\%) \\
+\midrule
+ModernBERT & 94.9 & 2.5 \\
+FFN-L & 94.9 & 2.7 \\
+TextCNN-L & 95.2 & 2.7 \\
+TX-M & 95.1 & 2.8 \\
+MiniLM-L6 & 94.8 & 2.8 \\
+FFN-M & 94.6 & 2.9 \\
+TX-S & 95.1 & 2.9 \\
+BiLSTM-Attn-L & 95.1 & 2.9 \\
+BiLSTM-M & 95.2 & 2.9 \\
+TextCNN-M & 94.8 & 3.1 \\
+\bottomrule
+\end{tabular}}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\centering
+\resizebox{\ifdim\width>\linewidth \linewidth\else\width\fi}{!}{%
+\begin{tabular}{l rr}
+\toprule
+Model & Future (\%) & Decay (\%) \\
+\midrule
+BERT & 93.6 & 3.1 \\
+TX-L & 94.7 & 3.1 \\
+BiGRU-S & 94.7 & 3.2 \\
+DistilBERT & 93.1 & 3.3 \\
+FFN-S & 93.9 & 3.4 \\
+TextCNN-S & 94.5 & 3.4 \\
+RoBERTa & 92.3 & 3.6 \\
+MPNet & 92.0 & 3.7 \\
+DeBERTa-v3 & 86.1 & 6.5 \\
+ELECTRA & 84.4 & 7.3 \\
+\bottomrule
+\end{tabular}}
+\end{minipage}
+\end{table}

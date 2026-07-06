@@ -1,0 +1,17 @@
+{
+  "search.exclude": {
+    "**/artifacts": true,
+    "**/artifacts/**": true,
+    "**/data": true,
+    "**/data/**": true
+  },
+  "files.watcherExclude": {
+    "**/artifacts/**": true,
+    "**/data/**": true
+  },
+  "python.analysis.exclude": [
+    "**/.pixi/**",
+    "**/artifacts/**",
+    "**/data/**"
+  ]
+}

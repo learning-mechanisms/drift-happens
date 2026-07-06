@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: >-
+  If you use Drift Happens, please cite the paper. If you use the code directly,
+  you may also cite this repository metadata.
+title: "Drift Happens: An Empirical Study of Neural Architecture Robustness to Temporal Distribution Shift"
+authors:
+  - family-names: "Holzinger"
+    given-names: "Robin"
+  - family-names: "Colletti"
+    given-names: "Riccardo"
+abstract: >-
+  Research code, experiments, and reproducibility artifacts for Drift Happens: A
+  study of temporal robustness and rapid adaptation in time-series neural
+  classifiers.
+version: "0.0.0"
+date-released: "2026-05-28"
+license: "Apache-2.0"
+repository-code: "https://github.com/learning-mechanisms/drift-happens"
+url: "https://drift-happens.org/"
+keywords:
+  - "temporal robustness"
+  - "distribution shift"
+  - "concept drift"
+  - "time-series classification"
+  - "neural classifiers"
+preferred-citation:
+  type: conference-paper
+  title: "Drift Happens: An Empirical Study of Neural Architecture Robustness to Temporal Distribution Shift"
+  authors:
+    - family-names: "Holzinger"
+      given-names: "Robin"
+    - family-names: "Colletti"
+      given-names: "Riccardo"
+  year: 2026
+  notes: "Accepted at QCDS 2026; the proceedings version will appear in Springer LNCS."
+  url: "https://drift-happens.org/drift-happens.pdf"

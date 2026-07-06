@@ -1,0 +1,22 @@
+[files]
+extend-exclude = [
+  "paper/llncs.cls",
+  "paper/splncs04.bst",
+  "paper/splncs04short.bst",
+]
+
+[default]
+extend-ignore-re = [
+  "[A-Za-z_]+-[0-9a-f]{16}",
+  'B\\"\{o\}ther',
+  '\$\\mathit\{42\}\^\{nd\}\$',
+  'cros\.\.\.',
+]
+
+[default.extend-words]
+Ba = "Ba"         # surname (Kingma and Ba, Adam optimizer)
+setp = "setp"
+fpr = "fpr"
+arange = "arange"
+HPE = "HPE"
+curren = "curren"

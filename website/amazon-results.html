@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Drift Happens · Amazon Reviews results</title>
+    <meta
+      name="description"
+      content="Temporal robustness on Amazon Reviews: review-rating regression and the drift it accumulates over a decade, read off the drift matrix, its summary statistics, the per-model viewer, and the robustness, cutoff, and by-family tables."
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <link rel="stylesheet" href="css/content.css" />
+    <link rel="stylesheet" href="css/extra.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/lightbox.css?v=2" />
+    <link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <h1><img class="h1ds" src="img/logos/amazon-icon.svg" alt="Amazon logo" />Amazon Reviews</h1>
+        <div class="sub">Review ratings, 2014&#8211;2023: covariate and concept drift, measured by balanced MSE.</div>
+        <button class="navtoggle" aria-label="open menu" aria-expanded="false">
+          <svg viewBox="0 0 22 22" width="24" height="24" aria-hidden="true"><path d="M3 6 H19 M3 11 H19 M3 16 H19" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="tabs2">
+      <div class="wrap">
+        <div class="navlinks">
+          <a href="index.html">overview</a>
+          <a href="methods.html">datasets &amp; methods</a>
+          <a href="results.html">results</a>
+          <a class="artifact" href="https://wandb.ai/drift-happens/drift-happens"
+            ><svg class="artifactmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M8 1.5c-3.03 0-5.5.86-5.5 1.92v9.16c0 1.06 2.47 1.92 5.5 1.92s5.5-.86 5.5-1.92V3.42C13.5 2.36 11.03 1.5 8 1.5Zm0 1c2.54 0 4.36.61 4.49.92-.13.31-1.95.92-4.49.92s-4.36-.61-4.49-.92C3.64 3.11 5.46 2.5 8 2.5Zm4.5 3.2v1.91c-.13.31-1.95.92-4.5.92s-4.36-.61-4.5-.92V5.7c.96.58 2.59.94 4.5.94s3.54-.36 4.5-.94Zm0 3.1v1.91c-.13.31-1.95.92-4.5.92s-4.36-.61-4.5-.92V8.8c.96.58 2.59.94 4.5.94s3.54-.36 4.5-.94Zm0 3.1v.68c-.13.31-1.95.92-4.5.92s-4.36-.61-4.5-.92v-.68c.96.58 2.59.94 4.5.94s3.54-.36 4.5-.94Z"
+              /></svg
+            >artifacts</a
+          >
+          <a class="doc" href="drift-happens.pdf"
+            ><svg class="docmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M9 1H3.5A1.5 1.5 0 0 0 2 2.5v11A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V6L9 1zm0 1.5L12.5 6H9V2.5zM4.5 6.5h3v1h-3v-1zm0 2.5h7v1h-7v-1zm0 2.5h7v1h-7v-1z"
+              /></svg
+            >paper</a
+          >
+          <a class="gh" href="https://github.com/learning-mechanisms/drift-happens"
+            ><svg class="ghmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+              /></svg
+            >code</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div class="wrap">
+      <nav class="subnav" aria-label="results sections">
+        <a href="results.html">Synthesis</a>
+        <a href="yearbook-results.html"
+          ><svg class="dsi" viewBox="0 0 16 16" aria-hidden="true">
+            <circle cx="8" cy="5.9" r="3" />
+            <path d="M2.5 14.5a5.5 5.5 0 0 1 11 0z" /></svg
+          >Yearbook</a
+        >
+        <a href="amazon-results.html" class="here"
+          ><svg class="dsi" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.7l1.78 3.74 4.12.5-3.02 2.83.78 4.06L8 10.93l-3.66 1.93.78-4.06L2.1 5.94l4.12-.5z" /></svg>Amazon</a
+        >
+        <a href="arxiv-results.html"
+          ><svg class="dsi" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.3 1.9h4.2l3.2 3.1v9H4.3z" />
+            <rect x="5.7" y="7.1" width="4.6" height="0.95" rx="0.4" fill="#fff" />
+            <rect x="5.7" y="9.3" width="4.6" height="0.95" rx="0.4" fill="#fff" /></svg
+          >arXiv</a
+        >
+        <span class="chip"
+          ><b><span data-val="amazon_reviews/models"></span></b> models</span
+        >
+      </nav>
+
+      <div class="claim reveal" style="margin: 14px 0 6px">
+        <span class="lbl">Overview</span>
+        <p>
+          A stronger <b>inductive bias</b> improves accuracy but hurts temporal robustness. On Amazon Reviews the <b>recurrent and Transformer networks</b> reach the lowest in-distribution error,
+          <b>around 0.70 balanced MSE</b>, because recurrence and attention model how the words relate across a review, extracting the features that best fit the sentiment of the training period. But
+          those features are tied to that period, so <b>the very ones that make these models accurate in-distribution are the first lost under drift</b>, and these networks decay the most over time,
+          <b>by up to <span data-val="amazon_reviews/model/bilstm_m/decay"></span> balanced MSE</b>.
+        </p>
+        <p>
+          Models with a weaker bias hold up better. The <b>feed-forward baseline</b>, which averages those representations instead of modeling how they relate, and the
+          <b>frozen pretrained encoders</b>
+          extract features less tied to any single period, so they decay far less, trading in-distribution accuracy for stability.
+        </p>
+      </div>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">01</span> &nbsp;the temporal drift matrix</h2>
+        <p>
+          Each model is summarised by a <a href="methods.html#protocol">temporal drift matrix</a>. We divide the 2014&#8211;2023 timeline into \(K\) half-year slices, and for a training cutoff \(i\)
+          fit a model \(f_i\) on the cumulative history \(\mathcal{D}_{\le i}=\bigcup_{k\le i}\mathcal{D}_k\), all reviews through period \(i\).
+        </p>
+        <p>
+          Each \(f_i\) is evaluated on every slice, and cell \((i,j)\) records its balanced MSE on period \(j\). The diagonal is in-distribution, the cells with \(j \gt i\) measure forward
+          generalization to unseen periods, and those with \(j \lt i\) re-test earlier reviews.
+        </p>
+        <div class="definition">
+          <span class="lbl">Drift matrix and its summary statistics</span>
+          \[ M_{ij} = \operatorname{balMSE}(f_i,\mathcal{D}_j), \qquad i,j \in \{1,\dots,K\}. \]
+          <p>From the matrix we read three statistics.</p>
+          \[ \mathrm{ID}=\operatorname*{mean}_{i}\, M_{ii}, \qquad \mathrm{F}=\operatorname*{mean}_{\,j>i}\, M_{ij}, \qquad \Delta=\mathrm{F}-\mathrm{ID}. \]
+          <p>
+            \(\mathrm{ID}\) is in-distribution error, \(\mathrm{F}\) is mean forward error, and the decay \(\Delta\) is the error gained off the diagonal. Balanced MSE is lower-is-better, so the decay
+            is \(\mathrm{F}-\mathrm{ID}\) and a positive \(\Delta\) denotes degradation.
+          </p>
+        </div>
+        <div class="metricbar">
+          <b>Balanced MSE</b><span>lower is better, scale inverted</span>
+          <span class="cbar">
+            <i>low</i>
+            <svg viewBox="0 0 120 10" width="120" height="10" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="seqramp" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#a50026" />
+                  <stop offset="0.25" stop-color="#f46d43" />
+                  <stop offset="0.5" stop-color="#ffffbf" />
+                  <stop offset="0.75" stop-color="#74add1" />
+                  <stop offset="1" stop-color="#313695" />
+                </linearGradient>
+              </defs>
+              <rect width="120" height="10" rx="2" fill="url(#seqramp)" />
+            </svg>
+            <i>high</i>
+          </span>
+        </div>
+        <figure class="twofig" style="margin: 14px 0">
+          <div class="drift-anim" data-src="data/amazon_reviews.json" style="max-width: 460px; margin: 0 auto"></div>
+          <figcaption class="note">
+            Cohort-mean balanced MSE; cell \((i,j)\) is the mean error of models trained through period \(i\) and evaluated on period \(j\), over
+            <span data-val="amazon_reviews/cutoffs"></span> half-year slices from <span data-val="amazon_reviews/cutoff-first"></span> to <span data-val="amazon_reviews/cutoff-last"></span>. Lower
+            error is better, so warm cells mark the stronger performance. Each model cell is averaged over <span data-val="amazon_reviews/seeds"></span> distinct model seeds before cohort aggregation.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">02</span> &nbsp;per-model drift matrices</h2>
+        <p>
+          Each model has its own drift matrix \(M^{(m)}\). Subtracting the cohort mean gives a <b>deviation matrix</b>
+          \(M^{(m)}_{ij}-\bar{M}_{ij}\), the per-cell amount by which a model beats or trails the average.
+        </p>
+        <p>
+          In the deviation matrices the <b>recurrent and Transformer</b> models sit below the cohort error in-distribution, beating the average, but their lead narrows on the future as they decay
+          faster than the cohort. The <b>feed-forward baseline</b> and the <b>frozen encoders</b> sit at higher error in-distribution, yet they close that gap going forward, decaying more slowly than
+          the average.
+        </p>
+        <div class="drift-explorer" data-dataset="amazon_reviews"></div>
+      </section>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">03</span> &nbsp;robustness statistics</h2>
+        <p>
+          Across the <span data-val="amazon_reviews/models"></span> Amazon Reviews models, the architectures differ both in in-distribution error and in how quickly it grows under forward
+          extrapolation, and the models that fit the reviews most tightly are the ones whose error grows fastest.
+        </p>
+
+        <details class="foldcard">
+          <summary><span class="dsnum">3.1</span> Per-model robustness</summary>
+          <div class="foldcard-body">
+            <p>Mean forward error and decay, aggregated over all cutoffs:</p>
+            \[ \mathrm{F}=\operatorname*{mean}_{\,j>i}\, M_{ij}, \qquad \Delta=\mathrm{F}\;-\;\operatorname*{mean}_{i} M_{ii}. \]
+            <p>
+              The recurrent networks reach the lowest in-distribution error,
+              <b>from <span data-val="amazon_reviews/model/bigru_s/indist"></span> for BiGRU-S to <span data-val="amazon_reviews/model/bilstm_attn_l/indist"></span> for BiLSTM-Attn-L</b>, yet also the
+              largest decay, <b><span data-val="amazon_reviews/model/bilstm_attn_l/decay"></span> to <span data-val="amazon_reviews/model/bilstm_m/decay"></span> balanced MSE</b>, so their mean future
+              error rises to about <span data-val="amazon_reviews/family/recurrent/future"></span>. The Transformer encoders sit in the same regime, near
+              <span data-val="amazon_reviews/model/tx_s/indist"></span> to <span data-val="amazon_reviews/model/tx_l/indist"></span> in distribution at roughly
+              <span data-val="amazon_reviews/family/transformer/decay"></span> of decay.
+            </p>
+            <p>
+              The <b>feed-forward baseline</b> is the most temporally robust of the trained architectures, decaying by only
+              <b><span data-val="amazon_reviews/model/ffn_s/decay"></span> to <span data-val="amazon_reviews/model/ffn_l/decay"></span></b> at a higher in-distribution error near
+              <span data-val="amazon_reviews/family/ffn/indist"></span>. The frozen pretrained encoders form a separate regime of higher error, from
+              <span data-val="amazon_reviews/model/deberta_v3_base_frozen/indist"></span> for DeBERTa-v3 to <span data-val="amazon_reviews/model/modernbert_base_frozen/indist"></span> for ModernBERT,
+              but <b>DeBERTa-v3</b> is the single most stable model at <b><span data-val="amazon_reviews/model/deberta_v3_base_frozen/decay"></span> decay</b>.
+            </p>
+            <div class="tbl-robustness" data-dataset="amazon_reviews"></div>
+          </div>
+        </details>
+
+        <details class="foldcard">
+          <summary><span class="dsnum">3.2</span> Per training cutoff</summary>
+          <div class="foldcard-body">
+            <p>For a fixed cutoff \(i\): in-distribution error \(M_{ii}\), mean future error, and decay over the periods that follow it:</p>
+            \[ \mathrm{F}_i=\operatorname*{mean}_{\,j>i}\, M_{ij}, \qquad \Delta_i = \mathrm{F}_i-M_{ii}. \]
+            <p>Slice indices 28&#8211;46 correspond to the half-year periods 2014-H1 through 2023-H1.</p>
+            <div class="tbl-cutoff" data-dataset="amazon_reviews"></div>
+          </div>
+        </details>
+
+        <details class="foldcard">
+          <summary><span class="dsnum">3.3</span> By model family</summary>
+          <div class="foldcard-body">
+            <p>The per-cutoff future error and decay, averaged over the members \(m\) of each family \(g\):</p>
+            \[ \mathrm{F}^{(g)}_i=\operatorname*{mean}_{m\in g}\mathrm{F}_i(m), \qquad \Delta^{(g)}_i=\operatorname*{mean}_{m\in g}\Delta_i(m). \]
+            <p>
+              The decay is strongly cutoff-dependent, largest for models trained on the earliest data, where the recurrent family grows by
+              <b><span data-val="amazon_reviews/family/recurrent/28/decay"></span> balanced MSE</b>, and shrinking to between <b>0.04 and 0.07</b> at the most recent cutoffs as the remaining forward
+              span narrows. At every cutoff the feed-forward baseline decays least among the trained architectures and the recurrent and Transformer families most.
+            </p>
+            <div class="tbl-family" data-dataset="amazon_reviews"></div>
+          </div>
+        </details>
+
+        <details class="foldcard" open>
+          <summary><span class="dsnum">3.4</span> Forgetting curves</summary>
+          <div class="foldcard-body">
+            <div class="forgetting" data-dataset="amazon_reviews"></div>
+            <div class="claim">
+              <span class="lbl">Key result</span>
+              <p>
+                In distribution the trained architectures stand apart, the recurrent and Transformer models at the lowest error. As the lag grows this ordering inverts, and
+                <b>a model that is most accurate in-distribution ends among the least accurate on the distant periods</b>.
+              </p>
+              <p>
+                Modeling how the words combine into the sentiment of the training period is what lifts these models in-distribution, but that composition is the most specific to how reviews were
+                written at the time, so it loses its meaning fastest as the language shifts. <b>The sharper the in-distribution advantage, the quicker it collapses</b>, while the feed-forward baseline
+                starts less accurate and stays the steadiest.
+              </p>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">04</span> &nbsp;what shapes temporal robustness</h2>
+        <div class="findcards">
+          <div class="findcard">
+            <div class="fc-h">Inductive bias</div>
+            <p>
+              The features an architecture extracts to fit the sentiment of the training period are exactly the ones that do not survive the shift in language, so
+              <b>the architectures that fit the period most tightly are the first to lose it</b>. The recurrent and Transformer networks reach the lowest in-distribution error and decay the fastest, a
+              kind of overfitting across time rather than across samples.
+            </p>
+          </div>
+          <div class="findcard">
+            <div class="fc-h">Pretraining</div>
+            <p>
+              A frozen pretrained encoder concedes in-distribution error for stability, sitting at
+              <b><span data-val="amazon_reviews/frozen/indist-min"></span> to <span data-val="amazon_reviews/frozen/indist-max"></span> balanced MSE</b> against the
+              <b><span data-val="amazon_reviews/scratch/indist-min"></span> to <span data-val="amazon_reviews/scratch/indist-max"></span></b> of the trained models.
+              <b>DeBERTa-v3</b>
+              is the most stable model in the study, at 0.043 decay.
+            </p>
+          </div>
+        </div>
+
+        <div class="nextlinks">
+          <a class="navcard" href="arxiv-results.html"
+            ><span class="nl-t">arXiv <span class="nl-arr">&rarr;</span></span
+            ><span class="nl-d">multi-label titles + abstracts, macro-AUC: text drifts far less</span></a
+          >
+          <a class="navcard" href="results.html"
+            ><span class="nl-t">Synthesis <span class="nl-arr">&rarr;</span></span
+            ><span class="nl-d">the cross-dataset picture and the conclusions</span></a
+          >
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="wrap">
+        <div class="authors" style="margin-bottom: 16px">
+          <div class="author">
+            <img src="assets/authors/robin.png" alt="Robin Holzinger" width="56" height="56" />
+            <div class="meta">
+              <span class="nm">Robin Holzinger<sup>*</sup></span
+              ><br /><a href="#" data-contact-email="robin" aria-label="Email Robin Holzinger"
+                ><span>robin</span><span>.</span><span>holzinger</span> <span>[at]</span> <span>berkeley</span><span>.</span><span>edu</span></a
+              >
+            </div>
+          </div>
+          <div class="author">
+            <img src="assets/authors/riccardo.png" alt="Riccardo Colletti" width="56" height="56" />
+            <div class="meta">
+              <span class="nm">Riccardo Colletti<sup>*</sup></span
+              ><br /><a href="#" data-contact-email="riccardo" aria-label="Email Riccardo Colletti"
+                ><span>riccardo</span><span>_</span><span>colletti</span> <span>[at]</span> <span>berkeley</span><span>.</span><span>edu</span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="eqnote">* equal contribution</div>
+        Drift Happens &middot; UC Berkeley EECS<br />
+        <a class="doc" href="drift-happens.pdf"
+          ><svg class="docmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M9 1H3.5A1.5 1.5 0 0 0 2 2.5v11A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V6L9 1zm0 1.5L12.5 6H9V2.5zM4.5 6.5h3v1h-3v-1zm0 2.5h7v1h-7v-1zm0 2.5h7v1h-7v-1z"
+            /></svg
+          >paper</a
+        >
+        &middot;
+        <a class="gh" href="https://wandb.ai/drift-happens/drift-happens">wandb.ai</a>
+        &middot;
+        <a class="gh" href="https://github.com/learning-mechanisms/drift-happens"
+          ><svg class="ghmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+            /></svg
+          >github.com</a
+        >
+      </div>
+    </footer>
+
+    <script src="js/matrixview.js?v=15"></script>
+    <script src="js/explorer.js?v=13" defer></script>
+    <script src="js/tables.js?v=13" defer></script>
+    <script src="js/values.js?v=1" defer></script>
+    <script src="js/forgetting.js?v=13" defer></script>
+    <script src="js/driftmatrix.js?v=14" defer></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/contact.js" defer></script>
+    <script src="js/nav.js"></script>
+    <script src="js/lightbox.js?v=4"></script>
+    <script>
+      window.MathJax = { tex: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]] }, svg: { fontCache: "global" } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+  </body>
+</html>

@@ -1,0 +1,173 @@
+/* lightbox.css - click-to-zoom popup for figures. Modern Ink. */
+
+/* in-page affordance: lift a touch + soft indigo glow on hover */
+.zoomable {
+  cursor: zoom-in;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+.zoomable:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 26px rgba(47, 67, 196, 0.2);
+}
+
+/* rendered SVG visualizations zoom on click; they keep their own hover/scrub
+   interactions, so the only in-page hint is the cursor (no scale, which would
+   fight the cell tooltips and the curve highlight) */
+.drift-anim,
+.mx-matrix,
+.fg-chart,
+.rp-stage {
+  cursor: zoom-in;
+}
+
+/* full-screen backdrop; fades in, click outside the figure to close */
+.lb {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3vmin;
+  background: color-mix(in srgb, var(--ink) 66%, transparent);
+  -webkit-backdrop-filter: blur(3px) saturate(1.04);
+  backdrop-filter: blur(3px) saturate(1.04);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.24s ease,
+    visibility 0s linear 0.24s;
+}
+.lb.open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s ease;
+}
+
+.lb-fig {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* large by default; the grow-from-thumbnail transform is driven inline from JS */
+.lb-img {
+  display: block;
+  width: min(1040px, 92vw);
+  height: auto;
+  max-height: 86vh;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 18px 60px rgba(22, 24, 29, 0.34);
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+/* enlarged visualization: a white card holding a cloned <svg> that JS sizes to
+   the viewport (keeping its viewBox aspect ratio); the grow transform is inline */
+.lb-viz {
+  display: block;
+  max-width: 92vw;
+  max-height: 86vh;
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 18px 60px rgba(22, 24, 29, 0.34);
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+.lb-viz.with-legend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lb-viz svg {
+  display: block;
+}
+.lb-viz .fg-legend {
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 10px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid #eceef2;
+  color: #5b626e;
+}
+.lb-viz .fg-legend-models {
+  max-height: 18vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.lb-cap {
+  font-family: var(--sans);
+  color: #eef0f3;
+  font-size: 13.5px;
+  line-height: 1.5;
+  text-align: center;
+  max-width: min(720px, 90vw);
+  margin: 0;
+  font-style: normal;
+  opacity: 0;
+  transition: opacity 0.22s ease 0.05s;
+}
+.lb.open .lb-cap {
+  opacity: 1;
+}
+.lb-cap a {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+.lb-cap .cap-mini {
+  display: none;
+}
+.lb-cap .cap-full {
+  display: inline;
+}
+
+.lb-close {
+  position: absolute;
+  top: max(14px, 2.5vmin);
+  right: max(14px, 2.5vmin);
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  background: rgba(22, 24, 29, 0.34);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+.lb-close:hover {
+  background: rgba(22, 24, 29, 0.62);
+  transform: scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zoomable,
+  .lb,
+  .lb-cap,
+  .lb-close {
+    transition: opacity 0.12s ease;
+  }
+  .zoomable:hover {
+    transform: none;
+  }
+}

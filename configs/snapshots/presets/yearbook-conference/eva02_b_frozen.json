@@ -1,0 +1,230 @@
+{
+  "comparison_group": "yearbook/main-v2",
+  "comparison_role": "headline",
+  "config": {
+    "dataset": {
+      "data_dir": null,
+      "name": "yearbook",
+      "variant": "faces_32x32_cumulative_v2"
+    },
+    "evaluation": {
+      "metric": "accuracy",
+      "params": {
+        "eval_time_slices": "simple_year_slices",
+        "secondary_metrics": [
+          "balanced_accuracy"
+        ]
+      }
+    },
+    "logging": {
+      "json_log_file": true,
+      "level": "info",
+      "metrics_jsonl": true,
+      "plain_log_file": true,
+      "stdout": true,
+      "wandb": null
+    },
+    "metadata": {
+      "cache": {
+        "cache_id_fields": [
+          "dataset_variant",
+          "image_source",
+          "image_size",
+          "input_channels",
+          "label_mapping",
+          "producer",
+          "output"
+        ],
+        "cache_kind": "embedding_dataset",
+        "cache_scope": "yearbook/frozen_backbone_embeddings",
+        "producer": "eva02-base"
+      },
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "dataset_scope": {
+        "input_description": "aligned 3-channel face tensors downscaled to 32x32",
+        "label_description": "gender with M mapped to 1",
+        "name": "yearbook",
+        "params": {
+          "image_size": [
+            32,
+            32
+          ],
+          "image_source": "faces_aligned_small_mirrored_co_aligned_cropped_cleaned",
+          "input_channels": 3,
+          "label_col": "gender",
+          "positive_label": "M"
+        },
+        "time_column": "year",
+        "variant": "faces_32x32_cumulative_v2"
+      },
+      "evaluation": {
+        "primary_metric": "accuracy",
+        "secondary_metrics": [
+          "balanced_accuracy"
+        ],
+        "task": "binary_classification"
+      },
+      "model": {
+        "family": "eva02",
+        "frozen_backbone": true,
+        "identifier": "eva02_b_frozen",
+        "input_kind": "pooled_image_embedding",
+        "paradigm": "frozen_pretrained",
+        "tier": null,
+        "trainable_target": null
+      },
+      "seeds": {
+        "model_seeds": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "sample_seed": null,
+        "split_seed": 42
+      },
+      "split": {
+        "name": "stratified_temporal_train_test_val",
+        "split_seed": 42,
+        "stratify_by": [
+          "year",
+          "gender"
+        ],
+        "test_size": 0.3,
+        "train_size": 0.7,
+        "val_size": 0.0
+      },
+      "time_slices": {
+        "eval": "simple_year_slices",
+        "max_time": null,
+        "min_time": null,
+        "time_unit": "year",
+        "train": "cumulative_from_start"
+      }
+    },
+    "name": "yearbook-conference-eva02_b_frozen",
+    "notes": "Conference headline Yearbook frozen-backbone linear-head model.",
+    "preprocessing": {
+      "cache": {
+        "cache_id": "embedding_dataset-850adcf81b2e2463",
+        "dataset": "yearbook",
+        "input_version": "faces_aligned_small_mirrored_co_aligned_cropped_cleaned:32x32:rgb:v2",
+        "kind": "embedding_dataset",
+        "output": "pooled_backbone_embedding_and_gender_label",
+        "params": {
+          "adapter_version": 1,
+          "dataset_variant": "faces_32x32_cumulative_v2",
+          "dtype": "float32",
+          "image_size": [
+            32,
+            32
+          ],
+          "image_source": "faces_aligned_small_mirrored_co_aligned_cropped_cleaned",
+          "input_channels": 3,
+          "normalization": "producer_default",
+          "pooling_strategy": "producer_default",
+          "split_seed": 42
+        },
+        "producer": "eva02-base",
+        "reuse_policy": "reuse",
+        "schema_version": 1
+      },
+      "steps": [
+        "load_downscaled_faces",
+        "tensorize_images",
+        "precompute_backbone_embeddings"
+      ]
+    },
+    "protocol": {
+      "evaluation": {
+        "metric": "accuracy",
+        "protocol": "simple_year_slices"
+      },
+      "job_granularity": "seed_matrix",
+      "split": {
+        "name": "stratified_temporal_train_test_val",
+        "seed": 42,
+        "test_size": 0.3,
+        "train_size": 0.7,
+        "val_size": 0.0
+      },
+      "time_slices": {
+        "eval_strategy": "simple_year_slices",
+        "min_time": null,
+        "time_col": "year",
+        "train_strategy": "cumulative_from_start"
+      }
+    },
+    "runtime": {
+      "backend": "local",
+      "cudnn_benchmark": true,
+      "deterministic": false,
+      "device": "auto",
+      "mixed_precision": "off",
+      "num_threads": null
+    },
+    "seed": 0,
+    "tags": [
+      "preset",
+      "yearbook-conference",
+      "yearbook",
+      "conference",
+      "headline",
+      "yearbook",
+      "image",
+      "frozen-pretrained",
+      "embedding-cache",
+      "eva02"
+    ],
+    "task": "train_eval",
+    "trainer": {
+      "family": "image-transfer",
+      "key": "eva02_b_frozen",
+      "model": {
+        "architecture": "eva02",
+        "fine_tune": false,
+        "needs_backend_fw_pass": false,
+        "preset": "eva02_b_frozen"
+      },
+      "training": {
+        "batch_size": 64,
+        "learning_rate": 0.0001,
+        "num_epochs": 10
+      }
+    }
+  },
+  "description": "Yearbook conference frozen eva02 preset.",
+  "group": "yearbook-conference",
+  "kind": "experiment_snapshot/v1",
+  "name": "eva02_b_frozen",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "tags": [
+    "conference",
+    "headline",
+    "yearbook",
+    "image",
+    "frozen-pretrained",
+    "embedding-cache",
+    "eva02"
+  ],
+  "variant_fields": [
+    "name",
+    "notes",
+    "tags",
+    "metadata",
+    "preprocessing.cache",
+    "preprocessing.steps",
+    "trainer.family",
+    "trainer.key",
+    "trainer.model",
+    "trainer.training"
+  ]
+}

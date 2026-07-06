@@ -1,0 +1,230 @@
+{
+  "comparison_group": "amazon-reviews-23/main-v2",
+  "comparison_role": "headline",
+  "config": {
+    "dataset": {
+      "data_dir": null,
+      "name": "amazon_reviews_23",
+      "variant": "sample300k_2014h1_2023h2_text_cumulative_v1"
+    },
+    "evaluation": {
+      "metric": "balanced_mse",
+      "params": {
+        "eval_time_slices": "simple_half_year_slices",
+        "secondary_metrics": [
+          "rmse",
+          "mae",
+          "mse"
+        ]
+      }
+    },
+    "logging": {
+      "json_log_file": true,
+      "level": "info",
+      "metrics_jsonl": true,
+      "plain_log_file": true,
+      "stdout": true,
+      "wandb": null
+    },
+    "metadata": {
+      "cache": {
+        "cache_id_fields": [
+          "dataset_variant",
+          "content_hash",
+          "label_schema_hash",
+          "producer",
+          "producer_revision",
+          "output",
+          "max_length",
+          "text_col",
+          "pooling_strategy",
+          "dtype"
+        ],
+        "cache_kind": "pooled_embedding_dataset",
+        "cache_scope": "amazon_reviews_23/sample300k_2014h1_2023h2_text_cumulative_v1",
+        "producer": "google/electra-base-discriminator"
+      },
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "dataset_scope": {
+        "input_description": "Amazon Reviews 2023 review text only",
+        "label_description": "1-5 integer rating as scalar regression target",
+        "name": "amazon_reviews_23",
+        "params": {
+          "max_half_year": 47,
+          "min_half_year": 28,
+          "sample_seed": 42,
+          "sample_size": 300000,
+          "text_col": "text"
+        },
+        "time_column": "half_year",
+        "variant": "sample300k_2014h1_2023h2_text_cumulative_v1"
+      },
+      "evaluation": {
+        "primary_metric": "balanced_mse",
+        "secondary_metrics": [
+          "rmse",
+          "mae",
+          "mse"
+        ],
+        "task": "rating_regression"
+      },
+      "model": {
+        "family": "electra_base",
+        "frozen_backbone": true,
+        "identifier": "electra_base_frozen",
+        "input_kind": "pooled_embedding",
+        "paradigm": "frozen_pretrained",
+        "tier": null,
+        "trainable_target": null
+      },
+      "seeds": {
+        "model_seeds": [
+          0,
+          1,
+          2
+        ],
+        "sample_seed": 42,
+        "split_seed": 42
+      },
+      "split": {
+        "name": "stratified_temporal_train_test_val",
+        "split_seed": 42,
+        "stratify_by": [
+          "half_year"
+        ],
+        "test_size": 0.3,
+        "train_size": 0.7,
+        "val_size": 0.0
+      },
+      "time_slices": {
+        "eval": "simple_half_year_slices",
+        "max_time": 47,
+        "min_time": 28,
+        "time_unit": "half_year",
+        "train": "cumulative_from_start"
+      }
+    },
+    "name": "amazon-reviews-23-conference-electra_base_frozen",
+    "notes": "Conference headline Amazon frozen text-backbone linear-head model.",
+    "preprocessing": {
+      "cache": {
+        "cache_id": "pooled_embedding_dataset-6cefeaf520c45f7b",
+        "dataset": "amazon_reviews_23",
+        "input_version": "sample300k_2014h1_2023h2_text_cumulative_v1:v1",
+        "kind": "pooled_embedding_dataset",
+        "output": "pooled_embedding_rating_targets",
+        "params": {
+          "dataset_variant": "sample300k_2014h1_2023h2_text_cumulative_v1",
+          "dtype": "float16",
+          "max_length": 128,
+          "pooling_strategy": "masked_mean",
+          "sample_seed": 42,
+          "sample_size": 300000,
+          "text_col": "text"
+        },
+        "producer": "google/electra-base-discriminator",
+        "reuse_policy": "reuse",
+        "schema_version": 1
+      },
+      "steps": [
+        "load_amazon_reviews_23_sample300k",
+        "tokenize_text",
+        "cache_frozen_text_pooled_embedding",
+        "tensorize_ratings"
+      ]
+    },
+    "protocol": {
+      "evaluation": {
+        "metric": "balanced_mse",
+        "protocol": "simple_half_year_slices"
+      },
+      "job_granularity": "seed_matrix",
+      "split": {
+        "name": "stratified_temporal_train_test_val",
+        "seed": 42,
+        "test_size": 0.3,
+        "train_size": 0.7,
+        "val_size": 0.0
+      },
+      "time_slices": {
+        "eval_strategy": "simple_half_year_slices",
+        "min_time": 28,
+        "time_col": "half_year",
+        "train_strategy": "cumulative_from_start"
+      }
+    },
+    "runtime": {
+      "backend": "local",
+      "cudnn_benchmark": true,
+      "deterministic": false,
+      "device": "auto",
+      "mixed_precision": "off",
+      "num_threads": null
+    },
+    "seed": 0,
+    "tags": [
+      "preset",
+      "amazon-reviews-23-conference",
+      "amazon_reviews_23",
+      "conference",
+      "headline",
+      "amazon-reviews-23",
+      "text",
+      "frozen-pretrained",
+      "embedding-cache",
+      "electra_base"
+    ],
+    "task": "train_eval",
+    "trainer": {
+      "family": "text-frozen-head-regression",
+      "key": "electra_base_frozen",
+      "model": {
+        "architecture": "electra_base_frozen",
+        "fine_tune": false,
+        "input_kind": "pooled_embedding",
+        "output_dim": 1,
+        "producer": "google/electra-base-discriminator"
+      },
+      "training": {
+        "batch_size": 64,
+        "gradient_clip_norm": 1.0,
+        "learning_rate": 0.0005,
+        "loss": "weighted_mse",
+        "num_epochs": 10,
+        "optimizer": "adamw",
+        "rating_weighting": "inverse_frequency",
+        "weight_decay": 0.01
+      }
+    }
+  },
+  "description": "Amazon Reviews 2023 conference frozen electra_base_frozen linear-head preset.",
+  "group": "amazon-reviews-23-conference",
+  "kind": "experiment_snapshot/v1",
+  "name": "electra_base_frozen",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "tags": [
+    "conference",
+    "headline",
+    "amazon-reviews-23",
+    "text",
+    "frozen-pretrained",
+    "embedding-cache"
+  ],
+  "variant_fields": [
+    "name",
+    "notes",
+    "tags",
+    "metadata",
+    "preprocessing.cache",
+    "preprocessing.steps",
+    "trainer.family",
+    "trainer.key",
+    "trainer.model",
+    "trainer.training"
+  ]
+}

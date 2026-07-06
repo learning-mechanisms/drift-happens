@@ -1,0 +1,3009 @@
+{
+  "kind": "preset_snapshot_index/v1",
+  "presets": [
+    {
+      "cache_id": "pooled_embedding_dataset-e09df041be1be871",
+      "comparison_group": "amazon-reviews-23/cumulative-time-slices",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews conference minilm_l6_frozen smoke preset.",
+      "group": "amazon-reviews-23",
+      "name": "smoke-minilm-l6-frozen",
+      "path": "amazon-reviews-23/smoke-minilm-l6-frozen.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "smoke",
+        "amazon-reviews-23",
+        "text",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "tags",
+        "notes",
+        "trainer.key",
+        "trainer.family",
+        "trainer.model",
+        "trainer.training",
+        "preprocessing.cache.producer"
+      ]
+    },
+    {
+      "cache_id": "pooled_embedding_dataset-feabe77c92edac27",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference frozen bert_base_frozen linear-head preset.",
+      "group": "amazon-reviews-23-conference",
+      "name": "bert_base_frozen",
+      "path": "amazon-reviews-23-conference/bert_base_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "frozen-pretrained",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-95c4316cf6a5c24b",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference scratch bigru_s over cached RoBERTa sequence embeddings.",
+      "group": "amazon-reviews-23-conference",
+      "name": "bigru_s",
+      "path": "amazon-reviews-23-conference/bigru_s.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "rnn",
+        "small"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-95c4316cf6a5c24b",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference scratch bilstm_attn_l over cached RoBERTa sequence embeddings.",
+      "group": "amazon-reviews-23-conference",
+      "name": "bilstm_attn_l",
+      "path": "amazon-reviews-23-conference/bilstm_attn_l.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "rnn",
+        "large"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-95c4316cf6a5c24b",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference scratch bilstm_m over cached RoBERTa sequence embeddings.",
+      "group": "amazon-reviews-23-conference",
+      "name": "bilstm_m",
+      "path": "amazon-reviews-23-conference/bilstm_m.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "rnn",
+        "medium"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "pooled_embedding_dataset-7add4d82556252d3",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference frozen deberta_v3_base_frozen linear-head preset.",
+      "group": "amazon-reviews-23-conference",
+      "name": "deberta_v3_base_frozen",
+      "path": "amazon-reviews-23-conference/deberta_v3_base_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "frozen-pretrained",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "pooled_embedding_dataset-bfc30970138e6d1f",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference frozen distilbert_base_frozen linear-head preset.",
+      "group": "amazon-reviews-23-conference",
+      "name": "distilbert_base_frozen",
+      "path": "amazon-reviews-23-conference/distilbert_base_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "frozen-pretrained",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "pooled_embedding_dataset-6cefeaf520c45f7b",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference frozen electra_base_frozen linear-head preset.",
+      "group": "amazon-reviews-23-conference",
+      "name": "electra_base_frozen",
+      "path": "amazon-reviews-23-conference/electra_base_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "frozen-pretrained",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-95c4316cf6a5c24b",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference scratch ffn_l over cached RoBERTa sequence embeddings.",
+      "group": "amazon-reviews-23-conference",
+      "name": "ffn_l",
+      "path": "amazon-reviews-23-conference/ffn_l.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "ffn",
+        "large"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-95c4316cf6a5c24b",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference scratch ffn_m over cached RoBERTa sequence embeddings.",
+      "group": "amazon-reviews-23-conference",
+      "name": "ffn_m",
+      "path": "amazon-reviews-23-conference/ffn_m.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "ffn",
+        "medium"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-95c4316cf6a5c24b",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference scratch ffn_s over cached RoBERTa sequence embeddings.",
+      "group": "amazon-reviews-23-conference",
+      "name": "ffn_s",
+      "path": "amazon-reviews-23-conference/ffn_s.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "ffn",
+        "small"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "pooled_embedding_dataset-a8aa69575ecb711c",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference frozen modernbert_base_frozen linear-head preset.",
+      "group": "amazon-reviews-23-conference",
+      "name": "modernbert_base_frozen",
+      "path": "amazon-reviews-23-conference/modernbert_base_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "frozen-pretrained",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "pooled_embedding_dataset-f648053da08aeb73",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference frozen mpnet_base_frozen linear-head preset.",
+      "group": "amazon-reviews-23-conference",
+      "name": "mpnet_base_frozen",
+      "path": "amazon-reviews-23-conference/mpnet_base_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "frozen-pretrained",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "pooled_embedding_dataset-22d4e5b1d3322c81",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference frozen roberta_base_frozen linear-head preset.",
+      "group": "amazon-reviews-23-conference",
+      "name": "roberta_base_frozen",
+      "path": "amazon-reviews-23-conference/roberta_base_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "frozen-pretrained",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-95c4316cf6a5c24b",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference scratch textcnn_l over cached RoBERTa sequence embeddings.",
+      "group": "amazon-reviews-23-conference",
+      "name": "textcnn_l",
+      "path": "amazon-reviews-23-conference/textcnn_l.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "textcnn",
+        "large"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-95c4316cf6a5c24b",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference scratch textcnn_m over cached RoBERTa sequence embeddings.",
+      "group": "amazon-reviews-23-conference",
+      "name": "textcnn_m",
+      "path": "amazon-reviews-23-conference/textcnn_m.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "textcnn",
+        "medium"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-95c4316cf6a5c24b",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference scratch textcnn_s over cached RoBERTa sequence embeddings.",
+      "group": "amazon-reviews-23-conference",
+      "name": "textcnn_s",
+      "path": "amazon-reviews-23-conference/textcnn_s.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "textcnn",
+        "small"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-95c4316cf6a5c24b",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference scratch tx_l over cached RoBERTa sequence embeddings.",
+      "group": "amazon-reviews-23-conference",
+      "name": "tx_l",
+      "path": "amazon-reviews-23-conference/tx_l.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "transformer",
+        "large"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-95c4316cf6a5c24b",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference scratch tx_m over cached RoBERTa sequence embeddings.",
+      "group": "amazon-reviews-23-conference",
+      "name": "tx_m",
+      "path": "amazon-reviews-23-conference/tx_m.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "transformer",
+        "medium"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-95c4316cf6a5c24b",
+      "comparison_group": "amazon-reviews-23/main-v2",
+      "comparison_role": "headline",
+      "description": "Amazon Reviews 2023 conference scratch tx_s over cached RoBERTa sequence embeddings.",
+      "group": "amazon-reviews-23-conference",
+      "name": "tx_s",
+      "path": "amazon-reviews-23-conference/tx_s.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "amazon-reviews-23",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "transformer",
+        "small"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "pooled_embedding_dataset-f119aa54d5b08caf",
+      "comparison_group": "arxiv/cumulative-time-slices",
+      "comparison_role": "headline",
+      "description": "arXiv conference minilm_l6_frozen smoke preset.",
+      "group": "arxiv",
+      "name": "smoke-minilm-l6-frozen",
+      "path": "arxiv/smoke-minilm-l6-frozen.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "smoke",
+        "arxiv",
+        "text",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "tags",
+        "notes",
+        "trainer.key",
+        "trainer.family",
+        "trainer.model",
+        "trainer.training",
+        "preprocessing.cache.producer"
+      ]
+    },
+    {
+      "cache_id": "pooled_embedding_dataset-edf6038d8513c8b1",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference frozen bert_base_frozen linear-head preset.",
+      "group": "arxiv-conference",
+      "name": "bert_base_frozen",
+      "path": "arxiv-conference/bert_base_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "frozen-pretrained",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-940f448d7152705e",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference scratch bigru_s over cached RoBERTa sequence embeddings.",
+      "group": "arxiv-conference",
+      "name": "bigru_s",
+      "path": "arxiv-conference/bigru_s.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "rnn",
+        "small"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-940f448d7152705e",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference scratch bilstm_attn_l over cached RoBERTa sequence embeddings.",
+      "group": "arxiv-conference",
+      "name": "bilstm_attn_l",
+      "path": "arxiv-conference/bilstm_attn_l.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "rnn",
+        "large"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-940f448d7152705e",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference scratch bilstm_m over cached RoBERTa sequence embeddings.",
+      "group": "arxiv-conference",
+      "name": "bilstm_m",
+      "path": "arxiv-conference/bilstm_m.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "rnn",
+        "medium"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "pooled_embedding_dataset-8f28352d99d91661",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference frozen deberta_v3_base_frozen linear-head preset.",
+      "group": "arxiv-conference",
+      "name": "deberta_v3_base_frozen",
+      "path": "arxiv-conference/deberta_v3_base_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "frozen-pretrained",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "pooled_embedding_dataset-e4a4e66411ec00f4",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference frozen distilbert_base_frozen linear-head preset.",
+      "group": "arxiv-conference",
+      "name": "distilbert_base_frozen",
+      "path": "arxiv-conference/distilbert_base_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "frozen-pretrained",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "pooled_embedding_dataset-3e412d2753fc344a",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference frozen electra_base_frozen linear-head preset.",
+      "group": "arxiv-conference",
+      "name": "electra_base_frozen",
+      "path": "arxiv-conference/electra_base_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "frozen-pretrained",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-940f448d7152705e",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference scratch ffn_l over cached RoBERTa sequence embeddings.",
+      "group": "arxiv-conference",
+      "name": "ffn_l",
+      "path": "arxiv-conference/ffn_l.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "ffn",
+        "large"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-940f448d7152705e",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference scratch ffn_m over cached RoBERTa sequence embeddings.",
+      "group": "arxiv-conference",
+      "name": "ffn_m",
+      "path": "arxiv-conference/ffn_m.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "ffn",
+        "medium"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-940f448d7152705e",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference scratch ffn_s over cached RoBERTa sequence embeddings.",
+      "group": "arxiv-conference",
+      "name": "ffn_s",
+      "path": "arxiv-conference/ffn_s.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "ffn",
+        "small"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "pooled_embedding_dataset-f119aa54d5b08caf",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference frozen minilm_l6_frozen linear-head preset.",
+      "group": "arxiv-conference",
+      "name": "minilm_l6_frozen",
+      "path": "arxiv-conference/minilm_l6_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "frozen-pretrained",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "pooled_embedding_dataset-0f3f66abfc8022d3",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference frozen modernbert_base_frozen linear-head preset.",
+      "group": "arxiv-conference",
+      "name": "modernbert_base_frozen",
+      "path": "arxiv-conference/modernbert_base_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "frozen-pretrained",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "pooled_embedding_dataset-61c66aeb4acebbff",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference frozen mpnet_base_frozen linear-head preset.",
+      "group": "arxiv-conference",
+      "name": "mpnet_base_frozen",
+      "path": "arxiv-conference/mpnet_base_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "frozen-pretrained",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "pooled_embedding_dataset-ddf717843d526f90",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference frozen roberta_base_frozen linear-head preset.",
+      "group": "arxiv-conference",
+      "name": "roberta_base_frozen",
+      "path": "arxiv-conference/roberta_base_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "frozen-pretrained",
+        "embedding-cache"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-940f448d7152705e",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference scratch textcnn_l over cached RoBERTa sequence embeddings.",
+      "group": "arxiv-conference",
+      "name": "textcnn_l",
+      "path": "arxiv-conference/textcnn_l.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "textcnn",
+        "large"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-940f448d7152705e",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference scratch textcnn_m over cached RoBERTa sequence embeddings.",
+      "group": "arxiv-conference",
+      "name": "textcnn_m",
+      "path": "arxiv-conference/textcnn_m.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "textcnn",
+        "medium"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-940f448d7152705e",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference scratch textcnn_s over cached RoBERTa sequence embeddings.",
+      "group": "arxiv-conference",
+      "name": "textcnn_s",
+      "path": "arxiv-conference/textcnn_s.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "textcnn",
+        "small"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-940f448d7152705e",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference scratch tx_l over cached RoBERTa sequence embeddings.",
+      "group": "arxiv-conference",
+      "name": "tx_l",
+      "path": "arxiv-conference/tx_l.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "transformer",
+        "large"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-940f448d7152705e",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference scratch tx_m over cached RoBERTa sequence embeddings.",
+      "group": "arxiv-conference",
+      "name": "tx_m",
+      "path": "arxiv-conference/tx_m.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "transformer",
+        "medium"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "sequence_embedding_dataset-940f448d7152705e",
+      "comparison_group": "arxiv/main-v2",
+      "comparison_role": "headline",
+      "description": "arXiv conference scratch tx_s over cached RoBERTa sequence embeddings.",
+      "group": "arxiv-conference",
+      "name": "tx_s",
+      "path": "arxiv-conference/tx_s.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "arxiv",
+        "text",
+        "scratch",
+        "sequence-cache",
+        "transformer",
+        "small"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-ed860e4f289f225b",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference frozen clip preset.",
+      "group": "imdb-faces-conference",
+      "name": "clip_b32_frozen",
+      "path": "imdb-faces-conference/clip_b32_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "clip"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-ff917d63e8e52e0e",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference scratch cnn large preset.",
+      "group": "imdb-faces-conference",
+      "name": "cnn_l",
+      "path": "imdb-faces-conference/cnn_l.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "scratch",
+        "cnn",
+        "large"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-ff917d63e8e52e0e",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference scratch cnn medium preset.",
+      "group": "imdb-faces-conference",
+      "name": "cnn_m",
+      "path": "imdb-faces-conference/cnn_m.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "scratch",
+        "cnn",
+        "medium"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-ff917d63e8e52e0e",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference scratch cnn small preset.",
+      "group": "imdb-faces-conference",
+      "name": "cnn_s",
+      "path": "imdb-faces-conference/cnn_s.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "scratch",
+        "cnn",
+        "small"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-231fe9799495bd3f",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference frozen convnext preset.",
+      "group": "imdb-faces-conference",
+      "name": "convnext_s_frozen",
+      "path": "imdb-faces-conference/convnext_s_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "convnext"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-6ce41d4153ff2d08",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference frozen dinov2 preset.",
+      "group": "imdb-faces-conference",
+      "name": "dinov2_s_frozen",
+      "path": "imdb-faces-conference/dinov2_s_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "dinov2"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-1b0d516e9dacafa0",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference frozen dinov3 preset.",
+      "group": "imdb-faces-conference",
+      "name": "dinov3_s_frozen",
+      "path": "imdb-faces-conference/dinov3_s_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "dinov3"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-4a71d756f38f861b",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference frozen eva02 preset.",
+      "group": "imdb-faces-conference",
+      "name": "eva02_b_frozen",
+      "path": "imdb-faces-conference/eva02_b_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "eva02"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-441f537d77baac3c",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference frozen mae preset.",
+      "group": "imdb-faces-conference",
+      "name": "mae_b_frozen",
+      "path": "imdb-faces-conference/mae_b_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "mae"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-ff917d63e8e52e0e",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference scratch mlp large preset.",
+      "group": "imdb-faces-conference",
+      "name": "mlp_l",
+      "path": "imdb-faces-conference/mlp_l.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "scratch",
+        "mlp",
+        "large"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-ff917d63e8e52e0e",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference scratch mlp medium preset.",
+      "group": "imdb-faces-conference",
+      "name": "mlp_m",
+      "path": "imdb-faces-conference/mlp_m.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "scratch",
+        "mlp",
+        "medium"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-ff917d63e8e52e0e",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference scratch mlp small preset.",
+      "group": "imdb-faces-conference",
+      "name": "mlp_s",
+      "path": "imdb-faces-conference/mlp_s.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "scratch",
+        "mlp",
+        "small"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-b928f3913301f3df",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference frozen resnet50 preset.",
+      "group": "imdb-faces-conference",
+      "name": "resnet50_in_frozen",
+      "path": "imdb-faces-conference/resnet50_in_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "resnet50"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-ff917d63e8e52e0e",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference scratch resnet large preset.",
+      "group": "imdb-faces-conference",
+      "name": "resnet_l",
+      "path": "imdb-faces-conference/resnet_l.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "scratch",
+        "resnet",
+        "large"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-ff917d63e8e52e0e",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference scratch resnet medium preset.",
+      "group": "imdb-faces-conference",
+      "name": "resnet_m",
+      "path": "imdb-faces-conference/resnet_m.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "scratch",
+        "resnet",
+        "medium"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-ff917d63e8e52e0e",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference scratch resnet small preset.",
+      "group": "imdb-faces-conference",
+      "name": "resnet_s",
+      "path": "imdb-faces-conference/resnet_s.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "scratch",
+        "resnet",
+        "small"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-91a55052cbacf359",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference frozen siglip preset.",
+      "group": "imdb-faces-conference",
+      "name": "siglip_b_frozen",
+      "path": "imdb-faces-conference/siglip_b_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "siglip"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-ff917d63e8e52e0e",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference scratch vit large preset.",
+      "group": "imdb-faces-conference",
+      "name": "vit_l",
+      "path": "imdb-faces-conference/vit_l.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "scratch",
+        "vit",
+        "large"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-ff917d63e8e52e0e",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference scratch vit medium preset.",
+      "group": "imdb-faces-conference",
+      "name": "vit_m",
+      "path": "imdb-faces-conference/vit_m.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "scratch",
+        "vit",
+        "medium"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-ff917d63e8e52e0e",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference scratch vit small preset.",
+      "group": "imdb-faces-conference",
+      "name": "vit_s",
+      "path": "imdb-faces-conference/vit_s.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "scratch",
+        "vit",
+        "small"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-3cb61b237ef86ad4",
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "description": "IMDB faces conference frozen vit preset.",
+      "group": "imdb-faces-conference",
+      "name": "vit_s16_in21k_frozen",
+      "path": "imdb-faces-conference/vit_s16_in21k_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "imdb-faces",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "vit"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": null,
+      "comparison_group": "smoke/runtime-contract",
+      "comparison_role": "smoke",
+      "description": "CPU-only synthetic classification smoke preset for the local runtime contract.",
+      "group": "smoke",
+      "name": "synthetic-classification-cpu",
+      "path": "smoke/synthetic-classification-cpu.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "smoke",
+        "synthetic",
+        "cpu"
+      ],
+      "variant_fields": [
+        "seed"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-461ab9b341e0e3b3",
+      "comparison_group": "yearbook/cumulative-time-slices",
+      "comparison_role": "headline",
+      "description": "Yearbook conference mlp_s smoke preset.",
+      "group": "yearbook",
+      "name": "smoke-mlp-s",
+      "path": "yearbook/smoke-mlp-s.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "smoke",
+        "yearbook",
+        "image"
+      ],
+      "variant_fields": [
+        "name",
+        "tags",
+        "notes",
+        "trainer.key",
+        "trainer.family",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-f8d80c8096faf139",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference frozen clip preset.",
+      "group": "yearbook-conference",
+      "name": "clip_b32_frozen",
+      "path": "yearbook-conference/clip_b32_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "clip"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-461ab9b341e0e3b3",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference scratch cnn large preset.",
+      "group": "yearbook-conference",
+      "name": "cnn_l",
+      "path": "yearbook-conference/cnn_l.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "scratch",
+        "cnn",
+        "large"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-461ab9b341e0e3b3",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference scratch cnn medium preset.",
+      "group": "yearbook-conference",
+      "name": "cnn_m",
+      "path": "yearbook-conference/cnn_m.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "scratch",
+        "cnn",
+        "medium"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-461ab9b341e0e3b3",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference scratch cnn small preset.",
+      "group": "yearbook-conference",
+      "name": "cnn_s",
+      "path": "yearbook-conference/cnn_s.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "scratch",
+        "cnn",
+        "small"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-7da3f8e516ddbb1a",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference frozen convnext preset.",
+      "group": "yearbook-conference",
+      "name": "convnext_s_frozen",
+      "path": "yearbook-conference/convnext_s_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "convnext"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-a1a2439b276f4230",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference frozen dinov2 preset.",
+      "group": "yearbook-conference",
+      "name": "dinov2_s_frozen",
+      "path": "yearbook-conference/dinov2_s_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "dinov2"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-1dd9dd5b113c2170",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference frozen dinov3 preset.",
+      "group": "yearbook-conference",
+      "name": "dinov3_s_frozen",
+      "path": "yearbook-conference/dinov3_s_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "dinov3"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-850adcf81b2e2463",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference frozen eva02 preset.",
+      "group": "yearbook-conference",
+      "name": "eva02_b_frozen",
+      "path": "yearbook-conference/eva02_b_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "eva02"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-705e0b0444782672",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference frozen mae preset.",
+      "group": "yearbook-conference",
+      "name": "mae_b_frozen",
+      "path": "yearbook-conference/mae_b_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "mae"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-461ab9b341e0e3b3",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference scratch mlp large preset.",
+      "group": "yearbook-conference",
+      "name": "mlp_l",
+      "path": "yearbook-conference/mlp_l.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "scratch",
+        "mlp",
+        "large"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-461ab9b341e0e3b3",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference scratch mlp medium preset.",
+      "group": "yearbook-conference",
+      "name": "mlp_m",
+      "path": "yearbook-conference/mlp_m.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "scratch",
+        "mlp",
+        "medium"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-461ab9b341e0e3b3",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference scratch mlp small preset.",
+      "group": "yearbook-conference",
+      "name": "mlp_s",
+      "path": "yearbook-conference/mlp_s.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "scratch",
+        "mlp",
+        "small"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-fff0298a64e0df13",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference frozen resnet50 preset.",
+      "group": "yearbook-conference",
+      "name": "resnet50_in_frozen",
+      "path": "yearbook-conference/resnet50_in_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "resnet50"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-461ab9b341e0e3b3",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference scratch resnet large preset.",
+      "group": "yearbook-conference",
+      "name": "resnet_l",
+      "path": "yearbook-conference/resnet_l.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "scratch",
+        "resnet",
+        "large"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-461ab9b341e0e3b3",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference scratch resnet medium preset.",
+      "group": "yearbook-conference",
+      "name": "resnet_m",
+      "path": "yearbook-conference/resnet_m.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "scratch",
+        "resnet",
+        "medium"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-461ab9b341e0e3b3",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference scratch resnet small preset.",
+      "group": "yearbook-conference",
+      "name": "resnet_s",
+      "path": "yearbook-conference/resnet_s.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "scratch",
+        "resnet",
+        "small"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-3b2961bc9235c027",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference frozen siglip preset.",
+      "group": "yearbook-conference",
+      "name": "siglip_b_frozen",
+      "path": "yearbook-conference/siglip_b_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "siglip"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-461ab9b341e0e3b3",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference scratch vit large preset.",
+      "group": "yearbook-conference",
+      "name": "vit_l",
+      "path": "yearbook-conference/vit_l.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "scratch",
+        "vit",
+        "large"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-461ab9b341e0e3b3",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference scratch vit medium preset.",
+      "group": "yearbook-conference",
+      "name": "vit_m",
+      "path": "yearbook-conference/vit_m.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "scratch",
+        "vit",
+        "medium"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "tensor_dataset-461ab9b341e0e3b3",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference scratch vit small preset.",
+      "group": "yearbook-conference",
+      "name": "vit_s",
+      "path": "yearbook-conference/vit_s.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "scratch",
+        "vit",
+        "small"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    },
+    {
+      "cache_id": "embedding_dataset-ac5c5e6c75d37087",
+      "comparison_group": "yearbook/main-v2",
+      "comparison_role": "headline",
+      "description": "Yearbook conference frozen vit preset.",
+      "group": "yearbook-conference",
+      "name": "vit_s16_in21k_frozen",
+      "path": "yearbook-conference/vit_s16_in21k_frozen.json",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "conference",
+        "headline",
+        "yearbook",
+        "image",
+        "frozen-pretrained",
+        "embedding-cache",
+        "vit"
+      ],
+      "variant_fields": [
+        "name",
+        "notes",
+        "tags",
+        "metadata",
+        "preprocessing.cache",
+        "preprocessing.steps",
+        "trainer.family",
+        "trainer.key",
+        "trainer.model",
+        "trainer.training"
+      ]
+    }
+  ]
+}

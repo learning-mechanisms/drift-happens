@@ -1,0 +1,140 @@
+{
+  "comparison_group": "yearbook/cumulative-time-slices",
+  "comparison_role": "headline",
+  "config": {
+    "dataset": {
+      "data_dir": null,
+      "name": "yearbook",
+      "variant": "faces_32x32_cumulative_v2"
+    },
+    "evaluation": {
+      "metric": "accuracy",
+      "params": {
+        "eval_time_slices": "simple_year_slices",
+        "secondary_metrics": [
+          "balanced_accuracy"
+        ]
+      }
+    },
+    "logging": {
+      "json_log_file": true,
+      "level": "info",
+      "metrics_jsonl": true,
+      "plain_log_file": true,
+      "stdout": true,
+      "wandb": null
+    },
+    "metadata": {},
+    "name": "yearbook-smoke-mlp-s",
+    "notes": "Conference mlp_s run at smoke seeds.",
+    "preprocessing": {
+      "cache": {
+        "cache_id": "tensor_dataset-461ab9b341e0e3b3",
+        "dataset": "yearbook",
+        "input_version": "faces_aligned_small_mirrored_co_aligned_cropped_cleaned:32x32:rgb:v2",
+        "kind": "tensor_dataset",
+        "output": "image_tensor_and_gender_label",
+        "params": {
+          "dataset_variant": "faces_32x32_cumulative_v2",
+          "image_size": [
+            32,
+            32
+          ],
+          "image_source": "faces_aligned_small_mirrored_co_aligned_cropped_cleaned",
+          "input_channels": 3,
+          "label_mapping": {
+            "M": 1
+          },
+          "split_seed": 42
+        },
+        "producer": "yearbook.convert_to_tensor_dataset",
+        "reuse_policy": "reuse",
+        "schema_version": 1
+      },
+      "steps": [
+        "load_downscaled_faces",
+        "tensorize_images"
+      ]
+    },
+    "protocol": {
+      "evaluation": {
+        "metric": "accuracy",
+        "protocol": "simple_year_slices"
+      },
+      "job_granularity": "seed_matrix",
+      "split": {
+        "name": "stratified_temporal_train_test_val",
+        "seed": 42,
+        "test_size": 0.3,
+        "train_size": 0.7,
+        "val_size": 0.0
+      },
+      "time_slices": {
+        "eval_strategy": "simple_year_slices",
+        "min_time": null,
+        "time_col": "year",
+        "train_strategy": "cumulative_from_start"
+      }
+    },
+    "runtime": {
+      "backend": "local",
+      "cudnn_benchmark": true,
+      "deterministic": false,
+      "device": "auto",
+      "mixed_precision": "off",
+      "num_threads": null
+    },
+    "seed": 0,
+    "tags": [
+      "preset",
+      "yearbook",
+      "yearbook",
+      "smoke",
+      "yearbook-conference"
+    ],
+    "task": "train_eval",
+    "trainer": {
+      "family": "image-mlp",
+      "key": "mlp_s",
+      "model": {
+        "architecture": "mlp",
+        "image_size": [
+          32,
+          32
+        ],
+        "input_channels": 3,
+        "preset": "mlp_s"
+      },
+      "training": {
+        "batch_size": 64,
+        "learning_rate": 0.0005,
+        "num_epochs": 10
+      }
+    }
+  },
+  "description": "Yearbook conference mlp_s smoke preset.",
+  "group": "yearbook",
+  "kind": "experiment_snapshot/v1",
+  "name": "smoke-mlp-s",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "tags": [
+    "smoke",
+    "yearbook",
+    "image"
+  ],
+  "variant_fields": [
+    "name",
+    "tags",
+    "notes",
+    "trainer.key",
+    "trainer.family",
+    "trainer.model",
+    "trainer.training"
+  ]
+}

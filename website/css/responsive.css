@@ -1,0 +1,201 @@
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .wrap {
+    padding: 0 24px;
+  }
+  .hero,
+  .lead,
+  .algos,
+  .wrap > p {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  .wrap > section {
+    padding: 26px 0 6px;
+  }
+  p {
+    margin: 0.8em 0;
+  }
+  h1 {
+    font-size: 30px;
+  }
+  .sub {
+    font-size: 15px;
+  }
+  h2.h {
+    font-size: 21px;
+    margin-bottom: 12px;
+    gap: 10px;
+  }
+  .lead {
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 18px 0 4px;
+  }
+  .small,
+  .note,
+  .proof {
+    font-size: 14px;
+  }
+  ul {
+    padding-left: 22px;
+  }
+  header h1 {
+    padding-right: 40px;
+  }
+
+  /* top nav collapses; the header hamburger opens a side drawer */
+  .navtoggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 18px;
+  }
+  header h1,
+  header .sub {
+    padding-right: 56px;
+  }
+  nav.tabs2 {
+    position: static;
+    background: transparent;
+    border-bottom: none;
+    height: 0;
+    backdrop-filter: none;
+  }
+  nav.tabs2 .wrap {
+    display: block;
+    height: 0;
+    min-height: 0;
+    padding: 0;
+    overflow: visible;
+  }
+  nav.tabs2 .navlinks {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 80%;
+    max-width: 320px;
+    flex-direction: column;
+    align-items: stretch;
+    background: var(--ink);
+    color: #f3f4f6;
+    padding: 58px 0 0;
+    transform: translateX(101%);
+    transition: transform 0.3s ease;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.3);
+    z-index: 90;
+  }
+  body.nav-open nav.tabs2 .navlinks {
+    transform: translateX(0);
+  }
+  nav.tabs2 .navlinks a {
+    color: #e8eaee;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 16px 26px;
+    margin: 0;
+    background: transparent;
+  }
+  nav.tabs2 .navlinks a:first-child {
+    padding-left: 26px;
+    margin-left: 0;
+  }
+  nav.tabs2 .navlinks a:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+  }
+  nav.tabs2 .navlinks a.here {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
+  .navclose {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    all: unset;
+    cursor: pointer;
+    color: #f3f4f6;
+    font-size: 30px;
+    line-height: 1;
+    padding: 4px 10px;
+  }
+  .navbackdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 85;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease;
+  }
+  body.nav-open .navbackdrop {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .twofig {
+    gap: 10px;
+    margin: 14px 0;
+    flex-wrap: nowrap;
+  }
+  .twofig figure {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    padding: 8px;
+  }
+  .twofig figcaption {
+    font-size: 12.5px;
+  }
+  .nextlinks {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  table {
+    font-size: 13px;
+  }
+  th,
+  td {
+    padding: 7px 8px;
+  }
+  footer {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 430px) {
+  body {
+    font-size: 15.5px;
+    line-height: 1.58;
+  }
+  .wrap {
+    padding: 0 20px;
+  }
+  .wrap > section {
+    padding: 24px 0 6px;
+  }
+  h1 {
+    font-size: 26px;
+  }
+  h2.h {
+    font-size: 19px;
+  }
+  .lead {
+    font-size: 17px;
+  }
+  .author {
+    gap: 10px;
+  }
+  .author img {
+    width: 48px;
+    height: 48px;
+  }
+}

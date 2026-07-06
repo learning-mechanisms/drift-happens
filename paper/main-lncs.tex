@@ -1,0 +1,77 @@
+% Official camera-ready build: Springer LNCS proceedings version (QCDS 2026).
+% Single-column LNCS layout. Body + bibliography must stay within 16 pages;
+% appendices (Appendix A onwards) are excluded from that limit.
+%
+% Shared prose/figures/tables live in pages/, tables/, figures/ and are
+% \input identically by main-preprint.tex. Only layout differs here.
+\documentclass[runningheads]{llncs}
+
+\input{preamble-common}
+\lncstrue  % page-limited proceedings build: enable LNCS-only content drops
+
+% Display URLs in blue roman font, per Springer's eBook style.
+\renewcommand\UrlFont{\color{blue}\rmfamily}
+
+% llncs sets an unusually roomy 8mm of float separation, which strands visible
+% bands above and below figures in the single-column layout. Tighten to ~4.5mm
+% (still comfortable) so figures pack against the surrounding text.
+\setlength{\textfloatsep}{4.5mm plus 2pt minus 3pt}
+\setlength{\intextsep}{4.5mm plus 2pt minus 2pt}
+\setlength{\floatsep}{4.5mm plus 2pt minus 2pt}
+
+% Single-column layout: use the wide, short forgetting curve with the legend
+% below (readable at text width) and let it float to the top of a column so it
+% packs cleanly instead of stranding a half-page of whitespace.
+\renewcommand{\forgettingfloat}{\begin{figure}[t]}
+\renewcommand{\forgettinggraphic}{%
+  \includegraphics[width=\linewidth]{plots_experiments/yearbook/forgetting_lncs.pdf}}
+
+\begin{document}
+
+\title{Drift Happens: An Empirical Study of Neural Architecture Robustness to Temporal Distribution Shift}
+\titlerunning{Neural Architecture Robustness to Temporal Distribution Shift}
+\newcommand{\equalcontribmark}{\texorpdfstring{\unskip$^\star$}{}}
+\author{Robin Holzinger\thanks{Both authors contributed equally.} \and
+Riccardo Colletti\equalcontribmark}
+\authorrunning{R. Holzinger and R. Colletti}
+\tocauthor{Robin Holzinger and Riccardo Colletti}
+\institute{Department of Electrical Engineering and Computer Sciences,\\
+University of California, Berkeley, USA}
+
+\maketitle
+
+\begin{abstract}
+\input{pages/0_abstract}
+
+\keywords{\abskeywords}
+\end{abstract}
+
+\input{pages/1_intro}
+\input{pages/2_background}
+\input{pages/3_methods}
+\input{pages/4_evaluation}
+\input{pages/5_results}
+\input{pages/6_conclusion}
+
+\begin{credits}
+\subsubsection{\discintname}
+The authors have no competing interests to declare.
+\end{credits}
+
+\bibliographystyle{splncs04short}
+% Render the reference list one step smaller (footnotesize) so the 34 entries
+% fit the 16-page limit instead of spilling three onto a 17th page. llncs sets
+% the list font via \small inside thebibliography; remapping \small in a local
+% group is robust to the hyperref redefinition of thebibliography. Reversible.
+{\let\small\footnotesize \bibliography{bibliography}}
+
+% ---- Appendices (excluded from the 16-page proceedings limit) ----
+\clearpage
+\appendix
+\input{pages/a_compute}
+\input{pages/b_metrics}
+\input{pages/c_yearbook}
+\input{pages/d_amazon}
+\input{pages/e_arxiv}
+
+\end{document}

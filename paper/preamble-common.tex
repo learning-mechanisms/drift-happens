@@ -1,0 +1,103 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Shared preamble for both build roots (main-lncs.tex, main-preprint.tex).
+%
+% Contains everything that is identical across the two layouts: math and
+% graphics packages, colours, the \val{} generated-values macro, and the
+% single-source hooks (\tightvspace, \abskeywords) that each root may
+% override. Format-specific setup (document class, one/two column, title
+% block, bibliography style) lives in the individual roots.
+%
+% This file is \input after the document class (and, for the preprint
+% build, after \usepackage{neutral2col}), so package load order is:
+%   class / style  ->  natbib (preprint only)  ->  these packages
+%   ->  hyperref  ->  cleveref.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{float}        % provides the [H] float placement used in figures
+\usepackage{subcaption}   % provides appendix subfigure panels and \captionsetup
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Colours (used by figures/drift_types.tex and the \ph mark-up macro)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{light_orange}{RGB}{255,229,191}
+\definecolor{light_red}{RGB}{253,195,183}
+\definecolor{light_gray}{RGB}{198,230,233}
+\definecolor{light_blue}{RGB}{230, 230, 255}
+\definecolor{accent_orange}{RGB}{255, 128, 2}
+\definecolor{accent_blue}{RGB}{178, 178, 255}
+\definecolor{accent_blue_dark}{RGB}{102, 102, 255}
+\definecolor{light_grey}{gray}{0.95}
+\definecolor{phviolet}{RGB}{124,58,237}
+\newcommand{\ph}[1]{\textcolor{phviolet}{#1}}
+
+% Generated result values, cited through \val{<dataset>/<path>}.
+\input{generated/values.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Figure panels
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{figurepanel}[1]{%
+  \begin{minipage}[t]{#1}\centering
+}{%
+  \end{minipage}%
+}
+\newcommand{\panellabel}[1]{\par\vspace{0.25ex}{\footnotesize #1}\par}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Hyperlinks and clever references (loaded last, in this order)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{hyperref}
+\usepackage[capitalize,noabbrev]{cleveref}
+\definecolor{linknavy}{rgb}{0,0.08,0.45}
+\hypersetup{colorlinks=true,linkcolor=linknavy,citecolor=linknavy,urlcolor=linknavy,pdfborder={0 0 0}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Single-source hooks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Build discriminator: true only in the page-limited LNCS proceedings build.
+% Lets shared source drop content that the roomy preprint keeps, e.g. extra
+% citations and the duplicate Yearbook reference. Defaults to false here; the
+% LNCS root sets \lncstrue after \input-ing this file.
+\newif\iflncs
+
+% Compact vertical spacing used only where a dense two-column layout needs
+% it. A no-op by default (roomy layouts such as LNCS); the preprint root
+% redefines it to \vspace so the shared content stays single-sourced.
+\providecommand{\tightvspace}[1]{}
+
+% Verbose display equations. The extended preprint spells out the standard
+% loss and drift-summary formulas as numbered display equations; the
+% page-constrained LNCS build inlines the same definitions. Default off
+% (LNCS compact); the preprint root switches it on with \verbosemathtrue.
+\newif\ifverbosemath
+\verbosemathfalse
+
+% Durable links used when the proceedings build points readers to the extended
+% evidence bundle kept outside the compact LNCS appendix.
+\newcommand{\extendedpreprintlink}{\href{https://drift-happens.org/drift-happens.pdf}{extended preprint}}
+\newcommand{\resultssitelink}{\href{https://drift-happens.org}{drift-happens.org}}
+
+% Keyword list shared by both builds; consumed by each root as its format
+% requires (LNCS \keywords{}, preprint metadata / printed line).
+\newcommand{\abskeywords}{Temporal distribution shift \and Concept drift \and Inductive bias \and Neural architecture robustness \and Pretrained encoders}
+
+% Main-body forgetting curve. The roomy right-hand-legend plot reads well in
+% the two-column / web layouts, so it is the default here; the single-column
+% LNCS root overrides these to the wide, short legend-below variant that stays
+% readable at text width and packs without a stranded half-page (see
+% main-lncs.tex). The float opener carries the placement, since LaTeX does not
+% expand macros inside a float's placement argument.
+\providecommand{\forgettingfloat}{\begin{figure}[H]}
+\providecommand{\forgettinggraphic}{%
+  \includegraphics[width=0.45\textwidth]{plots_experiments/yearbook/forgetting.pdf}}

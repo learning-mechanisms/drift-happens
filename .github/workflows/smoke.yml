@@ -1,0 +1,37 @@
+# Manually-triggered smoke tests for the external model matrix. The two pixi tasks they run
+# (smoke-all-model-datasets, smoke-model-downloads) are env-gated and skip in the normal CI run,
+# so trigger this from the Actions tab before a release or after touching the backbone wiring --
+# it downloads the real backbones and trains the matrix one epoch on synthetic data to catch the
+# download/handoff regressions the skipped smokes would otherwise hide.
+name: Smoke Tests
+on:
+  # Manual trigger from the Actions tab only -- intentionally no schedule.
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    name: Smoke (${{ matrix.task }})
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        task: [smoke-all-model-datasets, smoke-model-downloads]
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - name: Set up pixi
+        uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
+        with:
+          environments: default
+      - name: Install repository
+        run: pixi run -e default postinstall
+      - name: Run smoke task
+        run: pixi run -e default ${{ matrix.task }}

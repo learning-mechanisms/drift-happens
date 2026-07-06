@@ -1,0 +1,223 @@
+{
+  "comparison_group": "imdb-faces/main-v1",
+  "comparison_role": "headline",
+  "config": {
+    "dataset": {
+      "data_dir": null,
+      "name": "imdb_faces",
+      "variant": "faces_32x32_celeb_split_cumulative_v1"
+    },
+    "evaluation": {
+      "metric": "accuracy",
+      "params": {
+        "eval_time_slices": "simple_photo_taken_slices",
+        "secondary_metrics": [
+          "balanced_accuracy"
+        ]
+      }
+    },
+    "logging": {
+      "json_log_file": true,
+      "level": "info",
+      "metrics_jsonl": true,
+      "plain_log_file": true,
+      "stdout": true,
+      "wandb": null
+    },
+    "metadata": {
+      "cache": {
+        "cache_id_fields": [
+          "dataset_variant",
+          "image_source",
+          "image_size",
+          "input_channels",
+          "label_col",
+          "producer",
+          "output"
+        ],
+        "cache_kind": "tensor_dataset",
+        "cache_scope": "imdb_faces/faces_32x32",
+        "producer": "imdb_faces.convert_to_tensor_dataset"
+      },
+      "comparison_group": "imdb-faces/main-v1",
+      "comparison_role": "headline",
+      "dataset_scope": {
+        "input_description": "aligned 3-channel face crops downscaled to 32x32",
+        "label_description": "gender with male stored as 1",
+        "name": "imdb_faces",
+        "params": {
+          "image_size": [
+            32,
+            32
+          ],
+          "image_source": "imdb_crop",
+          "input_channels": 3,
+          "instance_col": "celeb_id",
+          "label_col": "gender",
+          "positive_label": 1
+        },
+        "time_column": "photo_taken",
+        "variant": "faces_32x32_celeb_split_cumulative_v1"
+      },
+      "evaluation": {
+        "primary_metric": "accuracy",
+        "secondary_metrics": [
+          "balanced_accuracy"
+        ],
+        "task": "binary_classification"
+      },
+      "model": {
+        "family": "resnet",
+        "frozen_backbone": false,
+        "identifier": "resnet_s",
+        "input_kind": "image_tensor",
+        "paradigm": null,
+        "tier": "small",
+        "trainable_target": 100000
+      },
+      "seeds": {
+        "model_seeds": [
+          0,
+          1,
+          2
+        ],
+        "sample_seed": null,
+        "split_seed": 42
+      },
+      "split": {
+        "name": "instance_based_train_val_test",
+        "split_seed": 42,
+        "stratify_by": [],
+        "test_size": 0.3,
+        "train_size": 0.7,
+        "val_size": 0.0
+      },
+      "time_slices": {
+        "eval": "simple_photo_taken_slices",
+        "max_time": null,
+        "min_time": null,
+        "time_unit": "year",
+        "train": "cumulative_from_start"
+      }
+    },
+    "name": "imdb-faces-conference-resnet_s",
+    "notes": "Conference headline IMDB faces scratch model.",
+    "preprocessing": {
+      "cache": {
+        "cache_id": "tensor_dataset-ff917d63e8e52e0e",
+        "dataset": "imdb_faces",
+        "input_version": "imdb_crop:32x32:rgb:v1",
+        "kind": "tensor_dataset",
+        "output": "image_tensor_and_gender_label",
+        "params": {
+          "dataset_variant": "faces_32x32_celeb_split_cumulative_v1",
+          "image_size": [
+            32,
+            32
+          ],
+          "image_source": "imdb_crop",
+          "input_channels": 3,
+          "label_col": "gender",
+          "split_seed": 42
+        },
+        "producer": "imdb_faces.convert_to_tensor_dataset",
+        "reuse_policy": "reuse",
+        "schema_version": 1
+      },
+      "steps": [
+        "load_preprocessed_faces",
+        "tensorize_images"
+      ]
+    },
+    "protocol": {
+      "evaluation": {
+        "metric": "accuracy",
+        "protocol": "simple_photo_taken_slices"
+      },
+      "job_granularity": "seed_matrix",
+      "split": {
+        "name": "instance_based_train_val_test",
+        "seed": 42,
+        "test_size": 0.3,
+        "train_size": 0.7,
+        "val_size": 0.0
+      },
+      "time_slices": {
+        "eval_strategy": "simple_photo_taken_slices",
+        "min_time": null,
+        "time_col": "photo_taken",
+        "train_strategy": "cumulative_from_start"
+      }
+    },
+    "runtime": {
+      "backend": "local",
+      "cudnn_benchmark": true,
+      "deterministic": false,
+      "device": "auto",
+      "mixed_precision": "off",
+      "num_threads": null
+    },
+    "seed": 0,
+    "tags": [
+      "preset",
+      "imdb-faces-conference",
+      "imdb_faces",
+      "conference",
+      "headline",
+      "imdb-faces",
+      "image",
+      "scratch",
+      "resnet",
+      "small"
+    ],
+    "task": "train_eval",
+    "trainer": {
+      "family": "image-resnet",
+      "key": "resnet_s",
+      "model": {
+        "architecture": "resnet",
+        "image_size": [
+          32,
+          32
+        ],
+        "input_channels": 3,
+        "preset": "resnet_s"
+      },
+      "training": {
+        "batch_size": 64,
+        "learning_rate": 0.0005,
+        "num_epochs": 10
+      }
+    }
+  },
+  "description": "IMDB faces conference scratch resnet small preset.",
+  "group": "imdb-faces-conference",
+  "kind": "experiment_snapshot/v1",
+  "name": "resnet_s",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "tags": [
+    "conference",
+    "headline",
+    "imdb-faces",
+    "image",
+    "scratch",
+    "resnet",
+    "small"
+  ],
+  "variant_fields": [
+    "name",
+    "notes",
+    "tags",
+    "metadata",
+    "preprocessing.cache",
+    "preprocessing.steps",
+    "trainer.family",
+    "trainer.key",
+    "trainer.model",
+    "trainer.training"
+  ]
+}

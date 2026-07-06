@@ -1,0 +1,120 @@
+\section{Evaluation Framework}
+\label{section:evaluation_framework}
+
+Standard held-out evaluation measures performance on data from the training distribution, which under temporal shift can look strong even as the model fails on future data. We therefore measure cross-temporal generalization explicitly.
+
+\subsection{Temporal Drift Matrices}
+
+Let $\mathcal{D} = \{(x_i, y_i, t_i)\}_{i=1}^{N}$ denote a dataset where each example is associated with a timestamp $t_i$. We divide the timeline into $K$ disjoint intervals $\mathcal{T} = \{T_1, \ldots, T_K\}$, where $T_k = [t_k^{\text{start}}, t_k^{\text{end}})$. Let $\mathcal{D}_k = \{(x, y, t) \in \mathcal{D} : t \in T_k\}$ denote the subset of data from interval $k$.
+
+For training, we construct cumulative datasets $\mathcal{D}_{\leq k} = \bigcup_{j=1}^{k} \mathcal{D}_j$ containing all data up to and including interval $k$. A model $f_k$ trained on $\mathcal{D}_{\leq k}$ has access to historical data over time $t_k^{\text{end}}$ but no knowledge of future periods. This cumulative strategy reflects realistic deployment scenarios in which models are periodically retrained on all historical data.
+
+The \textit{temporal drift matrix} $M \in \mathbb{R}^{K \times K}$ captures cross-temporal generalization:
+\begin{equation}
+    M_{ij} = \text{perf}(f_i, \mathcal{D}_j)
+\end{equation}
+where $\text{perf}(\cdot, \cdot)$ denotes a performance metric (accuracy, macro AUC, or balanced MSE depending on the task). Entry $M_{ij}$ measures how well a model trained on data through period $i$ performs on data from period $j$.
+
+\iflncs\noindent\fi The structure of $M$ reveals aspects of temporal robustness. Following our plotting convention, rows are the training cutoff (``trained up to'') and columns the evaluation period (``evaluated on''), with time increasing upward and to the right from a lower-left origin. The diagonal $M_{ii}$ is in-distribution performance on data held out from the training period; the upper-left ($j < i$) is held-out performance on earlier in-training periods; and the lower-right ($j > i$) is forward generalization to data unseen during training. This lets us read how performance degrades (or improves) as the temporal gap between training and evaluation widens.
+
+\subsection{Temporal Splitting Strategy}
+
+Each slice $\mathcal{D}_k$ is partitioned once into a stratified training split $\mathcal{D}_k^{\text{train}}$ (70\%) and a held-out test split $\mathcal{D}_k^{\text{test}}$ (30\%), shared across all models via a fixed split seed. For in-distribution evaluation (when $j \leq i$), we use only the held-out test split of $\mathcal{D}_j$ to prevent data leakage:
+
+\begin{equation}
+    \nonumber
+    \mathcal{D}_{\text{eval}}^{(i,j)} =
+    \begin{cases}
+        \mathcal{D}_{j}^{\text{test}} & \text{if } j \leq i \text{ (in-distribution)} \\
+        \mathcal{D}_{j}^{\text{train}} \cup \mathcal{D}_{j}^{\text{test}} & \text{if } j > i \text{ (out-of-distrib.)}
+    \end{cases}
+\end{equation}
+
+For out-of-distribution evaluation on future time slices, we use all available samples from that period to maximize statistical power, since by definition none of this data was seen during training. Evaluating on periods that overlap the training data ($j \leq i$) is deliberate: these held-out entries verify that a model retains performance across the historical periods it was trained on and provide the in-distribution reference from which forward decay is measured.
+
+\subsection{Training Protocol}
+
+The image models are trained with Adam \cite{kingma2015adam} and the text models with its decoupled-weight-decay variant AdamW, a standard choice that behaves robustly across heterogeneous architectures; fixing one optimizer per modality avoids per-model optimizer tuning as a confound. Learning rates are task-specific, with exact hyperparameters pinned in versioned experiment presets. Training proceeds for a fixed number of epochs, and model selection is based on the final checkpoint. Every configuration is trained under multiple random seeds, five on \texttt{Yearbook} and three on the text tasks (\cref{app:reproducibility}), and all results average over seeds.
+
+We adopt a cumulative temporal training strategy: for each slice $T_k$ we train a model $f_k$ on $\mathcal{D}_{\leq k}$, all examples observed up to $T_k$, yielding a sequence $\{f_1, \dots, f_K\}$ that each represent the best model obtainable from the data available at that point in time. All checkpoints are stored and evaluated on every slice to construct the full temporal drift matrix $M$.
+
+The loss follows the task structure and is tailored to address label imbalance.
+
+For \emph{binary classification} on \texttt{Yearbook}, we minimize standard two-class cross-entropy on logits and labels, the maximum-likelihood objective for a two-class softmax model.
+
+\ifverbosemath
+For \emph{multi-label classification} on \texttt{arXiv}, each paper may belong to multiple subject categories. We keep only seven leaf categories as the label space, retaining papers that carry at least one of them. The label distribution remains skewed, with negative examples substantially outnumbering positives for each category. We therefore use a weighted binary cross-entropy with logits, applied independently to each of the $C = 7$ categories:
+\begin{equation}
+\begin{aligned}
+\mathcal{L}_{\text{BCE}}
+    &= -\frac{1}{n}\sum_{i=1}^{n} \sum_{c=1}^{C}
+       \big[ w_c \, y_{ic} \log(\sigma(z_{ic})) \\
+    &\qquad + (1-y_{ic}) \log(1-\sigma(z_{ic})) \big],
+\end{aligned}
+\end{equation}
+where $z_{ic}$ denotes the logit for class $c$, $\sigma(\cdot)$ is the sigmoid function, and $y_{ic} \in \{0,1\}$ is the binary label. The class weights $w_c$ are defined as
+\begin{equation}
+    w_c = \frac{|\{i : y_{ic} = 0\}|}{|\{i : y_{ic} = 1\}|},
+\end{equation}
+i.e., the ratio of negative to positive examples for each category. This reweighting compensates for label imbalance by amplifying the contribution of rare positive labels, preventing the model from achieving deceptively high accuracy by predicting the all-zero vector.
+
+For \emph{regression} on \texttt{Amazon Reviews}, we train models to predict the star rating using a weighted mean squared error:
+\begin{equation}
+    \mathcal{L}_{\text{WMSE}} = \frac{1}{n}\sum_{i=1}^{n} w_{y_i} (y_i - \hat{y}_i)^2,
+\end{equation}
+where $y_i \in \{1,2,3,4,5\}$ is the true rating and $\hat{y}_i$ is the prediction. The rating-specific weights $w_r$ are defined as
+\begin{equation}
+    w_r = \frac{n}{n_r},
+\end{equation}
+with $n$ the total number of samples and $n_r$ the number of samples with rating $r$. Because the empirical rating distribution is heavily skewed toward high scores, an unweighted \texttt{MSE} would be dominated by the majority class and largely ignore rare low-rating events. The inverse-frequency weighting counteracts this imbalance, ensuring that errors on minority ratings remain visible in the objective and that temporal degradation in performance cannot be explained solely by changes in the prevalence of positive reviews.
+\else
+For \emph{multi-label classification} on \texttt{arXiv}, where each paper's categories all lie within the seven leaf categories and negatives greatly outnumber positives, we use a class-weighted binary cross-entropy with logits over the $C = 7$ categories. Each class $c$ is weighted by its negative-to-positive ratio $w_c = |\{i : y_{ic} = 0\}| / |\{i : y_{ic} = 1\}|$, which amplifies rare positives so the all-zero vector cannot score well.
+
+For \emph{regression} on \texttt{Amazon Reviews}, we predict the star rating $y_i \in \{1,\dots,5\}$ with an inverse-frequency-weighted mean squared error, weighting each rating $r$ by $w_r = n/n_r$ ($n$ total samples, $n_r$ with rating $r$). Because the rating distribution is skewed toward high scores, this keeps errors on rare low ratings visible, so temporal degradation cannot be explained by rating prevalence alone.
+\fi
+
+\subsection{Evaluation Metrics}
+
+To populate each entry of the drift matrix $M$, we require a scalar performance metric per train-test time pair. We match each metric to the task's label structure: accuracy for \texttt{Yearbook}, whose binary labels are approximately balanced (\cref{app:metrics_yearbook}); balanced MSE ($\text{MSE}_{\text{bal}}$) for \texttt{Amazon Reviews}, which reweights its skewed rating distribution (\cref{app:metrics_amazon}); and macro AUC ($\overline{\text{AUC}}$) for \texttt{arXiv}, whose imbalanced multi-label categories require a threshold-free, per-class average (\cref{app:metrics_arxiv}). The two classification tasks thus receive different metrics because their label structures differ; the drift protocol itself is identical.
+
+\subsection{Summary Statistics of the Drift Matrix}
+\label{subsec:drift_summary}
+
+In the drift matrix $M$, the row index $i$ is the training cutoff and the column index $j$ is the evaluation period, so the entry $M_{ij}$ is the performance of a model trained on all data up to period $i$ when it is tested on period $j$.
+\ifverbosemath
+Three numbers summarize the matrix, each averaged only over the cells that are filled, since a train-test pair with no completed run leaves its cell empty. The \emph{in-distribution} score is the average of the diagonal,
+\begin{equation}
+    \mathrm{ID}(M) = \operatorname{mean}_{i} M_{ii},
+    \label{eq:in_distribution}
+\end{equation}
+a model's performance on the same period it was trained through. The \emph{future} score averages the cells with $j > i$, where the evaluation period falls after the training cutoff,
+\begin{equation}
+    \mathrm{Fut}(M) = \operatorname{mean}_{j > i} M_{ij}.
+    \label{eq:future}
+\end{equation}
+The \emph{decay} is the difference between the two, oriented so a larger value always means worse temporal robustness, since accuracy and $\overline{\text{AUC}}$ are better when high while $\text{MSE}_{\text{bal}}$ is better when low,
+\begin{equation}
+    \mathrm{Dec}(M) =
+    \begin{cases}
+        \mathrm{ID}(M) - \mathrm{Fut}(M) & (\text{accuracy},\ \overline{\text{AUC}}),\\
+        \mathrm{Fut}(M) - \mathrm{ID}(M) & (\text{MSE}_{\text{bal}}).
+    \end{cases}
+    \label{eq:decay}
+\end{equation}
+so a positive decay is a loss of performance on future periods and a negative one, which is uncommon, a gain. Together, future score and decay order every model from most to least temporally robust.
+\else
+Three numbers summarize the matrix, each averaged only over filled cells (a train-test pair with no completed run leaves its cell empty): the \emph{in-distribution} score $\mathrm{ID}(M) = \operatorname{mean}_{i} M_{ii}$, a model's performance on the period it was trained through; the \emph{future} score $\mathrm{Fut}(M) = \operatorname{mean}_{j > i} M_{ij}$, averaging the cells whose evaluation period falls after the training cutoff; and the \emph{decay} $\mathrm{Dec}(M) = \mathrm{ID}(M) - \mathrm{Fut}(M)$ (the two terms swapped for $\text{MSE}_{\text{bal}}$, which is better when low), oriented so a larger value always means worse temporal robustness. A positive decay is a loss on future periods and a negative one, uncommon, a gain; together, future score and decay order every model from most to least temporally robust.
+\fi
+
+Beyond these whole-matrix scores, we look at how robustness depends on the training time itself. Fixing one cutoff $i$, a single row of the matrix, we pair its diagonal cell $M_{ii}$ with the average over the later periods in that row ($\operatorname{mean}_{j>i} M_{ij}$) and the decay between them, reading these at a few cutoffs spread evenly across the timeline (the last one is left out, as it has no future). Averaging the same quantities within each architecture family lets us compare the families directly.
+
+\ifverbosemath
+To place each model against the others, we average the matrices over the cohort $\mathcal{C}$ of models into the \emph{cohort-mean matrix}
+\begin{equation}
+    \bar{M}_{ij} = \frac{1}{|\mathcal{C}|}\sum_{m \in \mathcal{C}} M^{(m)}_{ij},
+    \label{eq:cohort_mean}
+\end{equation}
+defined at the cells every model fills; each model's \emph{deviation} is $\Delta^{(m)}_{ij} = M^{(m)}_{ij} - \bar{M}_{ij}$.
+\else
+To place each model against the others, we average the matrices over the cohort $\mathcal{C}$ into the \emph{cohort-mean matrix} $\bar{M}_{ij} = |\mathcal{C}|^{-1}\sum_{m \in \mathcal{C}} M^{(m)}_{ij}$, defined at the cells every model fills; each model's \emph{deviation} is $\Delta^{(m)}_{ij} = M^{(m)}_{ij} - \bar{M}_{ij}$.
+\fi

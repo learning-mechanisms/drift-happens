@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Drift Happens · results</title>
+    <meta name="description" content="The cross-dataset synthesis. In-distribution accuracy neither guarantees nor predicts temporal robustness, and inductive bias and pretraining set the trade." />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <link rel="stylesheet" href="css/content.css" />
+    <link rel="stylesheet" href="css/extra.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/lightbox.css?v=2" />
+    <link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <h1>Results</h1>
+        <div class="sub">The cross-dataset synthesis, then drill into each domain.</div>
+        <button class="navtoggle" aria-label="open menu" aria-expanded="false">
+          <svg viewBox="0 0 22 22" width="24" height="24" aria-hidden="true"><path d="M3 6 H19 M3 11 H19 M3 16 H19" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="tabs2">
+      <div class="wrap">
+        <div class="navlinks">
+          <a href="index.html">overview</a>
+          <a href="methods.html">datasets &amp; methods</a>
+          <a href="results.html" class="here">results</a>
+          <a class="artifact" href="https://wandb.ai/drift-happens/drift-happens"
+            ><svg class="artifactmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M8 1.5c-3.03 0-5.5.86-5.5 1.92v9.16c0 1.06 2.47 1.92 5.5 1.92s5.5-.86 5.5-1.92V3.42C13.5 2.36 11.03 1.5 8 1.5Zm0 1c2.54 0 4.36.61 4.49.92-.13.31-1.95.92-4.49.92s-4.36-.61-4.49-.92C3.64 3.11 5.46 2.5 8 2.5Zm4.5 3.2v1.91c-.13.31-1.95.92-4.5.92s-4.36-.61-4.5-.92V5.7c.96.58 2.59.94 4.5.94s3.54-.36 4.5-.94Zm0 3.1v1.91c-.13.31-1.95.92-4.5.92s-4.36-.61-4.5-.92V8.8c.96.58 2.59.94 4.5.94s3.54-.36 4.5-.94Zm0 3.1v.68c-.13.31-1.95.92-4.5.92s-4.36-.61-4.5-.92v-.68c.96.58 2.59.94 4.5.94s3.54-.36 4.5-.94Z"
+              /></svg
+            >artifacts</a
+          >
+          <a class="doc" href="drift-happens.pdf"
+            ><svg class="docmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M9 1H3.5A1.5 1.5 0 0 0 2 2.5v11A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V6L9 1zm0 1.5L12.5 6H9V2.5zM4.5 6.5h3v1h-3v-1zm0 2.5h7v1h-7v-1zm0 2.5h7v1h-7v-1z"
+              /></svg
+            >paper</a
+          >
+          <a class="gh" href="https://github.com/learning-mechanisms/drift-happens"
+            ><svg class="ghmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+              /></svg
+            >code</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div class="wrap">
+      <nav class="subnav" aria-label="results sections">
+        <a href="results.html" class="here">Synthesis</a>
+        <a href="yearbook-results.html"
+          ><svg class="dsi" viewBox="0 0 16 16" aria-hidden="true">
+            <circle cx="8" cy="5.9" r="3" />
+            <path d="M2.5 14.5a5.5 5.5 0 0 1 11 0z" /></svg
+          >Yearbook</a
+        >
+        <a href="amazon-results.html"
+          ><svg class="dsi" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.7l1.78 3.74 4.12.5-3.02 2.83.78 4.06L8 10.93l-3.66 1.93.78-4.06L2.1 5.94l4.12-.5z" /></svg>Amazon</a
+        >
+        <a href="arxiv-results.html"
+          ><svg class="dsi" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.3 1.9h4.2l3.2 3.1v9H4.3z" />
+            <rect x="5.7" y="7.1" width="4.6" height="0.95" rx="0.4" fill="#fff" />
+            <rect x="5.7" y="9.3" width="4.6" height="0.95" rx="0.4" fill="#fff" /></svg
+          >arXiv</a
+        >
+        <span class="chip"
+          >Yearbook <b><span data-val="yearbook/models"></span></b> · Amazon <b><span data-val="amazon_reviews/models"></span></b> · arXiv <b><span data-val="arxiv/models"></span></b
+        ></span>
+      </nav>
+
+      <p class="reveal" style="margin: 14px 0 4px; font-size: 17px; line-height: 1.55">
+        In-distribution accuracy is not a reliable guide to temporal robustness. Across the three datasets, how much a model degrades under temporal shift is governed by the strength of its inductive
+        bias and by whether it relies on a frozen pretrained encoder.
+      </p>
+
+      <div class="claim reveal" style="margin: 12px 0 6px">
+        <span class="lbl">Overview</span>
+        <p>
+          Across the three datasets, the temporal robustness of a model is governed by how much its inductive bias improves in-distribution accuracy. The features an architecture extracts to fit the
+          training period are specific to that period and are the first to degrade as the data drifts, so <b>the architectures that are most accurate in distribution tend to degrade fastest</b>.
+        </p>
+        <p>The strength of the effect scales with the in-distribution accuracy gap that the inductive bias opens between architectures.</p>
+        <p>
+          On <a href="yearbook-results.html">Yearbook</a> in-distribution accuracy across scratch architectures spans roughly
+          <b><span data-val="yearbook/scratch/indist-min"></span>% to <span data-val="yearbook/scratch/indist-max"></span>%</b>, with the convolutional models at the top of that range, and the most
+          accurate models lose <b>up to <span data-val="yearbook/model/cnn_m/decay"></span> points</b> under forward evaluation. On <a href="amazon-results.html">Amazon</a> recurrence and attention
+          open a smaller gap and a correspondingly smaller decay. On <a href="arxiv-results.html">arXiv</a> the task reduces to topic recognition, which the frozen RoBERTa embeddings already capture,
+          so the inductive bias yields no accuracy advantage between architectures: all families reach
+          <b><span data-val="arxiv/scratch/indist-min"></span> to <span data-val="arxiv/scratch/indist-max"></span>% macro-AUC</b>, and every architecture decays by a similar small amount.
+        </p>
+      </div>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">01</span> &nbsp;three domains, one structure</h2>
+        <p>
+          Each model is summarised by a <a href="methods.html#protocol">temporal drift matrix</a>: trained on all data up to a cutoff, evaluated on every period, with the in-distribution diagonal read
+          against the off-diagonal decay. The three domains span a century of yearbook portraits, a decade of Amazon reviews and twenty-five years of arXiv abstracts, on three different metrics and
+          two directions, yet the same structure appears in each.
+        </p>
+        <div class="smallmults">
+          <figure>
+            <div class="drift-anim" data-src="data/yearbook.json"></div>
+            <figcaption>Yearbook, accuracy.</figcaption>
+          </figure>
+          <figure>
+            <div class="drift-anim" data-src="data/amazon_reviews.json"></div>
+            <figcaption>Amazon, balanced MSE (lower is better).</figcaption>
+          </figure>
+          <figure>
+            <div class="drift-anim" data-src="data/arxiv.json"></div>
+            <figcaption>arXiv, macro-AUC.</figcaption>
+          </figure>
+        </div>
+        <p class="dimnote">
+          Each matrix is seed-averaged first (Yearbook: 5 distinct model seeds; arXiv/Amazon: 3), then shown as the cohort mean over that dataset's models, on its own metric and direction.
+        </p>
+      </section>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">02</span> &nbsp;inductive bias and pretraining</h2>
+        <div class="findcards synth">
+          <div class="findcard">
+            <div class="fc-h">Inductive bias</div>
+            <p>A stronger inductive bias extracts more discriminative, period-specific features, which raise in-distribution accuracy but <b>decay fastest under temporal shift</b>.</p>
+            <p>
+              On <b>Yearbook</b> the convolutional and residual networks are the most accurate and the least robust. On <b>Amazon</b> the recurrent and Transformer networks show the same pattern. On
+              <b>arXiv</b>, where the bias provides no accuracy advantage, the architectures are indistinguishable in both accuracy and decay.
+            </p>
+          </div>
+          <div class="findcard">
+            <div class="fc-h">Pretraining</div>
+            <p>A frozen pretrained encoder occupies a different regime, <b>conceding in-distribution accuracy in exchange for stability</b>.</p>
+            <p>
+              On <b>Yearbook</b> and <b>Amazon</b> the frozen encoders are less accurate than the trained models on the training period but degrade more slowly, and <b>DeBERTa-v3</b> is the most
+              temporally stable model on Amazon, at <b><span data-val="amazon_reviews/model/deberta_v3_base_frozen/decay"></span> decay</b>.
+            </p>
+            <p>Pretraining adjusts the accuracy-robustness balance independently of the architecture's inductive bias.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">03</span> &nbsp;conclusion</h2>
+        <p>
+          <b>In-distribution accuracy neither guarantees nor predicts temporal robustness.</b> The strength of a model's inductive bias and whether it relies on a frozen pretrained encoder both shape
+          where it falls on the accuracy-robustness trade-off. Under temporal shift, the model that performs best on held-out data from the training period is often the least robust over time, so
+          architecture selection for deployment should account for the expected horizon between retraining.
+        </p>
+      </section>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">04</span> &nbsp;limitations</h2>
+        <div class="lcard limits">
+          <ul>
+            <li>
+              <span
+                ><b>Limited set of architectures.</b> We compare the most common inductive biases, convolutional, recurrent and attention-based, against simple baselines, but many architectures remain
+                untested, so the study is best read as preliminary and open to extension.</span
+              >
+            </li>
+            <li>
+              <span
+                ><b>Coverage of datasets and domains.</b> The study spans three datasets across two modalities, images and text. Extending it to further datasets, additional modalities, and other
+                forms of distribution shift would show how broadly the observed pattern holds.</span
+              >
+            </li>
+            <li>
+              <span
+                ><b>Text label space and time span.</b> The text tasks use a narrow label space, a five-point rating for Amazon and seven categories for arXiv, and span only about a decade and a
+                quarter of a century respectively, against a century for Yearbook. A richer label space and, above all, a longer time span should surface stronger language drift.</span
+              >
+            </li>
+            <li>
+              <span
+                ><b>Frozen text representations.</b> The text models train a head on top of fixed RoBERTa embeddings rather than learning representations end-to-end, since the examples available
+                within each time slice are too few to train a text encoder from scratch. The text results therefore reflect a single frozen representation, and their absolute values should be read in
+                that light.</span
+              >
+            </li>
+            <li>
+              <span
+                ><b>Subsampled text corpora.</b> The text experiments run on a subsample of each corpus rather than the full data and complete category set. Repeating them on the full data and all
+                categories could surface stronger drift signals than the subsample reveals.</span
+              >
+            </li>
+            <li>
+              <span><b>Descriptive, not mechanistic.</b> We measure how robustness varies with inductive bias and pretraining, but do not isolate why.</span>
+            </li>
+            <li>
+              <span
+                ><b>No adaptive retraining.</b> We do not use a dynamic retraining policy or dynamic per-training data selection: for each cutoff, models train on all historical data available up to
+                that point. The results speak to inherent temporal robustness, not to continuous ML orchestration systems such as the ETH Zurich Modyn paper
+                <a href="https://doi.org/10.1145/3709705" target="_blank" rel="noopener">Modyn: Data-Centric Machine Learning Pipeline Orchestration</a>, which studies triggering and data-selection
+                policies under drift.</span
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <h2 class="h"><span class="cm">//</span> <span class="id">05</span> &nbsp;future work</h2>
+        <div class="lcard future">
+          <ul>
+            <li>
+              <span
+                ><b>Broader architectures and domains.</b> Extend the comparison to more inductive biases and to additional datasets, including domains beyond images and other forms of drift.</span
+              >
+            </li>
+            <li>
+              <span><b>Longer spans and full data.</b> Lengthen the temporal span and replicate on the full corpora and richer label spaces, where language drift should be more pronounced.</span>
+            </li>
+            <li>
+              <span
+                ><b>Adaptation under budget.</b> Pair the drift matrices with scheduled or drift-triggered retraining under explicit compute budgets, to measure not only decay but how cheaply it is
+                undone.</span
+              >
+            </li>
+            <li>
+              <span><b>From description to mechanism.</b> Tie inductive bias and pretraining back to the specific cues that drift.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="nextlinks">
+          <a class="navcard" href="yearbook-results.html"
+            ><span class="nl-t">Yearbook <span class="nl-arr">&rarr;</span></span
+            ><span class="nl-d">images, the full explorer and tables</span></a
+          >
+          <a class="navcard" href="amazon-results.html"
+            ><span class="nl-t">Amazon <span class="nl-arr">&rarr;</span></span
+            ><span class="nl-d">review-rating regression, balanced MSE</span></a
+          >
+          <a class="navcard" href="arxiv-results.html"
+            ><span class="nl-t">arXiv <span class="nl-arr">&rarr;</span></span
+            ><span class="nl-d">multi-label titles + abstracts, macro-AUC</span></a
+          >
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="wrap">
+        <div class="authors" style="margin-bottom: 16px">
+          <div class="author">
+            <img src="assets/authors/robin.png" alt="Robin Holzinger" width="56" height="56" />
+            <div class="meta">
+              <span class="nm">Robin Holzinger<sup>*</sup></span
+              ><br /><a href="#" data-contact-email="robin" aria-label="Email Robin Holzinger"
+                ><span>robin</span><span>.</span><span>holzinger</span> <span>[at]</span> <span>berkeley</span><span>.</span><span>edu</span></a
+              >
+            </div>
+          </div>
+          <div class="author">
+            <img src="assets/authors/riccardo.png" alt="Riccardo Colletti" width="56" height="56" />
+            <div class="meta">
+              <span class="nm">Riccardo Colletti<sup>*</sup></span
+              ><br /><a href="#" data-contact-email="riccardo" aria-label="Email Riccardo Colletti"
+                ><span>riccardo</span><span>_</span><span>colletti</span> <span>[at]</span> <span>berkeley</span><span>.</span><span>edu</span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="eqnote">* equal contribution</div>
+        Drift Happens &middot; UC Berkeley EECS<br />
+        <a class="doc" href="drift-happens.pdf"
+          ><svg class="docmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M9 1H3.5A1.5 1.5 0 0 0 2 2.5v11A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V6L9 1zm0 1.5L12.5 6H9V2.5zM4.5 6.5h3v1h-3v-1zm0 2.5h7v1h-7v-1zm0 2.5h7v1h-7v-1z"
+            /></svg
+          >paper</a
+        >
+        &middot;
+        <a class="gh" href="https://wandb.ai/drift-happens/drift-happens">wandb.ai</a>
+        &middot;
+        <a class="gh" href="https://github.com/learning-mechanisms/drift-happens"
+          ><svg class="ghmark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+            /></svg
+          >github.com</a
+        >
+      </div>
+    </footer>
+
+    <script src="js/matrixview.js?v=15"></script>
+    <script src="js/driftmatrix.js?v=14" defer></script>
+    <script src="js/values.js?v=1" defer></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/contact.js" defer></script>
+    <script src="js/nav.js"></script>
+    <script src="js/lightbox.js?v=4"></script>
+  </body>
+</html>

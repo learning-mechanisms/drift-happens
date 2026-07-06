@@ -1,0 +1,34 @@
+\begin{minipage}[t]{0.49\linewidth}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\captionof{table}{arXiv: models trained up to 2024, ordered by future performance.}
+\label{tab:arxiv_cutoff_2024}
+\resizebox{\ifdim\width>\linewidth \linewidth\else\width\fi}{!}{%
+\begin{tabular}{c l rrr}
+\toprule
+Rank & Model & Macro AUC (\%) & Future (\%) & Decay (\%) \\
+\midrule
+1 & TX-M & 96.5 & 96.3 & 0.1 \\
+2 & BiLSTM-M & 96.5 & 96.3 & 0.2 \\
+3 & TX-L & 96.4 & 96.3 & 0.2 \\
+4 & BiLSTM-Attn-L & 96.4 & 96.3 & 0.2 \\
+5 & BiGRU-S & 96.4 & 96.3 & 0.2 \\
+6 & TX-S & 96.4 & 96.2 & 0.2 \\
+7 & TextCNN-S & 96.2 & 96.0 & 0.2 \\
+8 & FFN-L & 96.0 & 95.8 & 0.2 \\
+9 & FFN-M & 96.0 & 95.8 & 0.2 \\
+10 & TextCNN-M & 96.0 & 95.8 & 0.3 \\
+11 & FFN-S & 95.9 & 95.7 & 0.2 \\
+12 & MiniLM-L6 & 95.9 & 95.6 & 0.3 \\
+13 & TextCNN-L & 95.8 & 95.5 & 0.3 \\
+14 & ModernBERT & 95.6 & 95.2 & 0.4 \\
+15 & BERT & 95.1 & 94.7 & 0.4 \\
+16 & DistilBERT & 94.9 & 94.5 & 0.4 \\
+17 & RoBERTa & 94.9 & 94.5 & 0.4 \\
+18 & MPNet & 94.9 & 94.4 & 0.4 \\
+19 & DeBERTa-v3 & 92.1 & 91.2 & 0.8 \\
+20 & ELECTRA & 91.5 & 90.4 & 1.1 \\
+\bottomrule
+\end{tabular}}
+\end{minipage}

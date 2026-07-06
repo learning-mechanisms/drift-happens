@@ -1,0 +1,49 @@
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\centering
+\footnotesize
+\captionof{table}{Yearbook: models trained from scratch.}
+\label{tab:yearbook_roster}
+\resizebox{\ifdim\width>\linewidth \linewidth\else\width\fi}{!}{%
+\begin{tabular}{l l r}
+\toprule
+Model & Family & Parameters \\
+\midrule
+ViT-S & ViT & 75k \\
+CNN-S & CNN & 94k \\
+ResNet-S & ResNet & 98k \\
+MLP-S & MLP & 98k \\
+ResNet-M & ResNet & 400k \\
+MLP-M & MLP & 410k \\
+CNN-M & CNN & 542k \\
+ViT-M & ViT & 545k \\
+MLP-L & MLP & 2.1M \\
+ResNet-L & ResNet & 2.1M \\
+CNN-L & CNN & 2.1M \\
+ViT-L & ViT & 2.2M \\
+\bottomrule
+\end{tabular}}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\centering
+\footnotesize
+\captionof{table}{Yearbook: frozen pretrained encoders, with trainable head and total parameters.}
+\label{tab:yearbook_roster_frozen}
+\resizebox{\ifdim\width>\linewidth \linewidth\else\width\fi}{!}{%
+\begin{tabular}{l l rr}
+\toprule
+Model & Family & Trainable & Total \\
+\midrule
+DINOv3-S & Transfer & 770 & 21.6M \\
+ViT-S16-IN21k & Transfer & 770 & 21.7M \\
+DINOv2-S & Transfer & 770 & 22.1M \\
+ResNet50-IN & Transfer & 4k & 23.5M \\
+ConvNeXt-S & Transfer & 2k & 49.5M \\
+EVA02-B & Transfer & 2k & 85.8M \\
+MAE-B & Transfer & 2k & 85.8M \\
+CLIP-B32 & Transfer & 2k & 87.5M \\
+SigLIP-B & Transfer & 2k & 92.9M \\
+\bottomrule
+\end{tabular}}
+\end{minipage}

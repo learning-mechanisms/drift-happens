@@ -1,0 +1,34 @@
+\begin{minipage}[t]{0.49\linewidth}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\captionof{table}{arXiv: models trained up to 2008, ordered by future performance.}
+\label{tab:arxiv_cutoff_2008}
+\resizebox{\ifdim\width>\linewidth \linewidth\else\width\fi}{!}{%
+\begin{tabular}{c l rrr}
+\toprule
+Rank & Model & Macro AUC (\%) & Future (\%) & Decay (\%) \\
+\midrule
+1 & TX-M & 98.6 & 96.0 & 2.6 \\
+2 & TextCNN-L & 98.7 & 95.7 & 3.0 \\
+3 & BiLSTM-Attn-L & 98.5 & 95.6 & 2.9 \\
+4 & BiLSTM-M & 98.8 & 95.6 & 3.2 \\
+5 & TX-S & 98.4 & 95.3 & 3.1 \\
+6 & FFN-L & 98.0 & 95.2 & 2.8 \\
+7 & ModernBERT & 98.0 & 95.0 & 3.0 \\
+8 & MiniLM-L6 & 97.9 & 94.9 & 3.0 \\
+9 & TextCNN-M & 98.6 & 94.9 & 3.7 \\
+10 & FFN-M & 97.9 & 94.9 & 3.0 \\
+11 & TX-L & 98.2 & 94.8 & 3.4 \\
+12 & BiGRU-S & 98.6 & 94.5 & 4.2 \\
+13 & BERT & 97.4 & 93.8 & 3.6 \\
+14 & FFN-S & 97.6 & 93.7 & 4.0 \\
+15 & TextCNN-S & 98.5 & 93.6 & 4.9 \\
+16 & DistilBERT & 97.1 & 93.3 & 3.9 \\
+17 & RoBERTa & 96.8 & 92.5 & 4.3 \\
+18 & MPNet & 96.7 & 92.5 & 4.3 \\
+19 & DeBERTa-v3 & 93.4 & 86.1 & 7.3 \\
+20 & ELECTRA & 92.5 & 84.6 & 7.9 \\
+\bottomrule
+\end{tabular}}
+\end{minipage}

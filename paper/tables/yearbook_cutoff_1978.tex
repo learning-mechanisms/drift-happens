@@ -1,0 +1,35 @@
+\begin{minipage}[t]{0.49\linewidth}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\captionof{table}{Yearbook: models trained up to 1978, ordered by future performance.}
+\label{tab:yearbook_cutoff_1978}
+\resizebox{\ifdim\width>\linewidth \linewidth\else\width\fi}{!}{%
+\begin{tabular}{c l rrr}
+\toprule
+Rank & Model & Accuracy (\%) & Future (\%) & Decay (\%) \\
+\midrule
+1 & CNN-L & 85.9 & 91.4 & -5.4 \\
+2 & ResNet-M & 88.7 & 90.4 & -1.6 \\
+3 & ResNet-L & 87.6 & 89.3 & -1.7 \\
+4 & CNN-M & 86.8 & 88.8 & -2.0 \\
+5 & MLP-M & 79.4 & 84.5 & -5.1 \\
+6 & ResNet-S & 83.4 & 84.4 & -1.0 \\
+7 & MLP-L & 75.5 & 83.2 & -7.7 \\
+8 & CNN-S & 72.7 & 81.1 & -8.5 \\
+9 & ConvNeXt-S & 80.6 & 78.6 & 1.9 \\
+10 & ViT-M & 72.4 & 76.8 & -4.4 \\
+11 & CLIP-B32 & 69.9 & 74.8 & -5.0 \\
+12 & EVA02-B & 60.6 & 73.3 & -12.8 \\
+13 & ViT-L & 66.8 & 72.4 & -5.6 \\
+14 & DINOv2-S & 64.5 & 72.3 & -7.8 \\
+15 & ViT-S & 64.2 & 71.8 & -7.6 \\
+16 & ViT-S16-IN21k & 66.5 & 70.7 & -4.3 \\
+17 & ResNet50-IN & 72.7 & 70.7 & 2.0 \\
+18 & SigLIP-B & 64.8 & 69.9 & -5.1 \\
+19 & MLP-S & 67.9 & 69.4 & -1.5 \\
+20 & MAE-B & 56.1 & 65.0 & -8.9 \\
+21 & DINOv3-S & 60.3 & 59.9 & 0.4 \\
+\bottomrule
+\end{tabular}}
+\end{minipage}
