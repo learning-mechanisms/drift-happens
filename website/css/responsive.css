@@ -143,7 +143,7 @@
   .twofig {
     gap: 10px;
     margin: 14px 0;
-    flex-wrap: nowrap;
+    flex-direction: column;
   }
   .twofig figure {
     flex: 1 1 0;
@@ -168,6 +168,83 @@
   }
   footer {
     font-size: 13px;
+  }
+
+  /* model pipeline: a single row within the viewport */
+  div.pipe {
+    overflow-x: hidden;
+    padding: 10px 8px;
+  }
+  .pipe .pipe-row {
+    display: flex;
+    width: 100%;
+    gap: 3px;
+  }
+  .pipe .pipe-row .blk {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 6px 3px;
+    font-size: 9.5px;
+  }
+  .pipe .pipe-row .blk.frozen,
+  .pipe .pipe-row .blk.train {
+    width: auto;
+  }
+  .pipe .pipe-row .blk small {
+    font-size: 7.5px;
+  }
+  .pipe .pipe-row .blk i {
+    font-size: 7px;
+    padding: 1px 4px;
+  }
+  .pipe .pipe-row .arr {
+    flex: none;
+    align-self: center;
+    font-size: 10px;
+  }
+
+  /* roster: data columns stay visible, the descriptive column scrolls */
+  .tablewrap .rostertbl {
+    font-size: 12px;
+  }
+  .tablewrap .rostertbl th,
+  .tablewrap .rostertbl td {
+    padding-right: 10px;
+  }
+  .rostertbl td.bias {
+    white-space: nowrap;
+  }
+
+  /* results tables: the metric columns fit the viewport */
+  .tbl-wrap .rtable {
+    font-size: 12px;
+  }
+  .tbl-wrap .rtable th,
+  .tbl-wrap .rtable td {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  /* dataset sample portraits fit within the card */
+  .dcard .dc-faces {
+    gap: 6px;
+  }
+  .dcard .dc-faces img {
+    width: 68px;
+    height: 61px;
+  }
+
+  /* nav cards: the arrow sits at the trailing edge */
+  .navcard .nl-t {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  /* subnav count chip flows inline with the tabs */
+  .subnav .chip {
+    margin-left: 0;
   }
 }
 
@@ -197,5 +274,48 @@
   .author img {
     width: 48px;
     height: 48px;
+  }
+}
+
+/* tablet: the model pipeline flexes to fill the row */
+@media (min-width: 601px) and (max-width: 800px) {
+  .pipe {
+    overflow-x: hidden;
+  }
+  .pipe .pipe-row {
+    display: flex;
+    width: 100%;
+    gap: 5px;
+  }
+  .pipe .pipe-row .blk {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .pipe .pipe-row .blk.frozen,
+  .pipe .pipe-row .blk.train {
+    width: auto;
+  }
+}
+
+/* protocol flow: a single row that scales down to the viewport */
+@media (max-width: 720px) {
+  .protoflow .pf-row {
+    flex-direction: row;
+  }
+  .protoflow .pf-arr {
+    transform: none;
+  }
+  .protoflow .pf-step {
+    padding: 8px 5px;
+  }
+  .protoflow .pf-t {
+    font-size: clamp(10px, 2.6vw, 13px);
+  }
+  .protoflow .pf-d {
+    font-size: clamp(8px, 2vw, 11.5px);
+  }
+  .protoflow .pf-ico {
+    width: clamp(28px, 5vw, 40px);
+    height: auto;
   }
 }
