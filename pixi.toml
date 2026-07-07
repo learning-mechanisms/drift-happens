@@ -83,6 +83,7 @@ analysis-site = "drift analysis site"
 analysis-verify = "drift analysis verify"
 paper-pdf = "sh paper/render_paper.sh"
 paper-lncs-bundle = "sh paper/build_lncs_bundle.sh"
+paper-arxiv-bundle = "sh paper/build_arxiv_bundle.sh"
 
 # Exploratory data analysis: execute each dataset notebook and render it to HTML beside the notebook.
 eda = """
