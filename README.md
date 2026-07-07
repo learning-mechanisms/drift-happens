@@ -301,9 +301,10 @@ repository also includes [`CITATION.cff`](CITATION.cff), so GitHub's
 metadata.
 
 ```bibtex
-@misc{holzinger2026drifthappens,
+@inproceedings{holzinger2026drifthappens,
   title = {{Drift Happens}: An Empirical Study of Neural Architecture Robustness to Temporal Distribution Shift},
   author = {Holzinger, Robin and Colletti, Riccardo},
+  booktitle = {QCDS Workshop @ ECML-PKDD 2026},
   year = {2026},
   url = {https://drift-happens.org/drift-happens.pdf},
   note = {Code: \url{https://github.com/learning-mechanisms/drift-happens}},
